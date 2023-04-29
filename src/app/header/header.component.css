@@ -1,0 +1,63 @@
+.root {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	background-color: #0A2640;
+	color: white;
+	justify-content: space-between;
+}
+
+.container1 {
+	display: flex;
+	align-items: center;
+	justify-content : flex-start;
+}
+.options {
+	flex-wrap: wrap;
+	padding-bottom: 4em;
+}
+
+.title {
+	
+}
+.title div > img {
+	width: 2em;
+}
+.elem1 {
+	width: 2.5em;
+}
+.elem2 {
+	width: 60%;
+}
+.elem2 span {
+	font-weight: 800;
+	font-size: 25px;
+}
+/*///////////////////////------------------------//////////////////////*/
+
+.container2 {
+	padding-right: 1.2em
+}
+.options > div {
+	padding: 25px;
+}
+.login {
+	background: #FFFFFF;
+	border-radius: 50px;
+	height: .15em
+}
+.login a {
+	color: #0A2640;
+	font-weight: 800;
+}
+a{
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+a:visited {
+	text-decoration: none;
+}
+

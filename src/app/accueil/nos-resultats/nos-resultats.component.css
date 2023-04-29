@@ -1,0 +1,36 @@
+.root {
+	width: 100%;
+	background-color: #0A2640;
+	flex-direction: column;
+	color: white;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.root > div {
+	padding-top: 20px;
+	padding-bottom: 15px;
+}
+.minTitle span {
+	font-size: 16px;
+}
+.minTitle{
+}
+.massTitle {
+	width: 60%;
+	text-align: center;
+}
+.presentation {
+	flex-wrap: wrap;
+	width: 100%;
+}
+.presentation > div{
+	margin-left: auto;
+	margin-right: auto;
+}
+.chiffre {
+	color: #65E4A3;
+	font-weight: 600;
+	font-size: 80px;
+}

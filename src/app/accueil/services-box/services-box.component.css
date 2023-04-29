@@ -1,0 +1,18 @@
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.container {
+	flex-direction: column;
+	width: 80%;
+}
+.title {
+	margin-bottom: 20px;
+}
+.elems {
+	flex-wrap: wrap;
+}
+.elems div{
+	padding: 5px;
+}
