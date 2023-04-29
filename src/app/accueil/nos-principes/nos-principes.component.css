@@ -27,7 +27,7 @@ color: white;
 .enumeration {
 	display: flex;
 	justify-content: flex-start;
-	flex-diection: row;
+	flex-direction: row;
 }
 .enumeration > img {
 	width: 150px;
