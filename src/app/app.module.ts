@@ -17,6 +17,8 @@ import { ItemMinImageTextComponent } from './accueil/services-box/item-min-image
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarrouselComponent } from './accueil/carrousel/carrousel.component';
 import { NosPrincipesComponent } from './accueil/nos-principes/nos-principes.component';
+import { RejoinsNousComponent } from './accueil/rejoins-nous/rejoins-nous.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { NosPrincipesComponent } from './accueil/nos-principes/nos-principes.com
     NosResultatsComponent,
     NosArtisantsComponent,
     ItemMinImageTextComponent,
-    NosPrincipesComponent
+    NosPrincipesComponent,
+    RejoinsNousComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
