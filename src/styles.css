@@ -4,6 +4,7 @@ html {
     width: 100%;
     padding: 0;
 	margin: 0;
+    scroll-behavior: smooth;
 }
 body{
     width: 100%;
@@ -11,6 +12,12 @@ body{
 
     padding: 0;
 	margin: 0;
+
+
+	animation-name: apparition;
+	animation-duration: 700ms;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
 }
 .centered {
 	display: flex;
@@ -30,4 +37,14 @@ input {
 input:focus {
 	border: none;
 	outline: none;
+}
+
+
+@keyframes apparition {
+	0% {
+		opacity:0
+	}
+	100% {
+		opacity: 1
+	}
 }

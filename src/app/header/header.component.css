@@ -4,7 +4,8 @@
 	width: 100%;
 	background-color: #0A2640;
 	color: white;
-	justify-content: space-between;
+	justify-content: space-around;
+	padding-bottom: 4em;
 }
 
 .container1 {
@@ -14,7 +15,6 @@
 }
 .options {
 	flex-wrap: wrap;
-	padding-bottom: 4em;
 }
 
 .title div > img {
@@ -33,7 +33,7 @@
 /*///////////////////////------------------------//////////////////////*/
 
 .container2 {
-	padding-right: 1.2em
+	/* padding-right: 1.2em */
 }
 .options > div {
 	padding: 25px;
