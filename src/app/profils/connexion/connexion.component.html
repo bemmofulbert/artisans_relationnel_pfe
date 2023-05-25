@@ -5,21 +5,24 @@
     </head>
     <body class="centered">
         <div class="bg"></div>
-        <form  class="root centered">
+        <form  class="root centered" (submit)="onSubmit()">
             <div class="titre centered"  ><h2>Bon Retour OneCick!Work</h2></div>
             <table>
+                <tr *ngIf="incorrect"><span class="alert" >Adresse ou Mot de Passe incorrect</span></tr>
+                <tr *ngIf="incomplet && !incorrect"><span class="alert" >Remplissez tous les champs</span></tr>
                 <tr>
                     <td><label for="mail" >Adresse Mail</label></td>
-                    <td><input id="mail" name="mail" type=text placeholder="Entrez votre adresse mail" /></td>
+                    <td><input id="mail" name="mail" type=text placeholder="Entrez votre adresse mail" [(ngModel)]="mail" /></td>
                 </tr>
                 <tr>
                     <td><label for="pass" >Mot de Passe</label></td>
-                    <td><input id="pass" name="pass" type=text placeholder="Entrez votre mot de passe" /></td>
+                    <td><input id="pass" name="pass" type=password placeholder="Entrez votre mot de passe" [(ngModel)]="pass"/></td>
+                    <td><div class="eye" ><button (click)="onEyePassClick()"><img [src]="eyePass"></button></div></td>
                 </tr>
             </table>
             <div class="passOublier lien"><a href="#" >mot de passe oublie ?</a></div>
-            <div><input type=submit value="Connexion" class="butConnexion"></div>
-            <div href="#" class="creer lien"><a routerLink="/enregistrement1" >Creer un Compte</a></div>
+            <div><input type="submit" value="Connexion" class="butConnexion"></div>
+            <div class="creer lien"><a routerLink="/enregistrement" >Creer un Compte</a></div>
         </form>
     </body>
 </html>

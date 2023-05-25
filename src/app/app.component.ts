@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
   count = 0
+  title:String = "OneClickWork"
   constructor(private modalService: NgbModal) {
   }
 

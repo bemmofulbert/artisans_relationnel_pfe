@@ -1,0 +1,30 @@
+
+        
+        <form  class="root centered" *ngIf="visible" (submit)="onSubmit()">
+            <div class="titre centered"  ><h2>Bienvenue sur OneCick!Work</h2></div>
+            <table>
+                <tr><td *ngIf="!checkEmail() && verifNow" class="alert">adresse email incorrecte</td></tr>
+                <tr><td *ngIf="mailExist && verifNow" class="alert">adresse email existante</td></tr>
+                <tr>
+                    <td><label for="mail" >Adresse Mail <span class="star">*</span></label></td>
+                    <td><input required id="mail" name="mail" type=text placeholder="Entrez votre adresse mail" [(ngModel)]="cli.mail" /></td>
+                </tr>
+                <tr><td *ngIf="!checkPass() && verifNow" class="alert">six (06) cracteres minimum</td></tr>
+                <tr>
+                    <td><label for="pass" >Mot de Passe <span class="star">*</span></label></td>
+                    <td>
+                        <input required id="pass" name="pass" type="password" placeholder="Entrez votre mot de passe" [(ngModel)]="cli.motdepasse"/>
+                    </td>
+                    <td><div class="eye" ><button (click)="onEyePassClick()"><img [src]="eyePass"></button></div></td>
+                </tr>
+                <tr><td *ngIf="!checkVPass() && verifNow" class="alert">différent du mot de passe</td></tr>
+                <tr>
+                    <td><label for="vpass" >Vérification <span class="star">*</span></label></td>
+                    <td><input required id="vpass" name="vpass" type="password" placeholder="Entrez a nouveau le mot de passe" [(ngModel)]="vPass" />
+                    </td>
+                    <td><div class="eye " ><button (click)="onEyeVPassClick()"><img [src]="eyeVPass"></button></div></td>
+                </tr>
+            </table>
+            <div><input type="submit" value="Continuer" (click)="onNext()"></div>
+            <div class="creer lien"><a routerLink="/connexion">J'ai déja un compte</a></div>
+        </form>

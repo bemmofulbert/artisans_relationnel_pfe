@@ -1,3 +1,6 @@
+h1,h2,h3,h4 {
+	font-family: Liberation;
+}
 body {
     display: flex;
     background-color: #0A2640;
@@ -5,12 +8,19 @@ body {
     justify-content: center;
     justify-items: center;
     align-content: center;
+	width: 100%;
+}
+.body {
+	width: 100%;
+    height: 100vh;
 }
 .bg {
 	width: 100%;
     height: 100vh;
-    animation: 25s prestations infinite;
+    animation: 28s prestations infinite;
     background-size: 100%;
+	position: fixed;
+	background-repeat: no-repeat;
 }
 @keyframes prestations {
 	0% {
@@ -75,7 +85,6 @@ body {
 }
 .root {
     height: 380px;
-    position: fixed;
     vertical-align: middle;
     background: #FFFFFF;
 	box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
@@ -85,12 +94,22 @@ body {
 	display: flex;
 	align-items: center;
     justify-content: flex-start;
-    padding:10px
+    padding:10px;
+	position: relative;
+
+	overflow-y: scroll;
 }
 @media screen and (max-width:600px) {
 	.root {
 		width:100%;
 		height:100vh;
+		box-shadow: none;
+	}
+	body {
+		background-color: white;
+	}
+	.bg {
+		animation: none;
 	}
 }
 .titre {
@@ -107,7 +126,7 @@ td {
 label {
 	font-family : 'Arial'/*'Open Sans'*/
 }
-input[type=text] {
+input[type=text], input[type=password]{
 	background: #F0F8FF;
 	box-shadow: 0px 4px 4px rgba(10, 38, 64, 0.25);
 	border : none;
@@ -117,8 +136,8 @@ input[type=text] {
 	filter: drop-shadow(0px 4px 4px rgba(10, 38, 64, 0.25));
 	
 }
-input[type=text]:focus {
-	border : 2px solid #0A2640;
+input[type=text]:focus,input[type=password]:focus {
+	border : 1px solid #0A2640;
 	outline: none;
 }
 .lien {
@@ -137,7 +156,9 @@ input[type=text]:focus {
 text-decoration-line: underline;
 	color: #047A9F;
 }
-
+.eye img {
+	width: 20px
+}
 input[type="submit"] {
 	background: #0A2640;
 	border-radius: 240px;
@@ -150,6 +171,27 @@ input[type="submit"] {
 	font-weight : 900;
 	width: 100%
 }
+input[value="Precedent"] {
+	background: white;
+	border-radius: 240px;
+	color : #0A2640;
+	border:1px solid #0A2640;
+	font-size : 20px;
+	padding: 5px;
+	padding-left : 15px;
+	padding-right : 15px;
+	font-weight : 500;
+	margin-top: 3px;
+	width: 80%;
+}
 .creer {
 	padding-top : 20px;
+}
+
+.star,.alert {
+	color: red
+}
+.alert{
+	font-size: 10px;
+	padding:0px;
 }

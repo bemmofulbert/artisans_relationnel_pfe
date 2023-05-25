@@ -1,0 +1,19 @@
+
+<html>
+    <head>
+        <title>Compte active | OneClick!Work</title>
+    </head>
+    <body class="centered">
+        <div class="bg"></div>
+        <form  *ngIf="activated" class="root centered" (submit)="onSubmit()">
+                <div class="titre centered" ><h2>Votre Compte OneClickWork est desormais active 🥳</h2></div>                
+                <div class="creer lien"><a routerLink="/connexion">Se Connecter</a></div>
+        </form>
+
+        <form  *ngIf="!activated"  class="root centered" (submit)="onSubmit()">
+            <h4 style="text-align:center">Lien d'activation incorrect</h4>
+                <div class="creer lien"><a routerLink="/connexion">Se Connecter</a></div>
+                <div class="creer lien"><a routerLink="/enregistrement">S'enregistrer</a></div>
+        </form>
+    </body>
+</html>

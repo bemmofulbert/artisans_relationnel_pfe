@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OneClickWork</string>
+    <string name="title_activity_main">OneClickWork</string>
+    <string name="package_name">com.BemsProduction.app</string>
+    <string name="custom_url_scheme">com.BemsProduction.app</string>
+</resources>

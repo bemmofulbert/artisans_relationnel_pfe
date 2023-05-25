@@ -1,0 +1,19 @@
+
+<html>
+    <head>
+        <title>Enregistrement | OneClick!Work</title>
+    </head> 
+    <body class="centered">
+    <div class="body centered">
+        <div class="bg"></div>
+        <app-enregistrement1 [cli]="client" [visible]="visible1" (next)="onNext()"></app-enregistrement1>
+        <app-enregistrement2 [cli]="client" [visible]="visible2" (prec)="onPrec()" (next2)="onNext2()"></app-enregistrement2>
+        <div *ngIf="terminated" class="root centered">
+            <h2>Terminé</h2><br><br>
+            <h4 style="text-align:center">Un lien d'activation de compte vous a été <br>envoyé par mail</h4>
+            <div class="creer lien"><a routerLink="/connexion">Se Connecter</a></div>
+        </div>
+    </div>
+    
+    </body>
+</html>
