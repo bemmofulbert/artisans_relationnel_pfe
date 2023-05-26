@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>admin question</title>
+    </head>
+    <body>
+        <form id="form" method="post" action="/question">
+            <div class="root">
+                <fieldset>
+                    <center><h2>Ajouter une question</h2></center>
+                    <div class="container">
+                        <div class="lab">
+                            <label for="question">Question</label>
+                        </div>
+                        <div>
+                            <textarea rows="5" maxlength="1024" name="quest_text" id="quest_text" required></textarea>
+                            <div class="lab lab_prop">
+                                <div>
+                                    <label>Propositions </label>
+                                </div>
+                                <div class="leftRep">
+                                    <label style="float:right">Est la bonne reponse</label>
+                                </div>
+                            </div>
+                                <div class="quest_group1">
+                                    <div  class="quest_group1_input">
+                                        <input maxlength="1024" id="prop0" type="text" name="prop0" required placeholder="Entrez la proposition 1"/>
+                                    </div>
+                                    <div class="quest_group1_check">
+                                        <input type="checkbox" class="check" checked id="check_prop0" name="check_prop0">
+                                    </div>
+                                </div>
+                                <div id="_prop0" class="soulig"></div>
+                            </div>
+                            <div>
+                                <div class="quest_group1">
+                                    <div class="quest_group1_input">
+                                        <input maxlength="1024" type="text" id="prop1" name="prop1" placeholder="Entrez la proposition 2"/>
+                                    </div>
+                                    <div class="quest_group1_check">
+                                        <input type="checkbox" class="check" id="check_prop1" name="check_prop1">
+                                    </div>
+                                </div>
+                                <div id="_prop1" class="soulig"></div>
+                            </div>
+                            <div>
+                                <div class="quest_group1">
+                                    <div class="quest_group1_input">
+                                        <input maxlength="1024" type="text" id="prop2" name="prop2" placeholder="Entrez la proposition 3"/>
+                                    </div>
+                                    <div class="quest_group1_check">
+                                        <input type="checkbox" class="check" id="check_prop2" name="check_prop2">
+                                    </div>
+                                </div>
+                                <div id="_prop2" class="soulig"></div>
+                            </div>
+                            <div>
+                                <div class="quest_group1">
+                                    <div class="quest_group1_input">
+                                        <input maxlength="1024" type="text" id="prop3" name="prop3" placeholder="Entrez la proposition 4"/>
+                                    </div>
+                                    <div class="quest_group1_check">
+                                        <input type="checkbox" class="check" id="check_prop3" name="check_prop3">
+                                    </div>
+                                </div>
+                                <div id="_prop3" class="soulig"></div>
+                            </div>
+                            <div>
+                                <div class="quest_group1">
+                                    <div class="quest_group1_input">
+                                        <input maxlength="1024" type="text" id="prop4" name="prop4" placeholder="Entrez la proposition 5"/>
+                                    </div>
+                                    <div class="quest_group1_check">
+                                        <input type="checkbox" class="check" id="check_prop4" name="check_prop4">
+                                    </div>
+                                </div>
+                                <div id="_prop4" class="soulig"></div>
+                            </div>
+                            <div>
+                                <div class="quest_group1">
+                                    <div class="quest_group1_input">
+                                        <input maxlength="1024" type="text" id="prop5" name="prop5" placeholder="Entrez la proposition 6"/>
+                                    </div>
+                                    <div class="quest_group1_check">
+                                        <input type="checkbox" class="check" id="check_prop5" name="check_prop5">
+                                    </div>
+                                </div>
+                                <div id="_prop5" class="soulig"></div>
+                            </div>
+                        </div>
+                        <div class="form_end">
+                            <div class="form_end_submit"><input id="but_submit" type="submit" value="Ajouter"></div>
+                            <div class="form_end_reset"><input type="reset" value="Effacer"></div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </body>
+    <script>
+        checks = document.getElementsByClassName("check")
+        inputs = document.getElementsByTagName("input")
+
+        for(var c=checks.length,i=0;i<c;i++) {
+            checks[i].addEventListener("change",function(e){
+                //if(e.target.checked) return
+
+                onlychecked = true
+                checks = document.getElementsByClassName("check")
+                for(var c=checks.length,i=0;i<c;i++) {
+                    if(checks[i].checked) {
+                        onlychecked = false
+                    }
+                }
+                if(onlychecked) e.target.checked = true
+
+                //repercusion sur les inputs
+                for(var c=checks.length,i=0;i<c;i++) {
+                    neighbor = document.getElementById((String) (checks[i].id).replace("check_",""))
+                    if(checks[i].checked) {
+                        neighbor.required = true
+                    }else neighbor.required = false
+                }
+            },false)
+        }
+        
+        for(var c=inputs.length,i=0;i<c;i++){
+            if(inputs[i].getAttribute("type") != "text") continue
+
+            inputs[i].addEventListener('focusin',function(e) {
+                target = e.target || e.srcElement
+                id = target.id
+                element = document.getElementById(id)
+                soulig = document.getElementById('_'+id)
+                
+                element.style.transform = "scale(1.1)"
+                soulig.animate([{width:"0%"},
+                    {width:"95%", "border-top" : "2px solid rgb(20, 120, 240)"}],{duration: 200})
+                soulig.style.borderTop = "2px solid rgb(20, 120, 240)"
+
+                target.animate([{transform :"scale(1)"},{transform : "scale(1.1)"}],{duration:100})
+            },true)
+
+            inputs[i].addEventListener('focusout',function(e) {
+                target = e.target || e.srcElement
+                id = target.id
+                element = document.getElementById(id)
+                soulig = document.getElementById('_'+id)
+                
+                element.style.transform = "scale(1)"
+                soulig.animate([{width:"0%"},
+                    {width:"95%", "bordxer-top" : "1px solid rgb(220, 220, 220,0.9)", "font-size": "14px"}],{duration: 50,timing: "ease-in-out"})
+                soulig.style.borderTop = "1px solid rgb(220, 220, 220,0.9)"
+
+                target.animate([{transform :"scale(1.1)"},{transform : "scale(1)"}],{duration:100})
+            },true)
+        }
+       
+    </script>
+    <style>
+        h2{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: 900;
+            font-size: 2.5em;
+        }
+        .root {
+            align-content: center;
+            width: 100%;
+            margin-top: 50px;
+        }
+        @media screen and (max-width: 600px) {
+            fieldset {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .container {
+            flex-direction: column;
+            justify-items: flex-start;
+            align-items: center;
+        }
+        @media screen and (min-width: 600px) {
+            fieldset {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .lab {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            width: 100%;
+        }
+        textarea {
+            width: 95%;
+            border-radius: 10px;
+            resize :vertical;
+        }
+        input[type="text"], textarea {
+            margin: 1.5%;
+            margin-left: 2%;
+            border: 1px solid rgb(220, 220, 220,0.9);
+        }
+        input[type="text"] {
+            border: none;
+            width: 90%;
+            font-size: 14px;
+            color: rgb(70, 70, 70);
+        }
+        input[type="text"]:focus {
+            border: none;
+            outline: none;
+            color: rgb(80, 80, 80);
+        }
+        .soulig{
+            animation: souligne .3s ease-in-out;
+            animation-delay: 900;
+            border-top: 1px solid rgb(220, 220, 220,0.9);
+            margin-left: 1.5%;
+            width: 80%;
+        }
+        .quest_group1 {
+            display: flex;
+            flex-direction:row;
+            justify-content: space-around;
+            width: 95%;
+        }
+        .quest_group1_input {
+            width: 82%;
+        }
+        .quest_group1_check {
+            width: 5%;
+        }
+        .form_end {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2%;
+        }
+        .form_end > div {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #but_submit,input[type="reset"] {
+            width: 80%;
+            font-size: 1.3em;
+            background-color: rgb(57.2, 59.4, 255);
+            color: white;
+            border-radius: 10px;
+            height: 50px;
+        }
+        #but_submit:hover, input[type="reset"]:hover{
+            background-color: rgb(47.2, 49.4, 255);
+        }
+        #but_submit:active, input[type="reset"]:active{
+            background-color: rgb(17.2, 19.4, 255);
+        }
+
+        @keyframes souligne{
+            from {
+                width: 0%;
+            }
+            to {
+                width: 95%;
+            }
+        }
+        fieldset {
+            border-radius: 15%;
+            padding: 25px;
+            box-shadow: inset 0 0 1em rgb(220, 220, 220,0.9), 0 0 2em gray;
+        }
+
+        .lab_prop{
+            display: flex;
+            width: 100%;
+
+        }
+        .lab_prop  div {
+            width: 50%;
+        }
+    </style>
+</html>
