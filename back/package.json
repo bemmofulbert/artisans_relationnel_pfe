@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nodemon index.js *.html",
-    "start": "nodemon index.js *.html"
+    "start": "node index.js"
   },
   "author": "bemmo",
   "license": "ISC",
