@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ConnexionComponent } from './profils/connexion/connexion.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

@@ -22,6 +22,8 @@ import { RejoinsNousComponent } from './accueil/rejoins-nous/rejoins-nous.compon
 import { FooterComponent } from './footer/footer.component';
 import { EnregistrementComponent } from './profils/enregistrement/enregistrement.component';
 import { ActivationComponent } from './profils/enregistrement/activation/activation.component';
+import { PresentArtisanComponent } from './present/present-artisan/present-artisan.component';
+import { PresentProjetComponent } from './present/present-projet/present-projet.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ActivationComponent } from './profils/enregistrement/activation/activat
     RejoinsNousComponent,
     FooterComponent,
     EnregistrementComponent,
-    ActivationComponent
+    ActivationComponent,
+    PresentArtisanComponent,
+    PresentProjetComponent
   ],
   imports: [
     BrowserModule,
