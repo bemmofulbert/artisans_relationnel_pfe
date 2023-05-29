@@ -50,11 +50,13 @@
 a{
 	text-decoration: none;
 }
-a:hover {
+a:hover .titlePlatform{
 	text-decoration: underline;
 	cursor: pointer;
 }
-a:visited {
+a:visited .titlePlatform{
 	text-decoration: none;
 }
-
+.titlePlatform {
+	color: #FFFFFF;
+}

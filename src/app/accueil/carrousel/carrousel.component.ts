@@ -2,11 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ArtisanUnitComponent } from './artisan-unit/artisan-unit.component'
 
 @Component({
   selector: 'app-carrousel',
   standalone: true,
-  imports: [NgbCarouselModule, NgFor, FormsModule],
+  imports: [NgbCarouselModule, NgFor, FormsModule,ArtisanUnitComponent],
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.css']
 })
@@ -18,6 +19,7 @@ export class CarrouselComponent {
 	pauseOnIndicator = false;
 	pauseOnHover = true;
 	pauseOnFocus = true;
+	
 
 	@ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
 

@@ -1,7 +1,15 @@
 <div class="root centered">
-	<form class="container centered">
-		<input type=text placeHolder="Trouver un Job ou une artisan" class="searchEntry"/>
-		<input type="submit" value="Search" id="butSearch" />
+	<form class="centered">
+		<div class="centered container1 "><input type=text placeHolder="Trouver un Job ou un artisan" class="searchEntry"/></div>
+			<div class="container2">
+				<button id="butSearch" class="centered" type="submit" value="Rechercher">
+					Rechercher
+					<div class="searchDropdown centered">
+						<div class="centered">Artisan</div>
+						<div class="centered">Chantier</div>
+					</div>
+				</button>
+			</div>
 	</form>
 	<div class="endOf centered">
 		<div class="centered" ><span>{{ Configs.platform_name }}, en un clic trouver le meilleur artisan pour votre chantier</span></div>

@@ -24,6 +24,8 @@ import { EnregistrementComponent } from './profils/enregistrement/enregistrement
 import { ActivationComponent } from './profils/enregistrement/activation/activation.component';
 import { PresentArtisanComponent } from './present/present-artisan/present-artisan.component';
 import { PresentProjetComponent } from './present/present-projet/present-projet.component';
+import { PresentArtisanUnitComponent } from './present/present-artisan/present-artisan-unit/present-artisan-unit.component';
+import { PresentArtisanListComponent } from './present/present-artisan/present-artisan-list/present-artisan-list.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PresentProjetComponent } from './present/present-projet/present-projet.
     EnregistrementComponent,
     ActivationComponent,
     PresentArtisanComponent,
-    PresentProjetComponent
+    PresentProjetComponent,
+    PresentArtisanUnitComponent,
+    PresentArtisanListComponent
   ],
   imports: [
     BrowserModule,

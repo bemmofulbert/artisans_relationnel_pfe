@@ -12,7 +12,7 @@ const routes: Routes =[
   {path: 'connexion', component: ConnexionComponent },
   {path: 'activated/:id/:code',component: ActivationComponent},
   {path: 'enregistrement',component: EnregistrementComponent},
-  {path: 'list/artisant',component: PresentArtisanComponent}
+  {path: 'list/artisan',component: PresentArtisanComponent}
 ] 
 
 @NgModule({

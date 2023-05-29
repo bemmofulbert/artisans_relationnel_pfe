@@ -7,35 +7,73 @@
 	padding-bottom: 15em;
 	padding-top: 2.5em;
 }
-.root form, .root div{
-	width: 100%;
-}
 form {
+	width: 100%;
 	flex-wrap: wrap;
 }
-form input {
-	margin: 1em;
+.container1 {
+	justify-content: end;
+	width: 60%;
+}
+.container2 {
+	justify-content: start;
+	width: 40%;
+	position: relative;
+	padding-left: 1em;
+}
+form div input {
 	text-overflow: ellipsis;
 }
 .searchEntry {
 	background: white;
 	height: 2.5em;
-	width: 30%;
+	width: 50%;
 	min-width: 15em;
 	border-radius: 50px;
 	padding-left: 1.3em;
-	font-size: 16px
+	font-size: 16px;
+
 }
+
 #butSearch {
-	min-width: 8em;
 	border-radius: 50px;
-	width: 10%;
 	height: 2.5em;
+	background-color: #65E4A3;
+	padding-left: 15px;
+	padding-right: 15px;
+
 	font-weight: 600;
 	font-size: 18px;
+	
+	border: 0;
+	outline: 0;
+}
+
+#butSearch:hover {
+    background-color: #43c281;
+}
+.container2:hover .searchDropdown {
+	display: block;
+}
+.searchDropdown {
+	position: absolute;
+	top: 2.5em;
+	flex-direction: row;
+	background-color: #65E4A300;
+	display: none;
+}
+.searchDropdown div {
+	width: 100%;
+	border-radius: 50px;
 	background-color: #65E4A3;
+	border-top:1px solid #0A2640 ;
+}
+.searchDropdown div:hover {
+	background-color: #43c281;
+	border-radius: 50px;
 }
 .endOf {
 	margin-top: 1em;
 	text-align: center;
+	width: 100%;
 }

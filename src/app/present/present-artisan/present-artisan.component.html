@@ -1,5 +1,41 @@
 <div class="root">
     <app-header></app-header>
-    <app-accueil-header></app-accueil-header>
-    <app-footer></app-footer>
+        <form class="centered">
+            <input type=text placeHolder="Trouver un artisan" class="searchEntry"/>
+            <input type="submit" value="Search" id="butSearch" />
+        </form>
+    <div class="optionsRech">
+        <div class="navbar">
+            <ul class="nav-links">
+                <li class="dropdown">
+                    categorie
+                    <img src="assets/vignettes/send.svg">
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    Details sur l'artisant
+                    <img src="assets/vignettes/send.svg">
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    Budget
+                    <img src="assets/vignettes/send.svg">
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    Temps des travaux
+                    <img src="assets/vignettes/send.svg">
+                    <ul class="dropdown-menu">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="list">
+        <app-present-artisan-list></app-present-artisan-list>
+    </div>
+    <div><app-footer></app-footer></div>
 </div>

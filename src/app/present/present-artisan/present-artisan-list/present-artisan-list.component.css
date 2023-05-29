@@ -1,0 +1,12 @@
+.root{
+    width: 100%;
+    padding: 2.5%;
+}
+.container {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.container div {
+    padding-bottom: 2em;
+}
