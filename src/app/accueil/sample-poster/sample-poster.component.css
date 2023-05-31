@@ -8,7 +8,7 @@
 	width: 60%;
 	display: grid;
 	grid-template-columns: 29% 36% 29%;
-	grid-template-rows: auto;
+	grid-template-rows:auto;
 	grid-template-areas:
 		"item1 item2 item3"
 		"item4 item2 item5";
@@ -62,7 +62,7 @@
 	grid-area:item2;
 	height: 100%;
 }
-.item2 img {
+.item img {
 	width: 100%;
 	height: 100%;
 }
@@ -75,5 +75,9 @@
 }
 .item5 {
 	grid-area:item5;
+}
+
+.item3 img, .item1 img, .item4 img, .item5 img{
+	height: 280px
 }
 
