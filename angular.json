@@ -17,6 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+          	"allowedCommonJsDependencies": [
+			  "pbf",
+			  "rbush",
+			  "ol-popup"
+			],
             "outputPath": "dist/app_test",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -54,12 +59,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kb",
-                  "maximumError": "8kb"
+                  "maximumWarning": "3kb",
+                  "maximumError": "6kb"
                 }
               ],
               "outputHashing": "all"
