@@ -1,4 +1,4 @@
-const Data = require("./Data")
+const Data = require("../bd/Data")
 
 const Projet = new Data("Projet",
     [
@@ -9,8 +9,8 @@ const Projet = new Data("Projet",
         "int_salaire_sup",
         "int_salaire_sub",
         "nb_personnes_requis",
-        "localisation",
-        "ref_adresse"
+        "ref_localisation",
+        "ref_metier"
     ])
 
 module.exports = Projet

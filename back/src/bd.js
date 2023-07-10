@@ -31,9 +31,9 @@ class BD {
       this.execOne(query,_callback,_catch)
     }
 
-    static insert = (_callback,_catch,table,columns,values) => {
+    static insert = (_callback,_catch,table,columns,values,returns=["id"]) => {
       
-      let query = QueryGenerator.insert(table,columns,values)
+      let query = QueryGenerator.insert(table,columns,values,returns)
       this.execAny(query,_callback,_catch)
     }
 

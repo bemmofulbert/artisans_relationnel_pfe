@@ -1,4 +1,4 @@
-const Data = require("./Data")
+const Data = require("../bd/Data")
 
 const Concerne = new Data("Concerne",
     [

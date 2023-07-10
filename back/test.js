@@ -5,7 +5,7 @@ const path = require('path')
 
 const bodyParser = require('body-parser')
 const multer = require('multer') // v1.0.5
-const Data = require('./src/models/Data')
+//const Data = require('./src/models/Data')
 const Client = require('./src/models/Client')
 const { select } = require('./src/requete_generator')
 const upload = multer() // for parsing multipart/form-data

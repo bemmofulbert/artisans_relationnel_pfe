@@ -26,7 +26,7 @@ class QueryGenerator {
 		return query;
 	}
 
-    static insert = (table,columns,values) => {
+    static insert = (table,columns,values,returns=["id"]) => {
 		if (columns.length != values.length) {
 			console.log("ERREUR : le nombre de colonne est different du nombre de valeur fournie");
 			return null;
@@ -36,8 +36,10 @@ class QueryGenerator {
 		query= query + columns.toString() +")";
 		query= query+" VALUES(";
 		values = QueryGenerator.framed(values);
-		query= query + values.toString() + ")";
+		query= query + values.toString() + ") ";
 		
+		query = query + "RETURNING ";
+		query = query + QueryGenerator.framed(returns)
 		console.log(query);
 		return query;
 	}

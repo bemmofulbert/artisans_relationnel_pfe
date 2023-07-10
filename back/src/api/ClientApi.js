@@ -1,4 +1,5 @@
 const Client = require("../models/Client")
+const Artisan = require("../models/Artisan")
 const Api = require("./Api")
 
 // envoyeur d'email
@@ -21,7 +22,7 @@ class ClientApi extends Api {
         }  
       });
     enregistrement(adr_mail){
-        this.model.getListWith((data)=>{
+        this.model.getOneWith((data)=>{
             //console.log("<br><br>"+'https://oneclickwork.netlify.app/actived/'+data.id+"/"+data["code"])
             let mailo = {  
                 from: 'oneclickwork4300@gmail.com',  
@@ -29,7 +30,7 @@ class ClientApi extends Api {
                 subject: 'Activation de votre compte OneClickWork',  
                 html: 'Suite a votre inscription sur la plateforme OneClickWork,<br>\
                          il est néccessaire d\'activer votre compte grace au lien ci-dessous :<br><br>\
-                         https://oneclickwork.netlify.app/activated/'+data.id+"/"+data["code"] 
+                         https://oneclickwork.netlify.app/clientactive/'+data.id+"/"+data["code"] 
                 // on peut remplacer l'attribut `text`par `html`si on veut que le cors de notre email supporte le HTML
                 // html:  '<h1>This email use html</h1>'
                 };
@@ -45,6 +46,9 @@ class ClientApi extends Api {
         ,()=>{},adr_mail)
             
     }
+
+    
+
     authentification(req, res, next) {
         try {
             const token = req.headers.authorization.split(' ')[1];
@@ -76,9 +80,20 @@ class ClientApi extends Api {
             )       
     }
     
+    get_artisan_from_client = (req, res) =>{
+        Artisan.getUnique((data)=>{
+            res.jsonp(data)
+            res.end()
+        },
+        (error)=>{console.log(error);res.end()},
+        req.params["idart"])
+    }
+
     constructor(){
         super(Client)
         //ajouter des specialisations pour client ici
+        ClientApi.router.get("/"+this.model.tableName+"/Artisan/:idart", this.get_artisan_from_client)
+
         ClientApi.router.get("/"+this.model.tableName+"Active/:id/:code",
             (req,res)=>{
                 let id = req.params["id"]
@@ -101,7 +116,7 @@ class ClientApi extends Api {
         ClientApi.router.get("/"+this.model.tableName+"ActiveVerif/:mail",
             (req,res)=>{
                 let mail = req.params["mail"]
-                this.model.getListWith((client)=>{
+                this.model.getOneWith((client)=>{
                     if(client["activated"] === true){
                         res.status(200).jsonp({"activated": true, "exist":true})
                         res.end()
@@ -113,12 +128,14 @@ class ClientApi extends Api {
                 ()=>{res.status(200).jsonp({"activated": false, "exist":false})},
                 {"mail":mail})
                 
-            })
+        })
+        
+
 
         ClientApi.router.post("/"+this.model.tableName+"Login",
             (req,res) => {
-                console.log(req.body)
-                this.model.getListWith(
+                
+                this.model.getOneWith(
                     (data)=>{
                         let mail = req.body['mail']
                         let pass = req.body['motdepasse']
@@ -128,18 +145,21 @@ class ClientApi extends Api {
                                 .then((identique)=>{
                                     if (identique) {
                                         res.jsonp({"matched":true});
-                                        res.status(200).json({
-                                            userId: mail,
-                                            token: jwt.sign(
-                                                { userId: mail },
-                                                'DoPAMi*nePr0', // cle d chiffrement
-                                                { expiresIn: '24h' }
-                                            )
-                                        });
-                                        res.end()
+                                        // res.status(200).jsonp({
+                                        //     userId: mail,
+                                        //     token: jwt.sign(
+                                        //         { userId: mail },
+                                        //         'DoPAMi*nePr0', // cle d chiffrement
+                                        //         { expiresIn: '24h' }
+                                        //     )
+                                        // });
+                                         res.end()
+                                        return;
                                     }
-                                    else {res.jsonp({"matched":false});
+                                    else {
+                                        res.jsonp({"matched":false});
                                         res.end()
+                                        return;
                                     }
                                 }
                             )
@@ -147,10 +167,11 @@ class ClientApi extends Api {
                         }else {
                             res.jsonp({"matched":false})
                             res.end()
+                            return;
                         }
                         
                     },
-                    ()=>{res.jsonp({"matched":false});res.end()},
+                    ()=>{res.jsonp({"matched":false});res.status(404).end()},
                     {"mail":req.body['mail']}
                 )
             }

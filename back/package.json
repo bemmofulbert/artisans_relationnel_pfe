@@ -1,11 +1,11 @@
 {
-  "name": "serveur_oneclickwork",
+  "name": "serveur_app_test",
   "version": "1.0.0",
   "description": "serveur for App_test",
   "main": "index.js",
   "scripts": {
     "test": "nodemon index.js *.html",
-    "start": "node index.js"
+    "start": "nodemon index.js *.html"
   },
   "author": "bemmo",
   "license": "ISC",

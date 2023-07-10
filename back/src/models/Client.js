@@ -1,4 +1,4 @@
-const Data = require("./Data")
+const Data = require("../bd/Data")
 
 const Client = new Data("Client",
     [
@@ -13,7 +13,8 @@ const Client = new Data("Client",
         'ref_adresse',
 
         'activated',
-        'code'
+        'code',
+        'date_amission'
     ])
 
 module.exports = Client

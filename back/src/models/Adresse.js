@@ -1,10 +1,13 @@
-const Data = require("./Data")
+const Data = require("../bd/Data")
 
 const Adresse = new Data("Adresse",
     [
         "id",
-        "client",
-        "projet"
+        "pays",
+        "ville",
+        "adresse",
+        "lon",
+        "lat"
     ])
 
 module.exports = Adresse

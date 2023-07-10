@@ -4,6 +4,7 @@ const path = require('path')
 const Api = require('./src/api/Api')
 
 require('./src/api/ClientApi')
+require('./src/api/ArtisanApi')
 require('./src/api/AdresseApi')
 require('./src/api/CommentaireApi')
 require('./src/api/ConcerneApi')

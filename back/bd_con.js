@@ -1,9 +1,9 @@
 const info = {
     username : "postgres",
     password : "admin",
-    host : "localhost",
+    host : "localhost",//"192.168.43.10",
     port : "5432",
-    database : "oneclickwork"
+    database : "owc"
 }
 const pg_promise = require('pg-promise')
 const pgp = pg_promise()
