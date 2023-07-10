@@ -1,0 +1,88 @@
+
+> oneclickwork@1.0.0 start
+> ng serve --host 0.0.0.0
+
+
+Initial Chunk Files   | Names         |  Raw Size
+vendor.js             | vendor        |   6.82 MB |
+styles.css, styles.js | styles        | 943.10 kB |
+main.js               | main          | 497.41 kB |
+polyfills.js          | polyfills     | 333.44 kB |
+scripts.js            | scripts       |  81.46 kB |
+runtime.js            | runtime       |   6.51 kB |
+
+| Initial Total |   8.64 MB
+
+Build at: 2023-07-05T10:40:18.011Z - Hash: 01b92fa61c51fed3 - Time: 106267ms
+
+** Angular Live Development Server is listening on 0.0.0.0:4200, open your browser on http://localhost:4200/ **
+
+
+✔ Compiled successfully.
+
+Initial Chunk Files | Names   |  Raw Size
+vendor.js           | vendor  |   4.62 MB |
+main.js             | main    | 459.30 kB |
+runtime.js          | runtime |   6.51 kB |
+
+3 unchanged chunks
+
+Build at: 2023-07-05T10:43:28.626Z - Hash: 94462fc709df0e64 - Time: 10995ms
+
+✔ Compiled successfully.
+
+6 unchanged chunks
+
+Build at: 2023-07-05T10:43:33.344Z - Hash: 94462fc709df0e64 - Time: 4237ms
+
+✔ Compiled successfully.
+
+Initial Chunk Files | Names   |  Raw Size
+main.js             | main    | 459.30 kB |
+runtime.js          | runtime |   6.51 kB |
+
+4 unchanged chunks
+
+Build at: 2023-07-05T10:44:23.954Z - Hash: 91acc8e83d618862 - Time: 10875ms
+
+✖ Failed to compile.
+
+Initial Chunk Files | Names   |  Raw Size
+main.js             | main    | 459.30 kB |
+runtime.js          | runtime |   6.51 kB |
+
+4 unchanged chunks
+
+Build at: 2023-07-05T10:44:40.718Z - Hash: 0c5fdc28a5cffad2 - Time: 2180ms
+
+✖ Failed to compile.
+
+Initial Chunk Files | Names   |  Raw Size
+main.js             | main    | 459.30 kB |
+runtime.js          | runtime |   6.51 kB |
+
+4 unchanged chunks
+
+Build at: 2023-07-05T10:45:05.621Z - Hash: 0aedc2e6521bec27 - Time: 20083ms
+
+✖ Failed to compile.
+
+Initial Chunk Files | Names   |  Raw Size
+main.js             | main    | 459.30 kB |
+runtime.js          | runtime |   6.51 kB |
+
+4 unchanged chunks
+
+Build at: 2023-07-05T10:45:47.809Z - Hash: 743a838bd0351418 - Time: 3251ms
+
+✖ Failed to compile.
+
+Initial Chunk Files | Names   |  Raw Size
+main.js             | main    | 459.30 kB |
+runtime.js          | runtime |   6.51 kB |
+
+4 unchanged chunks
+
+Build at: 2023-07-05T10:46:32.465Z - Hash: 94462fc709df0e64 - Time: 5541ms
+
+✔ Compiled successfully.
