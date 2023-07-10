@@ -9,9 +9,19 @@
 	<div class="container2 centered">	
 		<div class="options centered" >
 			<div class="centered" href="#"><a>Produits</a></div>
-			<div class="centered" href="#"><a>Services</a></div>
+			<div class="centered"><a routerLink="/creer-offre">Créer une Offre</a></div>
+			<div  class="centered" *ngIf="!isArtisan"><a>Devenir artisan</a></div>
 			<div class="centered" href="#"><a>A Propos</a></div>
-			<div class="login centered" routerLink="/connexion"><a>Log in</a></div>
+			<div class="login centered" routerLink="/connexion" *ngIf="!logged">
+				<a>Log in</a>
+			</div>
+			<div class="centered" style="flex-direction:column">
+			<div class="photo_profil centered" routerLink="/connexion" *ngIf="logged">
+				<a routerLink="/artisan"><img [src]="client.photo_profil"></a>
+				
+			</div>
+			<em>{{client.nom}}</em>
+			</div>
 		</div>
 	</div>
 	

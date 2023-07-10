@@ -1,0 +1,4 @@
+<div class="root">
+    <div class="img centered" *ngIf="!minimized"[@inOutAnimation]><img src="assets/logo.png" alt="logo"></div>
+    <div class="butDisplay" (click)="onArrowClick()"><mat-icon>{{styleArrow}}</mat-icon></div>
+</div>

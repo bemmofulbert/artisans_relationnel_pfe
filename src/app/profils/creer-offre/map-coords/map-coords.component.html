@@ -1,0 +1,36 @@
+<div class="root">
+	<div id="map" class="map"></div>
+	
+	<div id="basemaps-wrapper">
+
+      <select id="basemaps" #basemaps (change)="setBasemap(basemaps.value)">
+        <option value="ArcGIS:Streets">Mode Streets</option>
+        <option value="ArcGIS:Navigation">Mode Navigation</option>
+        <option value="ArcGIS:Imagery:Standard">Mode Imagerie</option>
+       </select>
+    </div>
+	
+	<div id="coordsSubmitter">
+        <div >
+          <div class="centered">
+            <label for="lon">Longitude Lieu projet : </label>
+            <em id="lon">{{lon}}</em>
+          </div>
+          <div class="centered">
+            <label for="lat">Latitude Lieu projet :</label>
+            <em>{{lat}}</em>
+          </div>
+        </div>
+      </div>
+      
+      <!-- OL-POPUP -->
+      <div id="ol-popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+      
+      <!-- A_propos -->
+	  <div id="about">
+		<span>©By Bemmo</span>
+	  </div>
+</div>

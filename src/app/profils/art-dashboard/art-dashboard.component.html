@@ -1,0 +1,11 @@
+<div class="root">
+        <div class="top"><app-art-dashboard-topbar></app-art-dashboard-topbar></div>
+        <div class="space">
+                <div><app-art-dashboard-sidebar (switchTo)="onSideBar_change($event)" [sideAct]="sideAct"></app-art-dashboard-sidebar></div>
+                <div class="workspace centered">
+                        <!-- <app-art-dashboard-workspace-projet></app-art-dashboard-workspace-projet> -->
+                        <app-art-dashboard-workspace-profils *ngIf="sideAct=='Profils'"></app-art-dashboard-workspace-profils>
+                        <app-art-dashboard-workspace-projet *ngIf="sideAct=='Projets'"></app-art-dashboard-workspace-projet>
+                </div>  
+        </div>
+</div>

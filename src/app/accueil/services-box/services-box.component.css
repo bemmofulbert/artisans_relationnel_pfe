@@ -12,7 +12,5 @@
 }
 .elems {
 	flex-wrap: wrap;
-}
-.elems div{
-	padding: 5px;
+	padding: 10px;
 }

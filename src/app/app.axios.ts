@@ -1,9 +1,9 @@
 import axios from "axios"
 
 const http = axios.create({
-    baseURL : 'http://localhost:3000',
+    baseURL : 'http://192.168.43.10:3000',
     timeout : 10000,
-    headers: {'Authorization': 'Bearer'}
+    headers: {'Authorization': '*'}
 })
 
 export default http

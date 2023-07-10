@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/Client.service';
+import { ClientModel } from 'src/app/services/models/client.model';
+import { LocalStorageService } from "angular-localstorage"
 
 @Component({
   selector: 'app-connexion',
@@ -18,12 +20,25 @@ export class ConnexionComponent {
   }
 
   onSubmit(){
+    this.incorrect = false
+    this.incomplet = false
+
     if (this.mail=="" || this.pass=="") {this.incomplet=true; return;}
     this.clientService.clientVerif(this.mail,(data)=>{
       if(data['activated']){
         this.clientService.clientLogin(this.mail,this.pass,
-          (match)=>{ if (match) this.router.navigate([''])
-                    else this.incorrect=true }
+          (match)=>{ 
+            if (match) {
+              this.clientService.getOneWith({mail:this.mail},
+                (clientData) => {
+                  let client:ClientModel = ClientModel.data_to_model(clientData)
+                  localStorage.setItem('currentUser',JSON.stringify(client))
+                  this.router.navigate([''])
+                }
+              )
+              
+            } else this.incorrect=true
+          }
         )
       }
       else this.incorrect = true;

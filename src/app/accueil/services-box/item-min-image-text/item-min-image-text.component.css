@@ -3,7 +3,8 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin: 8px;
+	margin: 25px;
+	margin-bottom: 30px;
 }
 .root img{
 	width: 70px;

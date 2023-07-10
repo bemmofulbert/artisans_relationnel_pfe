@@ -1,3 +1,57 @@
-.root {
-    width: 100%;
+.root div {
+    margin-bottom: 25px;
+}
+.presents {
+    flex-wrap: wrap;
+    display: flex;
+    width:100%;
+}
+.presents div{
+    flex-wrap: wrap;
+}
+.service {
+    width: 55%;
+    display:flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 300px;
+}
+.planT {
+    width: 45%;
+    min-width: 300px;
+}
+
+/* COMMENTS */
+.commentaires {
+	flex-direction: column;
+	width: 100%
+}
+.enumeration {
+	flex-direction: row;
+    width:80%;
+    justify-content: flex-start;
+    border: 1px black solid;
+    box-sizing: border-box;
+    padding: 2%;
+}
+.enumeration > img {
+	width: 200px;
+	height: 150px;
+	border-radius: 15px;
+	padding-right: 5%;
+}
+
+.enumeration-text {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
+    max-width: 80%;
+}
+.commentaires .header h1{
+    font-weight: 600;
+    font-size: 25pt;
+}
+.commentaires .header{
+    width: 80%;
 }

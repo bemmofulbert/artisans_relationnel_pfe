@@ -1,0 +1,108 @@
+.root {
+    width:100%;
+    flex-direction:column;
+}
+.container {
+    width: 80%;
+    flex-direction: column;
+}
+.container_offre {
+    width: 100%;
+    margin-top: 10px;
+}
+.container_offre h1 {
+    font-size: 30pt;
+    font-weight: 600;
+}
+.champ {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.champ .titre {
+    width: 57%;
+    min-width: 400px;
+}
+.champ .saisie {
+    width: 40%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+}
+.saisie input, .saisie textarea{
+    padding: 0.5rem;
+    border-radius: 10px;  
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(230, 230, 245);
+    width: 100%;
+    padding-left: 15px;
+    min-width: 250px;
+
+}
+.saisie textarea {
+    height: 150px;
+}
+input:focus, textarea:focus {
+	border : 2px solid #0A2640;
+	outline: none;
+}
+.champ{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: appear .6s ease-in-out .0s 1;
+    flex-wrap: wrap;
+}
+button{ 
+    text-align: center;
+    width: 6rem;
+    border-radius: 0.5rem;
+    margin-top: 5px
+}
+.butSuiv {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    justify-content: space-between;
+}
+.butSuiv button {
+	border-radius: 50px;
+	height: 2.5em;
+	background-color: #65E4A3;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	font-weight: 600;
+	font-size: 18px;
+	
+	border: 0;
+	outline: 0;
+    min-width: 150px;
+}
+
+.butSuiv button:hover {
+    background-color: #43c281;
+}
+@keyframes appear {
+    0%{
+        margin-left:150%;
+        display: flex;
+    }
+    100% {
+        margin-left:0%;
+        display:none;
+    }
+}
+
+.map-container{
+    width:100%;
+}
+/* 
+.champs{
+    height:250px;
+    overflow: hidden;
+} */

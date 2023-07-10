@@ -1,0 +1,144 @@
+<div class="root">
+    <app-header #header></app-header>
+    <div class="container">
+        <div class="container_offre">
+            <h1>Créer une offre</h1>
+            <p>Etape {{numOffreAct}}/{{forms.length}}</p>
+        </div>
+        <div class="champs">
+    <!-- Form 1 --- Form 1 --- Form 1 -->
+            <div class="champ" *ngIf="numOffreAct == 1"[@inOutAnimation]>
+                <div class="titre">
+                    <h2>{{forms[0].title}}</h2>
+                    <p>{{forms[0].description}}</p>
+                </div>
+
+                <div class="saisie">
+                    <input type="text" id="text" [placeholder]="forms[0].placeHolder" [(ngModel)]="Projet.titre">
+                </div>           
+            </div>
+
+        <!-- Form 2 --- Form 2 --- Form 2 -->
+            <div class="champ" *ngIf="numOffreAct == 2"[@inOutAnimation]>
+                <div class="titre">
+                    <h2>{{forms[1].title}}</h2>
+                    <p>{{forms[1].description}}</p>
+                </div>
+                <div class="saisie">
+                    <textarea type="text" id="text" [placeholder]="forms[1].placeHolder" [(ngModel)]="Projet.description" ></textarea>
+                </div> 
+            </div>
+
+        <!-- Form 3 --- Form 3 --- Form 3 -->
+            <div class="champ" *ngIf="numOffreAct == 3"[@inOutAnimation]>   
+                <div class="titre">
+                    <h2>{{forms[2].title}}</h2>
+                    <p>{{forms[2].description1}}</p>
+                </div>
+                <div class="saisie">
+                    <div style="padding: 10px">
+                        <h4>{{forms[2].stitle1}}</h4>
+                        <input type="number" id="nbPers" value="1" max="9" min="1" [placeholder]="forms[2].placeHolder1" [(ngModel)]="Projet.nb_personnes_requis" ><br>
+                    </div>
+                    <div style="padding: 10px">
+                        <h3>{{forms[2].stitle2}}</h3>
+                        <div>
+                            <h4>Minimum :</h4>
+                            <div class="centered">
+                                <input 
+                                    type="number" 
+                                    id="salaire_sub" 
+                                    min="100"
+                                    value="100"
+                                    [max]="salaire_sup.value"
+                                    [placeholder]="forms[2].placeHolder2" 
+                                    [(ngModel)]="Projet.int_salaire_sub"
+                                    #salaire_sub
+                                >
+                                <em>Fcfa</em>
+                            </div>
+                            <h4>Maximum :</h4>
+                            <div class="centered">
+                                <input 
+                                    type="number" 
+                                    id="salaire_sup" 
+                                    value="500"
+                                    [min]="salaire_sub.value"
+                                    [placeholder]="forms[2].placeHolder2" 
+                                    [(ngModel)]="Projet.int_salaire_sup"
+                                    #salaire_sup
+                                >
+                                <em>Fcfa</em>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+            </div>
+        <!-- Form 4 --- Form 4 --- Form 4 -->
+            <div class="champ" *ngIf="numOffreAct == 4"[@inOutAnimation]>
+                <div class="titre">
+                    <h2>{{forms[3].title}}</h2>
+                    <p>{{forms[3].description}}</p>
+                </div>
+                <div class="saisie">
+                    <h3>{{forms[3].placeHolder}}</h3>
+                    <div class="centered">
+                        <img id="imgMetierSel" style="width:50px;margin:10px" [src]="imgMetierSel">
+                        <select id="metierSel" #metierSel (change)="onChangeMetierSel(metierSel.value)" [(ngModel)]="Projet.ref_metier">
+                            <option value="-1" >--Selectionner un metier--</option>
+                            <option *ngFor="let metier of metiers" [value]="metier.id">
+                                {{ metier.nom }}
+                            </option>
+                        </select>
+                    </div>
+                </div>     
+            </div>
+        <!-- Form 5 --- Form 5 --- Form 5 -->
+            <div class="champ" *ngIf="numOffreAct == 5"[@inOutAnimation]>
+                <div class="titre">
+                    <h2>{{forms[4].title}}</h2>
+                    <p>{{forms[4].description}}</p>
+                </div>
+                <div class="saisie">
+                    <h3>{{ forms[4].placeHolder }}</h3>
+                    <label for="paysSel">Pays</label>
+                    <select id="paysSel" #paysSel (change)="onPaysSelChange(paysSel.value)" [(ngModel)]="Adresse.pays" >
+                        <option value="-1" >--Selectionner un pays--</option>
+                        <option *ngFor="let p of pays;let i = index">{{ p.country }}</option>
+                    </select>
+                    <label for="villeSel">Ville</label>
+                    <select id="villeSel" #villeSel (change)="onVilleSelChange(villeSel.value)" [(ngModel)]="Adresse.ville" >
+                        <option value="-1">--Selectionner une ville--</option>
+                        <option *ngFor="let ville of villes;let i = index">{{ ville }}</option>
+                    </select>
+                </div>
+                <div id="text_location"><h3><mat-icon>location_on</mat-icon>Placer un point sur la carte pour indiquer le lieu exact du projet</h3>
+                    <h4 style="color:red" *ngIf="show_msg_place_error">L'emplacement de cette ville est introuvable</h4>
+                </div>
+                <div class="map-container">
+                    <app-map-coords #mapCoords (getPosPJEvent)="getLonLat($event)"></app-map-coords>
+                </div> 
+            </div>
+        </div>
+        <!-- Form 6 --- Form 6 --- Form 6 -->
+        <div class="champ centered" *ngIf="numOffreAct == 6"[@inOutAnimation]>
+            <div class="saisie centered">
+                <h1>{{ forms[5].title }}</h1>
+                <h2><mat-icon>edit</mat-icon>
+                    <mat-icon>done</mat-icon>
+                </h2>
+                <p>{{ forms[5].description }}</p>
+            </div>
+        </div>
+        <div class="butSuiv">
+            <button class="centered" (click)="onPrec()" [style]="(numOffreAct<=1) ? 'color:white;background-color:white;' : '' ">
+                <mat-icon>navigate_before</mat-icon> Précédent
+            </button>
+            <button class="centered" (click)="(numOffreAct>=forms.length) ? publier() : onNext()">
+               {{goPhrase}}<mat-icon>navigate_next</mat-icon>
+            </button>
+        </div>
+    </div>
+    
+</div>

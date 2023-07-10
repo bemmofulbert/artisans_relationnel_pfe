@@ -45,4 +45,13 @@ export class ClientService extends AxiosHandler{
     super(ClientModel.tableName)
     
   }
+
+  getArtisan(client:ClientModel, _callback=(data=[])=>{}){
+    let id = client.id || client['id']
+    this.http.get(`/${this.tableName}/artisan/${id}`)
+        .then(res => {
+            (res.data.length <= 0) ? _callback(null) : _callback(res.data)
+        })
+        .catch(error => {console.log(error)})
+  }
 }

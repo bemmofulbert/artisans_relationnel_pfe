@@ -1,0 +1,31 @@
+<div>
+    <title>Ajout Hopital | HospMapping</title>
+
+    <div class="login">
+        <h1 class ="text-center">Enregistrement D'hopitaux a HOSPMAPPING !</h1>
+        <form id="form" class="needs-validation"  >
+         <!--   <div class="form-group">
+                <label for="email">Nom utilisateur / Username </label>
+                <input type="" id="Username">
+            </div> -->
+            <div class="form-group was-valited">
+                <label class="form-label" for="nom">Nom Hopital </label>
+                <input class="form-control" type="name" id="nom" name="nom" [(ngModel)]="nom" required>
+            </div>
+            <div class="form-group was-valited">
+                <label class="form-label" for="lat">Latitude</label>
+                <input class="form-control" type="number" id="lat" name="lat" [(ngModel)]="lat" required>
+            </div>
+            <div class="form-group was-valited">
+                <label class="form-label" for="lon">Longitude</label>
+                <input class="form-control" type="number" id="lon" name="lon" [(ngModel)]="lon" required>
+            </div>
+            <input class="btn btn-success w-100" type="button" value="Valider" (click)="submit()">
+            
+            
+        </form>
+    </div>
+    <div class="centered">
+    	<h2>Les coordonnees sont stockees selone le format DD: degres decimaux <b>exemple: 41.20338, 2.17403</b></h2>
+    </div>
+</div>

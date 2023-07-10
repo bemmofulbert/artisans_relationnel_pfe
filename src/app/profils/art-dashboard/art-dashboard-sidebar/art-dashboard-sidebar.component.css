@@ -1,0 +1,29 @@
+.root {
+    height: 91vh;
+    min-height: 400px;
+    background-color: rgb(5,70,112);
+    display: flex;
+    align-content: space-between;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0px;
+    width:fit-content;
+}
+/* .root div {
+    
+} */
+.top {
+    height: 17%;
+    margin-bottom: 15px;
+}
+.center {
+    display: flex;
+    height: 73%;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.down {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

@@ -1,0 +1,55 @@
+.root {
+  width: 100%;
+}
+
+.map, #map {
+  width: 100%;
+  height: 500px;
+}
+
+/*-----------------SELECT BASEMAP -------------------*/
+#basemaps-wrapper {
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+#basemaps {
+  padding: 4px 8px;
+  font-size: 16px;
+  display: flex;
+  justify-items: flex-end;
+  align-items: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#about{
+  font-size: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+#coordsSubmitter {
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 15px;
+  width: 100%;
+}
+#coordsSubmitter em {
+  padding: .5em;
+}
+
+.ol-popup{
+  background-color: azure;
+  color: black;
+  font-size: 14px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px;
+}

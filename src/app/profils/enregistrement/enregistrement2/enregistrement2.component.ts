@@ -22,7 +22,7 @@ export class Enregistrement2Component {
     if(this.valider()) this.next2.emit();
     return false
   }
-  check(nom){
+  check(nom: string | any[]){
     if(nom.length >= 3 ) return true;
     else return false;
   }

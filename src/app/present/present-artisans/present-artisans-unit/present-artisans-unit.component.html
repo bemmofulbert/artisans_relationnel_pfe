@@ -1,0 +1,18 @@
+<div class="root" *ngIf="showUnit">
+    <a routerLink="" style="text-decoration: none;color:black">
+        <div class="photos">
+
+            <div class="PhotoCouverture">
+                <img [src]="photoCouverture">
+            </div>
+            <div class="photoProfil">
+                <img [src]="client.photo_profil">
+            </div>
+            
+        </div>
+
+        <div class="text username"><h4>{{ client.nom + " " + client.prenom}}</h4></div>
+        <div class="text competence"><h5>{{ artisan.niveau_scolaire }}</h5></div>
+        <div class="text description">{{ artisan.description }}</div>
+    </a>
+</div>

@@ -1,0 +1,16 @@
+<div class="root">
+    <div class="container centered" #list *ngIf="showList">
+        <div *ngFor="let dat of artisans">
+            <app-present-artisans-unit  [artisan]="dat" ></app-present-artisans-unit>
+        </div>
+    </div>
+    <div class="navigateur centered">
+        <div class="butNat centered"><mat-icon>navigate_before</mat-icon>Précédent</div>
+        <div class="numberEntry centered">
+            <div class="centered"><input type="number" [value]="numPageActuel">
+            <span class="text">/40{{maxPage}}</span></div>
+            <div class="go butNat centered">GO</div>
+        </div>
+        <div class="butNat centered">Suivant<mat-icon>navigate_next</mat-icon></div>
+    </div>
+</div>

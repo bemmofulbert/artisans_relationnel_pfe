@@ -1,0 +1,11 @@
+.root{
+    min-height: 450px;
+    height: 450px;
+    border-radius: 25px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: inset 0 0 .2em rgb(220, 220, 220,0.9), 0 0 .4em gray;
+    background-color: white;
+    overflow-y: scroll;
+}

@@ -32,9 +32,10 @@ form div input {
 	border-radius: 50px;
 	padding-left: 1.3em;
 	font-size: 16px;
-
 }
-
+.searchEntry:focus {
+	border: 3px #65E4A3 solid;
+}
 #butSearch {
 	border-radius: 50px;
 	height: 2.5em;
@@ -52,26 +53,7 @@ form div input {
 #butSearch:hover {
     background-color: #43c281;
 }
-.container2:hover .searchDropdown {
-	display: block;
-}
-.searchDropdown {
-	position: absolute;
-	top: 2.5em;
-	flex-direction: row;
-	background-color: #65E4A300;
-	display: none;
-}
-.searchDropdown div {
-	width: 100%;
-	border-radius: 50px;
-	background-color: #65E4A3;
-	border-top:1px solid #0A2640 ;
-}
-.searchDropdown div:hover {
-	background-color: #43c281;
-	border-radius: 50px;
-}
+
 .endOf {
 	margin-top: 1em;
 	text-align: center;

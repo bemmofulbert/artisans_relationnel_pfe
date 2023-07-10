@@ -1,4 +1,4 @@
 <div class="root centered">
-    <img [src]="imgPath">
-    <a [href]="lien">{{ metier }}</a>
+    <img [src]="path+metier.icon">
+    <a [routerLink]="'/list/artisan/metier='+metier.nom">{{ metier.nom }}</a>
 </div>

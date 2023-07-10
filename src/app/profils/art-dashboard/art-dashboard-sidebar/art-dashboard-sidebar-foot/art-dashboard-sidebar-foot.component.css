@@ -1,0 +1,28 @@
+.root {
+    background-color: rgb(0,48,81);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 0px;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Gothic-Bold", "sans-serif";
+    font-weight: 700;
+}
+
+.img {
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+}
+.img img {
+    width: 22px;
+}
+.text {
+    color: #3585da;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}

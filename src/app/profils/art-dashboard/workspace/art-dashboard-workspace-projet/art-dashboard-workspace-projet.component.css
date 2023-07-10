@@ -1,0 +1,8 @@
+.root{
+    width:100%;
+    flex-direction: column;
+}
+.root div {
+    padding-bottom: 25px;
+    width:100%
+}

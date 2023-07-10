@@ -1,13 +1,17 @@
 <div class="root centered">
 	<form class="centered">
-		<div class="centered container1 "><input type=text placeHolder="Trouver un Job ou un artisan" class="searchEntry"/></div>
+		<div class="centered container1 ">
+			<input type=text 
+				placeHolder="Trouver un artisan" 
+				class="searchEntry" 
+				name="searchEntry" 
+				#searchEntry 
+				[(ngModel)]="keyword" 
+			/>
+		</div>
 			<div class="container2">
-				<button id="butSearch" class="centered" type="submit" value="Rechercher">
+				<button id="butSearch" class="centered" type="submit" value="Rechercher" (click)="onSearch()" >
 					Rechercher
-					<div class="searchDropdown centered">
-						<div class="centered">Artisan</div>
-						<div class="centered">Chantier</div>
-					</div>
 				</button>
 			</div>
 	</form>

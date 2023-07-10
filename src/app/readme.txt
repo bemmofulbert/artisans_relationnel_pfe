@@ -1,2 +1,3 @@
 accueil : page d'accueil de l'application
-profils : 
+profils : modifiable et ajoutable par l'utilisateur
+

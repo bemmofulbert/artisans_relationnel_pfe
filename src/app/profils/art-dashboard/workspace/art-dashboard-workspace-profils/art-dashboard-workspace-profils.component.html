@@ -1,0 +1,202 @@
+<div class="root">
+    <div class="titre">
+        <h1>Vos Informations</h1>
+    </div>
+    <form>
+        <table>
+            <tr>
+                <td><label for="nom">Nom</label></td>
+                <td><input id="nom" name="nom" type="text" placeholder="Entrez votre Nom" readonly [(ngModel)]="newClient.nom" /></td>
+                <td><button class="but_edit" id="but_edit_nom"><mat-icon>edit</mat-icon></button></td>
+            </tr>
+            <tr>
+                <td><label for="prenom">Prenom</label></td>
+                <td><input id="prenom" name="prenom" type="text" placeholder="Entrez votre Prenom" readonly [(ngModel)]="newClient.prenom" /></td>
+                <td><button class="but_edit" id="but_edit_prenom"><mat-icon>edit</mat-icon></button></td>
+            </tr>
+            <tr>
+                <td><label for="mail">Adresse e-mail</label></td>
+                <td><input id="mail" name="mail" type="mail" placeholder="Entrez votre Adresse mail" readonly [(ngModel)]="newClient.mail" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><label for="telephone1">Telephone 1</label></td>
+                <td><input id="telephone1" name="telephone1" type="number" placeholder="* ** ** ** 40" readonly  [(ngModel)]="newClient.telephone1" /></td>
+                <td><button class="but_edit" id="but_edit_telephone1"><mat-icon>edit</mat-icon></button></td>
+            </tr>
+            <tr>
+                <td><label for="telephone2">Telephone 2</label></td>
+                <td><input id="telephone2" name="telephone2" type="number" placeholder="* ** ** ** 40" readonly [(ngModel)]="newClient.telephone2" /></td>
+                <td><button class="but_edit" id="but_edit_telephone2"><mat-icon>edit</mat-icon></button></td>
+            </tr>
+            <tr>
+                <td><label for="photo_profil">Photo de Profils</label></td>
+                <td><input id="photo_profil" name="photo_profil" type="file" readonly [(ngModel)]="dist_photo_profil" /></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="centered">
+            <img [src]="newClient.photo_profil" class="img_photo">
+        </div>
+
+        <hr>
+        <table [style]="(!isArtisan) ? 'display:unset' : 'display:none'">
+            <tr>
+                <td class="centered">
+                    <button id="but_become_art" class="centered" (click)="isArtisan = true">
+                        <mat-icon>group_work</mat-icon><br>
+                         Devenir un artisan
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div class="ForArtisan" [style]="(isArtisan) ? 'display:unset' : 'display:none'">
+            <hr>
+            <table>
+                <tr>
+                    <td><label for="note">Note Actuelle</label></td>
+                    <td>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label for="desc">Description</label></td>
+                    <td>
+                        <textarea id="desc" name="desc" placeholder="Entrez votre description" readonly [(ngModel)]="newArtisan.description">
+                        </textarea>
+                    </td>
+                    <td><button class="but_edit" id="but_edit_desc"><mat-icon>edit</mat-icon></button></td>
+                </tr>
+                <tr>
+                    <td><label for="reals">Realisations</label></td>
+                </tr>
+            </table>
+
+            <div class="centered realsImgs">
+                <div>
+                    <input id="reals" type="file" readonly />
+                    <img [src]="path_defaultPanorama" class="img_photoPanorama">
+                </div>
+                <div>
+                    <input id="reals" name="reals" type="file" readonly />
+                    <img [src]="path_defaultPanorama" class="img_photoPanorama">
+                </div>
+                <div>
+                    <input id="reals" type="file" readonly />
+                    <img [src]="path_defaultPanorama" class="img_photoPanorama">
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <td><label for="port_folio">Lien Port Folio</label></td>
+                    <td><input 
+                            id="port_folio" 
+                            name="port_folio"
+                            type="text" 
+                            placeholder="Entrez le lien vers votre port folio"
+                            readonly 
+                            [(ngModel)]="newArtisan.lien_portfolio" />
+                        </td>
+                    <td><button class="but_edit" id="but_edit_port_folio"><mat-icon>edit</mat-icon></button></td>
+                </tr>
+                <tr>
+                    <td><label for="competence">Competences</label></td>
+                    <td>
+                        <select id="competence" disabled ></select><br>
+                        <select id="competence" disabled></select><br>
+                        <select id="competence" disabled></select>
+                    </td>
+                    <td><button class="but_edit" id="but_edit_competence"><mat-icon>edit</mat-icon></button></td>
+                </tr>
+                <tr>
+                    <td><label for="nvE">Niveau d'etude</label></td>
+                    <td>
+                        <select id="nvE" disabled [(ngModel)]="newArtisan.niveau_scolaire">
+                            <option>CEP</option>
+                            <option>BEPC</option>
+                            <option>Probatoire</option>
+                            <option>BAC</option>
+                            <option>BAC+2 : DUT ou BTS</option>
+                            <option>BAC+3 : Licence</option>
+                            <option>BAC+5</option>
+                        </select>
+                    </td>
+                    <td><button class="but_edit" id="but_edit_nvE"><mat-icon>edit</mat-icon></button></td>
+                </tr>
+            </table>
+            <hr>
+
+            <!-- Localisation -->
+            <div class="titre_offre">
+                <h2>Localisation</h2>
+            </div>
+            <table>
+                <tr>
+                    <td><label for="paysSel">Pays : </label></td>
+                    <td>
+                        <select id="paysSel" #paysSel (change)="onPaysSelChange(paysSel.value)" disabled>
+                            <option *ngFor="let p of pays;let i = index" [value]="i">{{ p.country }}</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="but_edit" id="but_edit_localisation"><mat-icon>edit</mat-icon></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="villeSel">Ville : </label></td>
+                    <td>
+                        <select id="villeSel" #villeSel (change)="onVilleSelChange(villeSel.value)" disabled>
+                            <option value="-1">--Selectionner une ville--</option>
+                            <option *ngFor="let ville of villes;let i = index" [value]="i">{{ ville }}</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+            <div id="text_location">
+                <h3>
+                    <mat-icon>location_on</mat-icon>
+                    Placer un point sur la carte pour indiquer le lieu exact du projet
+                </h3>
+                <h4 style="color:red" *ngIf="show_msg_place_error">L'emplacement de cette ville est introuvable</h4>
+            </div>
+            <div class="map-container">
+                <app-map-coords #mapCoords textPointSel="Mon Lieu de travail"></app-map-coords>
+            </div>
+        </div>
+
+
+<div class="formEnd centered">
+    <div class="centered"><input type="reset" value="Reinitialiser"></div>
+    <div class="centered"><input type="submit" value="Enregistrer"></div>
+</div>
+
+<!--
+        //client 
+        Nom
+        adresse mail
+        numero
+        etat
+         //artisan
+        description
+        photo realisation
+        competences
+        photo_profil
+
+        lien port_folio
+
+        note
+        certifications
+        recommandations
+        experiences
+
+
+    -->
+
+</form>
+</div>

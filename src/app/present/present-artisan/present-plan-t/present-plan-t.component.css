@@ -1,0 +1,78 @@
+.root{
+    background-color:  rgb(2, 2, 27);
+    width: 100%;
+    color: white;
+    flex-direction: column;
+}
+.root div {
+    padding-bottom: 1.5em;
+}
+.menu {
+    width: 100%;
+    flex-direction: row;
+}
+.menu button{
+    width: 33.33%;
+    background-color:  rgb(2, 2, 27);
+    color: white;
+    border: 0;
+    border-bottom: 1px white solid;
+    font-weight: 600;
+    font-size: larger;
+    transition: all .15s ease-in-out;
+    padding: .5em
+}
+.menu button:hover {
+    background-color: white;
+    color:  rgb(2, 2, 27);
+    border-bottom: 6px rgb(2, 2, 27) solid;
+}
+
+.prix {
+    justify-content: space-between;
+    width:80%;
+}
+
+span{
+    font-size: 10px;   
+}
+.star {
+    padding-right: 1em;
+}
+.elements {
+    width: 80%;
+}
+.elements div p {
+    text-justify: inter-word;
+    
+}
+.elements {
+    color: white;
+    flex-direction: column;
+}
+.elements .bouton {
+    margin-top: 4em;
+}
+.elements .bouton a{   
+    padding: .7rem 1.3rem .7rem 1.3rem;
+    color: black;
+    background-color: rgb(3, 218, 153);
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+.elements .bouton a:hover {
+    background-color: rgb(1, 148, 113);
+}
+.elm_pack {
+    flex-direction: column;
+}
+.elm_pack span {
+    font-size: large;
+    padding-top: 1em;
+}
+.numbre {
+    color: rgb(3, 218, 153);
+    font-weight: 600;
+}

@@ -1,0 +1,32 @@
+.root {
+    background-color: rgb(0,48,81);
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    font-family: "Gothic-Bold", "sans-serif";
+    font-weight: 700;
+}
+.butDisplay {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    color:white;
+    width:20px;
+    margin:10px;
+    cursor: pointer;
+    background-color: rgb(0,48,81);
+}
+.butDisplay:hover {
+    color:#65E4A3;
+}
+.img {
+    width: 230px;
+}
+.root div img {
+    width: 43%;
+    min-width: 40px;
+    border-radius: 100px;
+    box-shadow: inset 0 0 .2em rgb(0,48,81,0.9), 0 0 .4em rgb(0,48,81);
+}

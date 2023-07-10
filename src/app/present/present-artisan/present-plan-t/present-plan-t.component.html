@@ -1,0 +1,27 @@
+<div class="root centered">
+    <div class="menu centered">
+            <button *ngFor="let pack of packages" (click)="ongletActuelle=pack.pos"
+                [style]="SelectedStyle(pack.pos)"
+            >{{pack.titre}}</button>
+    </div>
+    <div class="prix centered">
+        <div class="grade">
+            Package Basique
+        </div>
+        <div class="numbre">
+            {{packages[ongletActuelle].prix}}
+        </div>
+    </div>
+    <div class="elements centered">
+        <div><p>{{packages[ongletActuelle].description}}</p></div>
+        <div class="elm_pack centered">
+            <span *ngFor="let el of packages[ongletActuelle].elements">
+                <span class="star">&#9733;</span> 
+                {{el}}
+            </span>  
+        </div>
+        <div class="bouton" title="Contacter cet artisan">
+            <a href="#">Poursuivre</a>
+        </div>
+    </div>
+</div>

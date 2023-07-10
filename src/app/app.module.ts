@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,10 +24,28 @@ import { RejoinsNousComponent } from './accueil/rejoins-nous/rejoins-nous.compon
 import { FooterComponent } from './footer/footer.component';
 import { EnregistrementComponent } from './profils/enregistrement/enregistrement.component';
 import { ActivationComponent } from './profils/enregistrement/activation/activation.component';
+import { PresentProjetsComponent } from './present/present-projets/present-projets.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreerOffreComponent } from './profils/creer-offre/creer-offre.component';
+import { PresentArtisansComponent } from './present/present-artisans/present-artisans.component';
+import { PresentArtisansUnitComponent } from './present/present-artisans/present-artisans-unit/present-artisans-unit.component';
+import { PresentArtisansListComponent } from './present/present-artisans/present-artisans-list/present-artisans-list.component';
 import { PresentArtisanComponent } from './present/present-artisan/present-artisan.component';
-import { PresentProjetComponent } from './present/present-projet/present-projet.component';
-import { PresentArtisanUnitComponent } from './present/present-artisan/present-artisan-unit/present-artisan-unit.component';
-import { PresentArtisanListComponent } from './present/present-artisan/present-artisan-list/present-artisan-list.component';
+import { PresentPlanTComponent } from './present/present-artisan/present-plan-t/present-plan-t.component';
+import { PresentArtisanServiceComponent } from './present/present-artisan/present-artisan-service/present-artisan-service.component';
+  ``
+import { ArtDashboardComponent } from './profils/art-dashboard/art-dashboard.component';
+import { ArtDashboardTopbarComponent } from './profils/art-dashboard/art-dashboard-topbar/art-dashboard-topbar.component';
+import { ArtDashboardSidebarComponent } from './profils/art-dashboard/art-dashboard-sidebar/art-dashboard-sidebar.component';
+import { ArtDashboardSidebarItemComponent } from './profils/art-dashboard/art-dashboard-sidebar/art-dashboard-sidebar-item/art-dashboard-sidebar-item.component';
+import { ArtDashboardSidebarFootComponent } from './profils/art-dashboard/art-dashboard-sidebar/art-dashboard-sidebar-foot/art-dashboard-sidebar-foot.component';
+import { ArtDashboardSidebarHeadComponent } from './profils/art-dashboard/art-dashboard-sidebar/art-dashboard-sidebar-head/art-dashboard-sidebar-head.component';
+import { ArtDashboardWorkspaceProjetComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-projet/art-dashboard-workspace-projet.component';
+import { ArtDashboardWorkspaceProjetSelectComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-projet/art-dashboard-workspace-projet-select/art-dashboard-workspace-projet-select.component';
+import { ArtDashboardWorkspaceProjetListComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-projet/art-dashboard-workspace-projet-list/art-dashboard-workspace-projet-list.component';
+import { ArtDashboardWorkspaceProjetListItemComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-projet/art-dashboard-workspace-projet-list/art-dashboard-workspace-projet-list-item/art-dashboard-workspace-projet-list-item.component';
+import { ArtDashboardWorkspaceProfilsComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-profils/art-dashboard-workspace-profils.component';
+import { MapCoordsComponent } from './profils/creer-offre/map-coords/map-coords.component';
 
 @NgModule({
   declarations: [
@@ -46,17 +66,37 @@ import { PresentArtisanListComponent } from './present/present-artisan/present-a
     FooterComponent,
     EnregistrementComponent,
     ActivationComponent,
+    PresentProjetsComponent,
+    CreerOffreComponent,
+    PresentArtisansComponent,
+    PresentArtisansUnitComponent,
+    PresentArtisansListComponent,
     PresentArtisanComponent,
-    PresentProjetComponent,
-    PresentArtisanUnitComponent,
-    PresentArtisanListComponent
+    PresentPlanTComponent,
+    PresentArtisanServiceComponent,
+    
+    ArtDashboardComponent,
+    ArtDashboardTopbarComponent,
+    ArtDashboardSidebarComponent,
+    ArtDashboardSidebarItemComponent,
+    ArtDashboardSidebarFootComponent,
+    ArtDashboardSidebarHeadComponent,
+    ArtDashboardWorkspaceProjetComponent,
+    ArtDashboardWorkspaceProjetSelectComponent,
+    ArtDashboardWorkspaceProjetListComponent,
+    ArtDashboardWorkspaceProjetListItemComponent,
+    ArtDashboardWorkspaceProfilsComponent,
+    MapCoordsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    CarrouselComponent
+    CarrouselComponent,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

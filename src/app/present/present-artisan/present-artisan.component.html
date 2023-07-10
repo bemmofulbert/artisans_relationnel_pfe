@@ -1,41 +1,35 @@
 <div class="root">
-    <app-header></app-header>
-        <form class="centered">
-            <input type=text placeHolder="Trouver un artisan" class="searchEntry"/>
-            <input type="submit" value="Search" id="butSearch" />
-        </form>
-    <div class="optionsRech">
-        <div class="navbar">
-            <ul class="nav-links">
-                <li class="dropdown">
-                    categorie
-                    <img src="assets/vignettes/send.svg">
-                    <ul class="dropdown-menu">
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    Details sur l'artisant
-                    <img src="assets/vignettes/send.svg">
-                    <ul class="dropdown-menu">
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    Budget
-                    <img src="assets/vignettes/send.svg">
-                    <ul class="dropdown-menu">
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    Temps des travaux
-                    <img src="assets/vignettes/send.svg">
-                    <ul class="dropdown-menu">
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="list">
-        <app-present-artisan-list></app-present-artisan-list>
-    </div>
-    <div><app-footer></app-footer></div>
+	<app-header></app-header>
+	<div class="centered"><app-present-artisans-unit></app-present-artisans-unit></div>
+	<div class="presents">
+		<div class="service">
+			<app-present-artisan-service></app-present-artisan-service>
+		</div>
+		<div class="planT centered">
+			<app-present-plan-t></app-present-plan-t>
+		</div>
+	</div>
+	<div class="commentaires centered">
+		<div class="header"><h1>Commentaires</h1>
+			<hr style="width:100%"></div>
+<!-- COMMENTS --- COMMENTS --- COMMENTS --- COMMENTS -->
+		<div class="enumeration centered">
+			<img src="assets/logo.png">
+			<div class="enumeration-text">
+				<div><h4>WHO</h4></div>
+				<div><span>Tres bon service</span></div>
+			</div>
+		</div>
+		<div class="enumeration centered">
+			<img src="assets/logo.png">
+			<div class="enumeration-text">
+				<div><h4>WHO</h4></div>
+				<div><span>Tres bon service</span></div>
+			</div>
+		</div>
+<!-- /COMMENTS --- /COMMENTS --- /COMMENTS --- /COMMENTS -->
+		<div>...</div>
+	</div>
+
+	<app-footer></app-footer>
 </div>

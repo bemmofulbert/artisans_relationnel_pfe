@@ -1,0 +1,26 @@
+.pro {
+    width:100%;
+    justify-content: space-between;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 2.5px;
+    padding-bottom: 5px;
+    border-bottom: 1px gray solid;
+}
+.pro > div {
+    padding: 5px;
+}
+.arrow:hover{
+    color:#65E4A3;
+}
+.title {
+    font-size: 16pt;
+    font-weight: 500;
+}
+.text{
+    width: 85%;
+    overflow: hidden;
+}
+.text div{
+    padding: 2.5px;
+}

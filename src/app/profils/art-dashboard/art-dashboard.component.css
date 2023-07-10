@@ -1,0 +1,23 @@
+.root {
+    width:100%;
+    display:flex;
+    align-items: flex-start;
+    justify-content: stretch;
+    flex-direction: column;
+}
+.top {
+    width:100%;
+}
+.space {
+   width:100%;
+   display:flex;
+   align-items: flex-start;
+   justify-content: stretch;
+   background-color: #f8f9fc;
+}
+.workspace {
+    width:100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 10px;
+}

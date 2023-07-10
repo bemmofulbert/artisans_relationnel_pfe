@@ -1,0 +1,55 @@
+.root{
+    width: 100%;
+    padding: 2.5%;
+}
+.container {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.container div {
+    padding-bottom: 2em;
+}
+.navigateur {
+    justify-content: space-around;
+}
+.numberEntry {
+	flex-direction: column;
+}
+.numberEntry > div > input {
+	background: white;
+	height: 2.5em;
+	width: 4em;
+	border-radius: 50px;
+    border: 1px #0A2640 solid;
+	padding-left: 1.3em;
+	font-size: 16px;
+
+}
+
+.butNat {
+	border-radius: 50px;
+	height: 2.5em;
+	background-color: #65E4A3;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	font-weight: 600;
+	font-size: 18px;
+	
+	border: 0;
+	outline: 0;
+
+    cursor: pointer;
+}
+.go {
+	margin-top: 2px;
+	
+}
+.butNat:hover {
+    background-color: #43c281;
+}
+.text {
+	font-weight: 600;
+	font-size: 18px;
+}

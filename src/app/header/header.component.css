@@ -5,9 +5,7 @@
 	background-color: #0A2640;
 	color: white;
 	justify-content: space-around;
-	padding-bottom: 4em;
 }
-
 .container1 {
 	display: flex;
 	align-items: center;
@@ -28,12 +26,7 @@
 }
 .elem2 span {
 	font-weight: 800;
-	font-size: 25px;
-}
-/*///////////////////////------------------------//////////////////////*/
-
-.container2 {
-	/* padding-right: 1.2em */
+	font-size: 30px;
 }
 .options > div {
 	padding: 25px;
@@ -41,22 +34,35 @@
 .login {
 	background: #FFFFFF;
 	border-radius: 50px;
-	height: .15em
+	height: .15em;
 }
 .login a {
 	color: #0A2640;
-	font-weight: 800;
+	font-weight: 900;
 }
 a{
 	text-decoration: none;
-}
-a:hover .titlePlatform{
-	text-decoration: underline;
 	cursor: pointer;
+}
+a:hover{
+	text-decoration: underline;
+	color: #65E4A3;
 }
 a:visited .titlePlatform{
 	text-decoration: none;
 }
-.titlePlatform {
+.titlePlatform ,a{
 	color: #FFFFFF;
+}
+
+.photo_profil {
+	background-color: white;
+	width: 80px;
+	height:80px;
+	border-radius: 200px;
+}
+.photo_profil img{
+	width:65px;
+	height:65px;
+	padding:2px;
 }

@@ -1,4 +1,5 @@
 import { Component,Input } from '@angular/core';
+import { MetierModel } from '../../../services/models/metier.model'
 
 @Component({
   selector: 'app-item-min-image-text',
@@ -6,7 +7,11 @@ import { Component,Input } from '@angular/core';
   styleUrls: ['./item-min-image-text.component.css']
 })
 export class ItemMinImageTextComponent {
-  @Input() metier = "Construction";
-  @Input() imgPath = "assets/vignettes/construction.svg";
-  @Input() lien = "#";
+  path = 'assets/vignettes/Metiers/'
+  @Input() metier!:MetierModel;
+  // @Input() imgPath = "assets/vignettes/construction.svg";
+  // @Input() lien = "#";
+  constructor(){
+    
+  }
 }
