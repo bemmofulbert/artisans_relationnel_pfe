@@ -13,7 +13,6 @@
   "author": "bemmo",
   "license": "ISC",
   "dependencies": {
-    "@angular-devkit/build-angular": "^16.1.3",
     "@angular/animations": "^16.1.3",
     "@angular/cdk": "^16.1.3",
     "@angular/cli": "^16.1.3",
@@ -48,7 +47,10 @@
     "rbush": "^3.0.1",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.0",
-    "typescript": "^5.1.6",
     "zone.js": "^0.13.1"
+  },
+  "devDependencies": {
+  	"@angular-devkit/build-angular": "^16.1.3",
+  	"typescript": "^5.1.6"
   }
 }
