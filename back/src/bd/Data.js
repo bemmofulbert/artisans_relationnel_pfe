@@ -35,7 +35,7 @@ class Data{
     }
 
     read_all(_callback,_catch,tables=[],conditions="",endquery="") {
-        tables.push(this.tableName)
+        tables.push(this.tableName);
 
         BD.select(_callback,_catch,tables,["*"],conditions,endquery);
     }

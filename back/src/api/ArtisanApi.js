@@ -22,8 +22,8 @@ class ArtisanApi extends Api {
                 res.jsonp(data)
                 res.end() 
             },
-            ["Metier","Exerce"],
             (error)=>{console.log(error);res.end()},
+            ["Metier","Exerce"],
             "Metier.id = Exerce.ref_metier and Artisan.idart = Exerce.ref_artisan"
         )
     }
