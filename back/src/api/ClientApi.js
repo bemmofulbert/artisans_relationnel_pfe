@@ -30,7 +30,7 @@ class ClientApi extends Api {
                 subject: 'Activation de votre compte OneClickWork',  
                 html: 'Suite a votre inscription sur la plateforme OneClickWork,<br>\
                          il est néccessaire d\'activer votre compte grace au lien ci-dessous :<br><br>\
-                         https://oneclickwork.netlify.app/clientactive/'+data.id+"/"+data["code"] 
+                         https://oneclickwork.netlify.app/activated/'+data.id+"/"+data["code"]
                 // on peut remplacer l'attribut `text`par `html`si on veut que le cors de notre email supporte le HTML
                 // html:  '<h1>This email use html</h1>'
                 };
