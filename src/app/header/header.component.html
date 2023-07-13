@@ -10,7 +10,7 @@
 		<div class="options centered" >
 			<div class="centered" href="#"><a>Produits</a></div>
 			<div class="centered"><a routerLink="/creer-offre">Créer une Offre</a></div>
-			<div  class="centered" *ngIf="!isArtisan"><a>Devenir artisan</a></div>
+			<div  class="centered" *ngIf="!isArtisan" routerLink="/artisanDashboard" ><a>Devenir artisan</a></div>
 			<div class="centered" href="#"><a>A Propos</a></div>
 			<div class="login centered" routerLink="/connexion" *ngIf="!logged">
 				<a>Log in</a>

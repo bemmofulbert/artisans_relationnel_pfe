@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +35,7 @@ import { PresentArtisansListComponent } from './present/present-artisans/present
 import { PresentArtisanComponent } from './present/present-artisan/present-artisan.component';
 import { PresentPlanTComponent } from './present/present-artisan/present-plan-t/present-plan-t.component';
 import { PresentArtisanServiceComponent } from './present/present-artisan/present-artisan-service/present-artisan-service.component';
-  ``
+  
 import { ArtDashboardComponent } from './profils/art-dashboard/art-dashboard.component';
 import { ArtDashboardTopbarComponent } from './profils/art-dashboard/art-dashboard-topbar/art-dashboard-topbar.component';
 import { ArtDashboardSidebarComponent } from './profils/art-dashboard/art-dashboard-sidebar/art-dashboard-sidebar.component';
@@ -73,7 +75,7 @@ import { MapCoordsComponent } from './profils/creer-offre/map-coords/map-coords.
     PresentArtisansListComponent,
     PresentArtisanComponent,
     PresentPlanTComponent,
-    PresentArtisanServiceComponent,
+    PresentArtisanServiceComponent,    
     
     ArtDashboardComponent,
     ArtDashboardTopbarComponent,
@@ -96,7 +98,9 @@ import { MapCoordsComponent } from './profils/creer-offre/map-coords/map-coords.
     CarrouselComponent,
     BrowserAnimationsModule,
     MatIconModule,
-    MatSelectModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

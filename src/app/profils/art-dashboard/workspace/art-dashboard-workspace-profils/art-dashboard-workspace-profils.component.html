@@ -2,7 +2,7 @@
     <div class="titre">
         <h1>Vos Informations</h1>
     </div>
-    <form>
+    <form method="post" action="/artisanDashboard/profil" (submit)="onSubmit()">
         <table>
             <tr>
                 <td><label for="nom">Nom</label></td>
@@ -31,27 +31,27 @@
             </tr>
             <tr>
                 <td><label for="photo_profil">Photo de Profils</label></td>
-                <td><input id="photo_profil" name="photo_profil" type="file" readonly [(ngModel)]="dist_photo_profil" /></td>
+                <td><input id="photo_profil" name="photo_profil" type="file" ng2FileSelect [uploader]="uploaderPP" /></td>
                 <td></td>
             </tr>
         </table>
 
         <div class="centered">
-            <img [src]="newClient.photo_profil" class="img_photo">
+            <img [src]="urlApi+'photoprofils/'+newClient.photo_profil" class="img_photo">
         </div>
 
         <hr>
-        <table [style]="(!isArtisan) ? 'display:unset' : 'display:none'">
+        <table *ngIf="!isArtisan">
             <tr>
                 <td class="centered">
-                    <button id="but_become_art" class="centered" (click)="isArtisan = true">
+                    <button id="but_become_art" class="centered" (click)="onclickBecomeArt()">
                         <mat-icon>group_work</mat-icon><br>
                          Devenir un artisan
                     </button>
                 </td>
             </tr>
         </table>
-        <div class="ForArtisan" [style]="(isArtisan) ? 'display:unset' : 'display:none'">
+        <div class="ForArtisan" *ngIf="isArtisan">
             <hr>
             <table>
                 <tr>
@@ -116,7 +116,7 @@
                 <tr>
                     <td><label for="nvE">Niveau d'etude</label></td>
                     <td>
-                        <select id="nvE" disabled [(ngModel)]="newArtisan.niveau_scolaire">
+                        <select id="nvE" name="nvE" disabled [(ngModel)]="newArtisan.niveau_scolaire">
                             <option>CEP</option>
                             <option>BEPC</option>
                             <option>Probatoire</option>
@@ -139,7 +139,7 @@
                 <tr>
                     <td><label for="paysSel">Pays : </label></td>
                     <td>
-                        <select id="paysSel" #paysSel (change)="onPaysSelChange(paysSel.value)" disabled>
+                        <select id="paysSel" name="paysSel" #paysSel (change)="onPaysSelChange(paysSel.value)" disabled>
                             <option *ngFor="let p of pays;let i = index" [value]="i">{{ p.country }}</option>
                         </select>
                     </td>
@@ -171,10 +171,10 @@
         </div>
 
 
-<div class="formEnd centered">
-    <div class="centered"><input type="reset" value="Reinitialiser"></div>
-    <div class="centered"><input type="submit" value="Enregistrer"></div>
-</div>
+        <div class="formEnd centered">
+            <div class="centered"><input type="reset" value="Reinitialiser"></div>
+            <div class="centered"><input type="submit" value="Enregistrer"></div>
+        </div>
 
 <!--
         //client 

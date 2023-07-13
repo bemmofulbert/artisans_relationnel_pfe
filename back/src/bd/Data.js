@@ -28,7 +28,7 @@ class Data{
         }
     }
 
-    add(_callback,_catch,assoc=[],returns=["id"]) {
+    add(_callback,_catch,assoc=[],returns=[this.idName]) {
         let columns=[],values=[];
         this.assoc_to_tab(assoc, columns, values);
         BD.insert(_callback,_catch, this.tableName, columns, values, returns);

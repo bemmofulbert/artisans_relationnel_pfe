@@ -16,14 +16,17 @@ export class ConnexionComponent {
   incorrect:Boolean = false
   incomplet:Boolean = false
   eyePass = "assets/vignettes/eye-off.svg"
+  isconnecting:Boolean = false
   constructor(private clientService:ClientService, private router:Router) {    
   }
 
   onSubmit(){
+    this.isconnecting = true
+
     this.incorrect = false
     this.incomplet = false
 
-    if (this.mail=="" || this.pass=="") {this.incomplet=true; return;}
+    if (this.mail=="" || this.pass=="") {this.incomplet=true; setTimeout(()=>{this.isconnecting = false}, 2000); return;}
     this.clientService.clientVerif(this.mail,(data)=>{
       if(data['activated']){
         this.clientService.clientLogin(this.mail,this.pass,
@@ -33,7 +36,8 @@ export class ConnexionComponent {
                 (clientData) => {
                   let client:ClientModel = ClientModel.data_to_model(clientData)
                   localStorage.setItem('currentUser',JSON.stringify(client))
-                  this.router.navigate([''])
+                  setTimeout(()=>{this.router.navigate(['']);this.isconnecting = false}, 2000)
+                  
                 }
               )
               
@@ -43,6 +47,8 @@ export class ConnexionComponent {
       }
       else this.incorrect = true;
     })
+
+    setTimeout(()=>{this.isconnecting = false}, 2000)
   }
 
   onEyePassClick() {

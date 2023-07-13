@@ -31,7 +31,7 @@ export class HeaderComponent {
     (this.client !== null && this.client !== undefined) ? this.logged = true : this.logged = false;
     }
   corrections(){
-    if (this.client.photo_profil == null || this.client.photo_profil == "") this.client.photo_profil="../../assets/person.svg"
+    if (this.client.photo_profil == null || this.client.photo_profil == "") this.client.photo_profil="../../assets/person.svg";
   }
   constructor(protected clientService:ClientService, protected router:Router, protected artisanService:ArtisanService){
     this.initConnexion();

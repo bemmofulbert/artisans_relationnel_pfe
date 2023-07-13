@@ -54,6 +54,18 @@ form div input {
     background-color: #43c281;
 }
 
+.an-1 {
+  font-weight: 900;	
+  font-size: x-large;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+}
+
+.an-1 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
 .endOf {
 	margin-top: 1em;
 	text-align: center;

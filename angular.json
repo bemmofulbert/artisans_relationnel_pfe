@@ -17,11 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-          	"allowedCommonJsDependencies": [
-			  "pbf",
-			  "rbush",
-			  "ol-popup"
-			],
+            "allowedCommonJsDependencies": [
+              "pbf",
+              "rbush",
+              "ol-popup"
+            ],
             "outputPath": "dist/app_test",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -115,6 +115,14 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/app_test",
+            "netlifyToken": "lcIOyHgWKwZBroFSTtNIc5r2-tvNMarzmiVx3ZRewQg",
+            "siteId": "5f6c1f21-9277-401a-9006-be17fd79aa3e"
           }
         }
       }

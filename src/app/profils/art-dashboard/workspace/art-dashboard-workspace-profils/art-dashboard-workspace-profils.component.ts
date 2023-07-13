@@ -1,16 +1,21 @@
 import { Component, ViewChild } from '@angular/core';
 import { MapCoordsComponent } from 'src/app/profils/creer-offre/map-coords/map-coords.component';
 
+
 import { LineString } from 'ol/geom'
 
 import axios from "axios"
 import { transform } from 'ol/proj';
-import { HeaderComponent } from 'src/app/header/header.component';
-import { ClientService } from 'src/app/services/Client.service';
-import { ArtisanService } from 'src/app/services/Artisan.service';
-import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/services/models/client.model';
 import { ArtisanModel } from 'src/app/services/models/artisan.model';
+
+import  http, { urlApi }  from 'src/app/app.axios'
+import { FileUploader } from 'ng2-file-upload';
+import { ClientService } from 'src/app/services/Client.service';
+import { ArtisanService } from 'src/app/services/Artisan.service';
+import { MetierService } from 'src/app/services/Metier.service';
+import { AdresseService } from 'src/app/services/Adresse.service';
+const urlApiPP = urlApi + "api/upload/photo_profil"
 
 @Component({
   selector: 'app-art-dashboard-workspace-profils',
@@ -18,6 +23,7 @@ import { ArtisanModel } from 'src/app/services/models/artisan.model';
   styleUrls: ['./art-dashboard-workspace-profils.component.css']
 })
 export class ArtDashboardWorkspaceProfilsComponent{
+  urlApi = urlApi
   path_defaultPp = "assets/person.svg"
   path_defaultPanorama = "assets/vignettes/panorama.svg"
   newClient:ClientModel
@@ -26,24 +32,39 @@ export class ArtDashboardWorkspaceProfilsComponent{
   metiers = []
   dist_photo_profil
   dist_reals:any = []
+  art_new_old:Boolean
 
-  constructor(){
+  public uploaderPP:FileUploader = new FileUploader({url: urlApiPP, itemAlias:"PP" });
+	
+  constructor(protected clientService:ClientService, protected artisanService:ArtisanService, protected metierService:MetierService,adresseService:AdresseService){
     this.initLocalisation();
     this.initData();
   }
   ngAfterViewInit(){
-    
     this.initButEditFunction()
+
+    this.uploaderPP.clearQueue()
+    this.uploaderPP.onBeforeUploadItem = (fileItem: any) => {
+      fileItem.formData.push( { nom: this.newClient.nom } );
+      fileItem.formData.push( { id: this.newClient.id } );
+    };
+    this.uploaderPP.onAfterAddingFile = (file) => { file.withCredentials = false;
+      file.file.name = this.newClient.id + "_" + this.newClient.nom + "." + file.file.name.split('.').pop();
+      this.newClient.photo_profil = file.file.name;
+    };
+    // this.uploaderPP.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+    //     // console.log('ImageUpload:uploaded:', item, status, response);
+    //      alert('Fichier uploaded avec succes status:'+status);
+    // }
   }
   initData(){
     this.newClient = JSON.parse(localStorage.getItem('currentUser'));
     this.isArtisan = JSON.parse(localStorage.getItem('isArtisan'));
-    console.log(this.isArtisan)
+    this.art_new_old = this.isArtisan;
     if(this.isArtisan == true) {
       this.newArtisan = JSON.parse(localStorage.getItem('currentArtisan'));
       this.metiers = JSON.parse(localStorage.getItem('metiers'));
     }
-    
   }
 
   enableAndFocus(id){
@@ -53,25 +74,37 @@ export class ArtDashboardWorkspaceProfilsComponent{
           (<HTMLInputElement>el).readOnly = false;
           (<HTMLInputElement>el).focus();
         })
-    
   }
-  initButEditFunction(){
-    const edits = document.getElementsByClassName("but_edit")
-    const editLocation = document.getElementById("but_edit_localisation")
+
+  initButEditFunction = ()=>{
+    const edits = document.getElementsByClassName("but_edit");
+    const editLocation = document.getElementById("but_edit_localisation");
     
     for(var i=0,c=edits.length; i<c; i++){
-      let idEdit=edits[i].id
+      let idEdit=edits[i].id;
+      edits[i].removeEventListener("click", (e)=>{
+        document.getElementById(idEdit).style.display="none"
+        let id = String(idEdit).substring("but_edit_".length);
+        this.enableAndFocus(id)
+      });
       edits[i].addEventListener("click",(e)=>{
         document.getElementById(idEdit).style.display="none"
         let id = String(idEdit).substring("but_edit_".length);
         this.enableAndFocus(id)
-      })
+      });
     }
+
+    if (editLocation == null) return;
+    editLocation.removeEventListener("click", (e)=>{
+      editLocation.style.display="none"
+      this.enableAndFocus("paysSel")
+      this.enableAndFocus("villeSel")
+    });
     editLocation.addEventListener("click", (e)=>{
       editLocation.style.display="none"
       this.enableAndFocus("paysSel")
       this.enableAndFocus("villeSel")
-    })
+    });
 
   }
 
@@ -88,7 +121,7 @@ export class ArtDashboardWorkspaceProfilsComponent{
   urlApi_PostMan_Country = "https://countriesnow.space/api/v0.1/countries"
 
   httpNV = axios.create({
-    timeout : 10000,
+    timeout : 15000,
     headers: {
       'Authorization': '*',
       'X-Api-Key':'xgNdIO8N3os2krcOEEkYtg==49zute7N7AB2Obml'}
@@ -149,6 +182,65 @@ export class ArtDashboardWorkspaceProfilsComponent{
       }
       this.mapCoords.gotoPos(res.data[0]["latitude"], res.data[0]["longitude"], 11)
     }
-    
+  }
+
+  //Enregistrement
+  onclickBecomeArt(){
+    this.newArtisan = new ArtisanModel()
+    this.newArtisan.idart = this.newClient.id
+    this.metiers = []
+
+    this.isArtisan = true;
+    this.initButEditFunction();
+  }
+
+//---------------------------------------------------------------SUBMIT---
+  //fais la correspondance entre le client et ses informations en temps que artisan
+  chargementArtisanInfo(){
+    this.clientService.getArtisan(this.newClient,
+      (data) => {
+        if(data){
+          console.log(data[0])
+          this.newArtisan = data
+          localStorage.setItem("currentArtisan",JSON.stringify(this.newArtisan))
+          this.isArtisan = true
+          localStorage.setItem("isArtisan",JSON.stringify(this.isArtisan))
+
+          //this.chargementMetierInfo()
+        }else{
+          this.isArtisan = false
+          localStorage.setItem("isArtisan",JSON.stringify(this.isArtisan))
+        }
+      })
+  }
+  chargementMetierInfo(){
+    this.artisanService.getMetiers(this.newArtisan,
+      (data)=>{
+      this.metiers = data
+      localStorage.setItem("metiers",JSON.stringify(this.metiers))
+    })
+  }
+  // Actualise les informations sur le client actuelle
+  chargementClientInfo(){
+    this.clientService.hydrate(this.newClient)
+    localStorage.setItem("currentUser",JSON.stringify(this.newClient))
+  }
+
+
+  onSubmit(){
+    this.uploaderPP.uploadAll()
+    this.clientService.update(this.newClient,()=>{
+    	this.chargementClientInfo()
+      if(this.isArtisan){
+		  if(!this.art_new_old){
+		    this.artisanService.create(this.newArtisan,()=>{
+		    })
+		  }
+		  else{
+		    this.artisanService.update(this.newArtisan,()=>{
+		    })
+		  }
+		}
+	 })
   }
 }

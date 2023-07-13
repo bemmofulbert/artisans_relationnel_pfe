@@ -1,8 +1,10 @@
 import axios from "axios"
 
+export const urlApi = 'http://localhost:3000/' //'https://backend-oneclickwork.onrender.com',
+
 const http = axios.create({
-    baseURL : 'http://192.168.43.10:3000',
-    timeout : 10000,
+    baseURL : urlApi,
+    timeout : 15000,
     headers: {'Authorization': '*'}
 })
 

@@ -43,8 +43,9 @@ class BD {
     }
 
     static update = (_callback,_catch,table,columns,values,conditions="") => {
-      let result = null;
+      //let result = null;
       let query = QueryGenerator.update(table,columns,values,conditions);
+      console.log(query)
       this.execAny(query,_callback,_catch)
     }
 

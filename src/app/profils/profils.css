@@ -84,7 +84,7 @@ body {
     align-content: center;
 }
 .root {
-    height: 380px;
+    height: fit-content;
     vertical-align: middle;
     background: #FFFFFF;
 	box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
@@ -96,8 +96,6 @@ body {
     justify-content: flex-start;
     padding:10px;
 	position: relative;
-
-	overflow-y: scroll;
 }
 @media screen and (max-width:600px) {
 	.root {

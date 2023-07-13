@@ -53,7 +53,7 @@ export class AxiosHandler {
     }
 
     update(data:any,_callback=(res)=>{}) {
-        http.put("/"+this.tableName+"/"+data.id,data)
+        http.put("/"+this.tableName+"/"+(data.id | data.idart),data)
             .then((res)=>{
                 _callback(res)
             })
