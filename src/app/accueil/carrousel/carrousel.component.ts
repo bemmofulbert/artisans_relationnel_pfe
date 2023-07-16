@@ -44,4 +44,6 @@ export class CarrouselComponent {
 			this.togglePaused();
 		}
 	}
+
+	
 }

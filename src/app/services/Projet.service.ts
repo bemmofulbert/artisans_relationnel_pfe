@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AxiosHandler } from './Axios.service';
-import { ProjetModel } from './models/projet.model';
+import {  ClientModel } from './models/client.model';
+import {  ProjetModel } from './models/projet.model';
 
 
 @Injectable({
@@ -11,5 +12,14 @@ export class ProjetService extends AxiosHandler {
 
     constructor() {
         super(ProjetModel.tableName)
+    }
+
+    getProjets_from_client(client:ClientModel, _callback=(data=[])=>{}){
+        let id = client.id || client['id']
+        this.http.get(`/${this.tableName}/client/${id}`)
+            .then(res => {
+                _callback(res.data)
+            })
+            .catch(error => {console.log(error)})
     }
 }

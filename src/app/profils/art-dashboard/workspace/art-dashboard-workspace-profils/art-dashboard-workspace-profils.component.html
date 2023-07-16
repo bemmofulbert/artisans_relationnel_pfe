@@ -1,6 +1,7 @@
 <div class="root">
-    <div class="titre">
+    <div class="titre" id="spinnerProfils">
         <h1>Vos Informations</h1>
+        <div class="centered" *ngIf="isLoading" ><mat-spinner></mat-spinner></div>
     </div>
     <form method="post" action="/artisanDashboard/profil" (submit)="onSubmit()">
         <table>
@@ -31,13 +32,13 @@
             </tr>
             <tr>
                 <td><label for="photo_profil">Photo de Profils</label></td>
-                <td><input id="photo_profil" name="photo_profil" type="file" ng2FileSelect [uploader]="uploaderPP" /></td>
+                <td><input id="photo_profil" name="photo_profil" type="file" ng2FileSelect [uploader]="uploaderPP" (change)="setPhoto_profil($event)" /></td>
                 <td></td>
             </tr>
         </table>
 
         <div class="centered">
-            <img [src]="urlApi+'photoprofils/'+newClient.photo_profil" class="img_photo">
+            <img [src]="urlApi+'photoprofils/'+newClient.photo_profil" class="img_photo" id="img_photo">
         </div>
 
         <hr>
@@ -107,9 +108,25 @@
                 <tr>
                     <td><label for="competence">Competences</label></td>
                     <td>
-                        <select id="competence" disabled ></select><br>
-                        <select id="competence" disabled></select><br>
-                        <select id="competence" disabled></select>
+                        <select id="competence" name="metierSel1" #metierSel [(ngModel)]="metiersCh[0]" disabled>
+                            <option value="-1" >--Selectionner un metier--</option>
+                            <option *ngFor="let metier of metiers" [value]="metier.id">
+                                {{ metier.nom }}
+                            </option>
+                        </select>
+                        <br>
+                        <select id="competence" name="metierSel1" #metierSel [(ngModel)]="metiersCh[1]" disabled>
+                            <option value="-1" >--Selectionner un metier--</option>
+                            <option *ngFor="let metier of metiers" [value]="metier.id">
+                                {{ metier.nom }}
+                            </option>
+                        </select><br>
+                        <select id="competence" name="metierSel1" #metierSel [(ngModel)]="metiersCh[2]" disabled>
+                            <option value="-1" >--Selectionner un metier--</option>
+                            <option *ngFor="let metier of metiers" [value]="metier.id">
+                                {{ metier.nom }}
+                            </option>
+                        </select>
                     </td>
                     <td><button class="but_edit" id="but_edit_competence"><mat-icon>edit</mat-icon></button></td>
                 </tr>
@@ -173,7 +190,7 @@
 
         <div class="formEnd centered">
             <div class="centered"><input type="reset" value="Reinitialiser"></div>
-            <div class="centered"><input type="submit" value="Enregistrer"></div>
+            <div class="centered"><input type="submit" value="Enregistrer" (click)="onSubmitClick()"></div>
         </div>
 
 <!--

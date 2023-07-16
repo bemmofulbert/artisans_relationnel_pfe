@@ -37,6 +37,7 @@ export class ArtDashboardSidebarComponent {
 		new ArtDashboardSidebarItemModel('person_pin', "Profils", true),
 		new ArtDashboardSidebarItemModel('bar_chart',"Statistiques"),
 		new ArtDashboardSidebarItemModel('work',"Projets"),
+    new ArtDashboardSidebarItemModel('message',"Messages"),
 		new ArtDashboardSidebarItemModel('help',"Aide"),
     new ArtDashboardSidebarItemModel('logout',"Log out"),
    ]

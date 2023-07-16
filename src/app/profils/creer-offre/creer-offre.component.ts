@@ -9,6 +9,7 @@ import { LinearRing } from 'ol/geom'
 import axios from "axios"
 import { transform } from 'ol/proj';
 import { ProjetModel } from 'src/app/services/models/projet.model';
+import { ClientModel } from 'src/app/services/models/client.model';
 import { ProjetService } from 'src/app/services/Projet.service';
 import { AdresseModel } from 'src/app/services/models/adresse.model';
 import { AdresseService } from 'src/app/services/Adresse.service';
@@ -49,6 +50,7 @@ export class CreerOffreComponent {
   @ViewChild('mapCoords') mapCoords:MapCoordsComponent
   Projet:ProjetModel = new ProjetModel();
   Adresse:AdresseModel = new AdresseModel()
+  client:ClientModel
   forms = [
     {
       title: "Donner un titre a votre offre",
@@ -191,6 +193,7 @@ export class CreerOffreComponent {
   map_gotoPos // Function, instancier beaucoup plus tard, elle permet d'aller a la position donnee par l'api
   show_msg_place_error = false
   ngAfterContentInit(){
+    this.client = JSON.parse(localStorage.getItem('currentUser'));
     this.map_gotoPos = (res) => {
       document.getElementById('text_location').scrollIntoView()
       if (res.data == null || res.data.length <=0) {
@@ -208,7 +211,8 @@ export class CreerOffreComponent {
     this.Adresse.lat = value[1]
   }
   publier = ()=>{
-    if(!this.header.logged) this.router.navigate(['/connexion'])
+    if(!this.header.logged) this.router.navigate(['/connexion']);
+    this.Projet.ref_client = this.client.id;
 
     this.adresseService.create(this.Adresse,
       (data)=>{

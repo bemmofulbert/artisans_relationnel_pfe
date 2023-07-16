@@ -4,3 +4,11 @@
 .carrousel {
 	width: 80%;
 }
+.titre2{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: darkblue;
+	color: white;
+	width: 80%;
+}

@@ -1,11 +1,6 @@
 <div class="root centered ">
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
-    <app-art-dashboard-workspace-projet-list-item></app-art-dashboard-workspace-projet-list-item>
+    <div style="width:100%">
+        <app-art-dashboard-workspace-projet-list-item *ngFor="let data of list" [data]="data" >
+        </app-art-dashboard-workspace-projet-list-item>
+    </div>
 </div>

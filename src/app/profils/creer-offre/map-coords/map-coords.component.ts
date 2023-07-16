@@ -227,4 +227,27 @@ export class MapCoordsComponent {
       zoom: zoom
     })
   }
+
+  GotoMyPos(){
+     //--- Ma Position -------------------
+    // document.getElementById("myPos").addEventListener("click",(e)=>{
+      if (!navigator.geolocation) {
+          console.log('Geolocation API not supported by this browser.');
+        } else {
+          console.log('Checking location...');
+          navigator.geolocation.getCurrentPosition((position)=>{
+            //GET YOUR LOCATION
+          let lat = position.coords.latitude;
+          let lon = position.coords.longitude;
+          new PointMap(this.map,lat, lon);
+          // (<HTMLInputElement>document.getElementById("lon")).value = ''+lon;
+          // (<HTMLInputElement>document.getElementById("lat")).value = ''+lat;
+          this.gotoPos(lat, lon)
+          },
+          ()=>{
+            alert("Impossible d'acceder a votre position")
+          });
+        }
+    //})
+  }
 }

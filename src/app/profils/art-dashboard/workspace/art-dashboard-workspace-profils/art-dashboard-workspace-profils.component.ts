@@ -8,13 +8,17 @@ import axios from "axios"
 import { transform } from 'ol/proj';
 import { ClientModel } from 'src/app/services/models/client.model';
 import { ArtisanModel } from 'src/app/services/models/artisan.model';
+import { MetierModel } from 'src/app/services/models/metier.model';
+import { ExerceModel } from 'src/app/services/models/exerce.model';
+import { AdresseModel } from 'src/app/services/models/adresse.model';
 
 import  http, { urlApi }  from 'src/app/app.axios'
 import { FileUploader } from 'ng2-file-upload';
 import { ClientService } from 'src/app/services/Client.service';
 import { ArtisanService } from 'src/app/services/Artisan.service';
-import { MetierService } from 'src/app/services/Metier.service';
+import { ExerceService } from 'src/app/services/Exerce.service';
 import { AdresseService } from 'src/app/services/Adresse.service';
+import { MetierService } from 'src/app/services/Metier.service';
 const urlApiPP = urlApi + "api/upload/photo_profil"
 
 @Component({
@@ -30,13 +34,15 @@ export class ArtDashboardWorkspaceProfilsComponent{
   newArtisan:any
   isArtisan:Boolean
   metiers = []
+  metiersCh = [null,null,null]
   dist_photo_profil
   dist_reals:any = []
   art_new_old:Boolean
 
   public uploaderPP:FileUploader = new FileUploader({url: urlApiPP, itemAlias:"PP" });
 	
-  constructor(protected clientService:ClientService, protected artisanService:ArtisanService, protected metierService:MetierService,adresseService:AdresseService){
+  constructor(protected clientService:ClientService, protected artisanService:ArtisanService, 
+      protected exerceService:ExerceService,protected adresseService:AdresseService,protected metierService:MetierService){
     this.initLocalisation();
     this.initData();
   }
@@ -56,6 +62,7 @@ export class ArtDashboardWorkspaceProfilsComponent{
     //     // console.log('ImageUpload:uploaded:', item, status, response);
     //      alert('Fichier uploaded avec succes status:'+status);
     // }
+    this.initMetier();
   }
   initData(){
     this.newClient = JSON.parse(localStorage.getItem('currentUser'));
@@ -127,6 +134,15 @@ export class ArtDashboardWorkspaceProfilsComponent{
       'X-Api-Key':'xgNdIO8N3os2krcOEEkYtg==49zute7N7AB2Obml'}
   })
 
+  initMetier(){
+    this.metierService.getAll(
+      (datas)=>{
+        datas.forEach(data => {
+          this.metiers.push(MetierModel.data_to_model(data))
+        });
+    })
+  }
+
   initLocalisation(){
     axios.get(this.urlApi_PostMan_Country)
       .then((res)=>{
@@ -188,10 +204,10 @@ export class ArtDashboardWorkspaceProfilsComponent{
   onclickBecomeArt(){
     this.newArtisan = new ArtisanModel()
     this.newArtisan.idart = this.newClient.id
-    this.metiers = []
 
     this.isArtisan = true;
     this.initButEditFunction();
+    this.initMetier();
   }
 
 //---------------------------------------------------------------SUBMIT---
@@ -225,22 +241,52 @@ export class ArtDashboardWorkspaceProfilsComponent{
     this.clientService.hydrate(this.newClient)
     localStorage.setItem("currentUser",JSON.stringify(this.newClient))
   }
+  setPhoto_profil(e){
+    // const img = (<HTMLImageElement>document.getElementById('img_photo'))
 
+    // if(e.target.files[0].mozFullPath){
+    //   img.src = e.target.files[0].mozFullPath
+    //   console.log(img.src)
+    // }
+  }
+  saveExerce(i:number){
+    let exerce:ExerceModel = new ExerceModel();
+    exerce.ref_artisan = this.newClient.id;
+    exerce.ref_metier = this.metiersCh[i];
+
+    this.exerceService.create(exerce)
+  }
+
+  isLoading:Boolean = false
 
   onSubmit(){
+    
+
     this.uploaderPP.uploadAll()
     this.clientService.update(this.newClient,()=>{
     	this.chargementClientInfo()
+      this.isLoading = false
       if(this.isArtisan){
 		  if(!this.art_new_old){
 		    this.artisanService.create(this.newArtisan,()=>{
+          this.saveExerce(0)
+          this.saveExerce(1)
+          this.saveExerce(2)
 		    })
 		  }
 		  else{
 		    this.artisanService.update(this.newArtisan,()=>{
+          this.saveExerce(0)
+          this.saveExerce(1)
+          this.saveExerce(2)
 		    })
 		  }
 		}
 	 })
+  }
+
+  onSubmitClick(){
+    this.isLoading = true
+    document.getElementById('spinnerProfils').scrollIntoView()
   }
 }

@@ -17,7 +17,7 @@
 			</div>
 			<div class="centered" style="flex-direction:column">
 			<div class="photo_profil centered" routerLink="/connexion" *ngIf="logged">
-				<a routerLink="/artisan"><img [src]="client.photo_profil"></a>
+				<a routerLink="/artisanDashboard"><img [src]="urlApiPP+client.photo_profil"></a>
 				
 			</div>
 			<em>{{client.nom}}</em>

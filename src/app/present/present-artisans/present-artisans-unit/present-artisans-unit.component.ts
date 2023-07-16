@@ -5,12 +5,15 @@ import { ArtisanModel } from 'src/app/services/models/artisan.model';
 import { ClientModel } from 'src/app/services/models/client.model';
 import { MetierModel } from 'src/app/services/models/metier.model';
 
+import { urlApi }  from 'src/app/app.axios'
+
 @Component({
   selector: 'app-present-artisans-unit',
   templateUrl: './present-artisans-unit.component.html',
   styleUrls: ['./present-artisans-unit.component.css']
 })
 export class PresentArtisansUnitComponent {
+  urlApiPP =  urlApi + "photoprofils/"
   showUnit = true
   @Input() photoCouverture:String = "assets/uploaded/art-1.jpg"
   @Input() artisan:any

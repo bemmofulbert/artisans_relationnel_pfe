@@ -2,14 +2,15 @@
     <div class="menu centered">
             <button *ngFor="let pack of packages" (click)="ongletActuelle=pack.pos"
                 [style]="SelectedStyle(pack.pos)"
-            >{{pack.titre}}</button>
+            >{{pack.titre}}
+        </button>
     </div>
     <div class="prix centered">
         <div class="grade">
             Package Basique
         </div>
         <div class="numbre">
-            {{packages[ongletActuelle].prix}}
+            {{ packages[ongletActuelle].prix }}
         </div>
     </div>
     <div class="elements centered">

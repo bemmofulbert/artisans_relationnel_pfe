@@ -1,12 +1,12 @@
 <div class="root" *ngIf="showUnit">
-    <a routerLink="" style="text-decoration: none;color:black">
+    <a routerLink="/artisan" style="text-decoration: none;color:black">
         <div class="photos">
 
             <div class="PhotoCouverture">
                 <img [src]="photoCouverture">
             </div>
             <div class="photoProfil">
-                <img [src]="client.photo_profil">
+                <img [src]="urlApiPP+client.photo_profil">
             </div>
             
         </div>

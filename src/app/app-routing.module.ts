@@ -16,6 +16,7 @@ const routes: Routes =[
   {path: 'activated/:id/:code',component: ActivationComponent},
   {path: 'enregistrement',component: EnregistrementComponent},
   {path: 'artisans/keyword/:keyword',component: PresentArtisansComponent},
+  {path: 'list/artisan/:metier',component: PresentArtisansComponent},
   {path: 'creer-offre' ,component: CreerOffreComponent},
   {path: 'artisan', component: PresentArtisanComponent},
   {path: 'artisanDashboard', component: ArtDashboardComponent},

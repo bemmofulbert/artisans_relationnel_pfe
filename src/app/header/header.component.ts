@@ -6,11 +6,15 @@ import { Router } from '@angular/router';
 import { MetierModel } from '../services/models/metier.model';
 import { ArtisanService } from '../services/Artisan.service';
 
+import { urlApi }  from 'src/app/app.axios'
+
 /* 
 * Ce composant est l'entete de la page. 
 * il permet aussi d'initialiser les informations 
 * sur le client et de savoir si il est connecte
 */
+
+const urlApiPP = urlApi + "api/upload/photo_profil"
 
 @Component({
   selector: 'app-header',
@@ -18,7 +22,7 @@ import { ArtisanService } from '../services/Artisan.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  // estArtisan = true
+  urlApiPP =  urlApi + "photoprofils/"
   logged:Boolean = false
   isArtisan:Boolean = false
   client:ClientModel
