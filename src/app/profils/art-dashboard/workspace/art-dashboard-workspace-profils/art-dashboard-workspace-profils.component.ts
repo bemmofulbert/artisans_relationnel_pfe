@@ -19,7 +19,8 @@ import { ArtisanService } from 'src/app/services/Artisan.service';
 import { ExerceService } from 'src/app/services/Exerce.service';
 import { AdresseService } from 'src/app/services/Adresse.service';
 import { MetierService } from 'src/app/services/Metier.service';
-const urlApiPP = urlApi + "api/upload/photo_profil"
+const urlApiPP = urlApi + "api/upload/photo_profil";
+const urlApiReals = urlApi + "api/upload/realisations";
 
 @Component({
   selector: 'app-art-dashboard-workspace-profils',
@@ -32,6 +33,7 @@ export class ArtDashboardWorkspaceProfilsComponent{
   path_defaultPanorama = "assets/vignettes/panorama.svg"
   newClient:ClientModel
   newArtisan:any
+  newAdresse:AdresseModel = new AdresseModel() 
   isArtisan:Boolean
   metiers = []
   metiersCh = [null,null,null]
@@ -40,9 +42,11 @@ export class ArtDashboardWorkspaceProfilsComponent{
   art_new_old:Boolean
 
   public uploaderPP:FileUploader = new FileUploader({url: urlApiPP, itemAlias:"PP" });
+  public uploaderReals:FileUploader = new FileUploader({url: urlApiReals, itemAlias:"reals" });
 	
   constructor(protected clientService:ClientService, protected artisanService:ArtisanService, 
-      protected exerceService:ExerceService,protected adresseService:AdresseService,protected metierService:MetierService){
+      protected exerceService:ExerceService,protected adresseService:AdresseService,
+      protected metierService:MetierService){
     this.initLocalisation();
     this.initData();
   }
@@ -50,6 +54,7 @@ export class ArtDashboardWorkspaceProfilsComponent{
     this.initButEditFunction()
 
     this.uploaderPP.clearQueue()
+    this.uploaderReals.clearQueue()
     this.uploaderPP.onBeforeUploadItem = (fileItem: any) => {
       fileItem.formData.push( { nom: this.newClient.nom } );
       fileItem.formData.push( { id: this.newClient.id } );
@@ -58,10 +63,12 @@ export class ArtDashboardWorkspaceProfilsComponent{
       file.file.name = this.newClient.id + "_" + this.newClient.nom + "." + file.file.name.split('.').pop();
       this.newClient.photo_profil = file.file.name;
     };
-    // this.uploaderPP.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-    //     // console.log('ImageUpload:uploaded:', item, status, response);
-    //      alert('Fichier uploaded avec succes status:'+status);
-    // }
+    this.uploaderReals.onAfterAddingFile = (file) => { file.withCredentials = false;
+      file.file.name = this.newClient.id + "_" + this.newClient.nom + "." + file.file.name.split('.').pop();
+      this.newArtisan.realisations = []
+      this.newArtisan.realisations[0] = file.file.name;
+    }
+    
     this.initMetier();
   }
   initData(){
@@ -154,6 +161,7 @@ export class ArtDashboardWorkspaceProfilsComponent{
   onPaysSelChange(index){
     //console.log(index)
     this.villes = this.pays[index]["cities"]
+    this.newAdresse.pays = this.pays[index].country
     axios.get(this.urlApi_Arcgis_Country(this.pays[index]["iso2"]))
       .then((res)=>{
         console.log(res)
@@ -184,6 +192,7 @@ export class ArtDashboardWorkspaceProfilsComponent{
     this.show_msg_place_error = false
     if (index == -1) return;
     console.log(this.urlApi_Ninja_City(this.villes[index]))
+    this.newAdresse.ville = this.villes[index];
     this.httpNV.get(this.urlApi_Ninja_City(this.villes[index]))
       .then((data) => {this.map_gotoPos(data)})
       .catch((error)=>{console.log(error)})
@@ -260,25 +269,41 @@ export class ArtDashboardWorkspaceProfilsComponent{
   isLoading:Boolean = false
 
   onSubmit(){
-    
-
     this.uploaderPP.uploadAll()
+    this.uploaderReals.uploadAll()
+
+    this.newAdresse.lat = this.mapCoords.lat;
+    this.newAdresse.lon = this.mapCoords.lon;
+
     this.clientService.update(this.newClient,()=>{
     	this.chargementClientInfo()
       this.isLoading = false
+      const reals:any = this.newArtisan.realisations;
+      this.newArtisan.realisations = null;
       if(this.isArtisan){
 		  if(!this.art_new_old){
-		    this.artisanService.create(this.newArtisan,()=>{
-          this.saveExerce(0)
-          this.saveExerce(1)
-          this.saveExerce(2)
-		    })
+        this.adresseService.create(this.newAdresse,(data)=>{
+          console.log(data);
+          this.newArtisan.localisation = data["id"]
+          this.artisanService.create(this.newArtisan,()=>{
+            this.saveExerce(0)
+            this.saveExerce(1)
+            this.saveExerce(2)
+            this.newArtisan.realisations = reals
+            this.artisanService.putRealisations(this.newArtisan)
+          })
+        })
+		    
 		  }
 		  else{
 		    this.artisanService.update(this.newArtisan,()=>{
           this.saveExerce(0)
           this.saveExerce(1)
           this.saveExerce(2)
+          this.newArtisan.realisations = reals;
+          this.artisanService.putRealisations(this.newArtisan);
+          this.newAdresse.id = this.newArtisan.localisation;
+          this.adresseService.update(this.newAdresse);
 		    })
 		  }
 		}

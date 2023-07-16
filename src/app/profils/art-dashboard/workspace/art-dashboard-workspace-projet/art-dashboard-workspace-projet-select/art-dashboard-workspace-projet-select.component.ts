@@ -11,24 +11,24 @@ export class ArtDashboardWorkspaceProjetSelectComponent {
 
   options = [
     {
-      title: "Projets en cours",
+      title: "Mes Projets",
       number: "3",
-      img: "../../../../../../assets/logo.png",
+      img: "../../../../../../assets/person.svg",
+    },
+    {
+      title: "Tous les projets",
+      number: "3",
+      img: "../../../../../../assets/vignettes/eye.svg",
     },
     {
       title: "Projets en cours",
       number: "3",
-      img: "../../../../../../assets/logo.png",
+      img: "../../../../../../assets/vignettes/loading.svg",
     },
     {
-      title: "Projets en cours",
+      title: "Projets Termines",
       number: "3",
-      img: "../../../../../../assets/logo.png",
-    },
-    {
-      title: "Projets en cours",
-      number: "3",
-      img: "../../../../../../assets/logo.png",
+      img: "../../../../../../assets/vignettes/checked.svg",
     }
   ]
   stylePpro(i:number){

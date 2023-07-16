@@ -14,6 +14,7 @@ import { urlApi }  from 'src/app/app.axios'
 })
 export class PresentArtisansUnitComponent {
   urlApiPP =  urlApi + "photoprofils/"
+  urlApiReals = urlApi + "realisations/";
   showUnit = true
   @Input() photoCouverture:String = "assets/uploaded/art-1.jpg"
   @Input() artisan:any

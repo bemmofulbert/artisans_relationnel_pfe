@@ -6,6 +6,7 @@ class ArtisanData extends Data{
         this.idName = "idart"
     }
 
+
     search = (_callback,_catch,tables,columns=["*"],searchColumns=[],cles=[],conditions="",endquery="") => {
         var conditions2 = ''
         for (var i=0,c=searchColumns.length; i<c; i++){

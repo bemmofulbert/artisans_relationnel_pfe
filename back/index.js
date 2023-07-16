@@ -35,8 +35,10 @@ app.use(function (req, res, next) {
 
 
 const pathPP = './datas/photoProfils'
+const pathReals = './datas/realisations'
 // Fichiers -- datas
 app.use('/photoprofils', express.static(pathPP));
+app.use('/realisations', express.static(pathReals));
 
 let storage = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -48,6 +50,17 @@ let storage = multer.diskStorage({
     }
 })
 let upload = multer({storage:storage})
+
+let storageReals = multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,pathReals)
+    },
+    filename:(req, file,cb)=> {
+        console.log(file)
+        cb(null, file.originalname)
+    }
+})
+let uploadReals = multer({storage:storageReals})
 
 //route upload
 app.post('/api/upload/photo_profil', upload.single("PP"),function(req,res){
@@ -65,6 +78,21 @@ app.post('/api/upload/photo_profil', upload.single("PP"),function(req,res){
     }
 })
 
+//route upload Realisations
+app.post('/api/upload/realisations', uploadReals.single("reals"),function(req,res){
+    console.log(req.file)
+    if(!req.file) {
+        console.log("no file received");
+        return res.send({
+            sucess: false
+        });
+    }else {
+        console.log('file received');
+        return res.send({
+            success: true
+        })
+    }
+})
 
 
 

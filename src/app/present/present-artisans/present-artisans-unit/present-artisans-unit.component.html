@@ -3,7 +3,7 @@
         <div class="photos">
 
             <div class="PhotoCouverture">
-                <img [src]="photoCouverture">
+                <img [src]="(artisan.realisations) ? (urlApiReals+artisan.realisations[0]) : photoCouverture">
             </div>
             <div class="photoProfil">
                 <img [src]="urlApiPP+client.photo_profil">

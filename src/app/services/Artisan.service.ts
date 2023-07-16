@@ -31,4 +31,14 @@ export class ArtisanService extends AxiosHandler {
             }) 
             .catch( error => {console.log(error)})
     }
+
+    putRealisations(artisan, _callback=(data)=>{}) {
+        let idart = artisan.idart || artisan['idart']
+        this.http.put(`/${this.tableName}/realisations/${idart}`,{"realisations" : artisan.realisations})
+            .then( res => {
+                _callback(res.data)
+            })
+            .catch( error => {console.log(error)})
+
+    }
 }

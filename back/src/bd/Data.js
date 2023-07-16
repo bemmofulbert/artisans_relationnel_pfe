@@ -65,6 +65,13 @@ class Data{
         this.assoc_to_tab(assoc, columns, values);
         BD.update(_callback,_catch, this.tableName,columns,values,this.idName+"="+id)
     }
+    
+    updateArray(_callback,_catch,id,column,values,conditions="") {
+    	values = Utils.framed(values,"\"")
+        values = `{${values}}`
+       
+        BD.update(_callback,_catch, this.tableName,[column],[values],this.idName+"="+id)
+    }
 
     save(_callback=()=>{},_catch) {
         let columns=[],values=[];
@@ -76,7 +83,7 @@ class Data{
         BD.delete(_callback,_catch,this.tableName,this.idName+"="+id);
     }
 
-    count(_callback,_catch,column="*",conditions="") {
+    count(_callback,_catch,column=this.idName,conditions="") {
         BD.select_count(_callback,_catch,[this.tableName],column,conditions);
     }
 

@@ -41,6 +41,15 @@ class Api {
             req.body
         )
     }
+    getCount = (req,res) => {
+        this.model.
+            count((data)=>{
+                res.jsonp(data)
+                res.status(200).end()
+                },
+                ()=>{res.status(500).end()}
+            )
+    }
     updateOne = (req,res) => {
         this.model.update(()=>{res.status(200).end()},
             ()=>{res.status(404).end()},
@@ -102,6 +111,9 @@ class Api {
     
         //getOneWith
         router.post("/"+model.tableName+"_with", (req,res)=>this.getOnewith(req,res))
+
+        //count
+        router.get("/count/"+model.tableName, (req,res)=>this.getCount(req,res))
     }
 }
 

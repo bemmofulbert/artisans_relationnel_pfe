@@ -44,6 +44,16 @@ export class AxiosHandler {
             })
     }
 
+    getCount(_callback=(data=>{})){
+        http.get("/count/"+this.tableName)
+            .then((res)=>{
+                _callback(res.data["count"])
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     create(data:any,_callback=(res)=>{}) {
         http.put("/"+this.tableName,data)
             .then((res) => {

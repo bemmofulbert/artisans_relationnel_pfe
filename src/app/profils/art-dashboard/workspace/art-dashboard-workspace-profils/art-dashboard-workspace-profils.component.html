@@ -80,15 +80,15 @@
             <div class="centered realsImgs">
                 <div>
                     <input id="reals" type="file" readonly />
-                    <img [src]="path_defaultPanorama" class="img_photoPanorama">
+                    <img [src]="(newArtisan.realisations) ? (urlApi+'realisations/'+newArtisan.realisations[0]) : path_defaultPanorama" class="img_photoPanorama">
                 </div>
                 <div>
-                    <input id="reals" name="reals" type="file" readonly />
-                    <img [src]="path_defaultPanorama" class="img_photoPanorama">
+                    <input id="reals" name="reals" type="file" ng2FileSelect [uploader]="uploaderReals" />
+                    <img [src]="(newArtisan.realisations) ? (urlApi+'realisations/'+newArtisan.realisations[0]) : path_defaultPanorama" class="img_photoPanorama">
                 </div>
                 <div>
                     <input id="reals" type="file" readonly />
-                    <img [src]="path_defaultPanorama" class="img_photoPanorama">
+                    <img [src]="(newArtisan.realisations) ? (urlApi+'realisations/'+newArtisan.realisations[0]) : path_defaultPanorama" class="img_photoPanorama">
                 </div>
             </div>
 
