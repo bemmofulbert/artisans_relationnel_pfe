@@ -5,6 +5,7 @@ import { ArtisanModel } from '../services/models/artisan.model';
 import { Router } from '@angular/router';
 import { MetierModel } from '../services/models/metier.model';
 import { ArtisanService } from '../services/Artisan.service';
+import { ProjetService } from '../services/Projet.service';
 
 import { urlApi }  from 'src/app/app.axios'
 
@@ -26,6 +27,9 @@ export class HeaderComponent {
   logged:Boolean = false
   isArtisan:Boolean = false
   client:ClientModel
+  oldProjet = 0
+  newProjet = 0
+  diffProjet = 0
   artisan
   metiers = []
 
@@ -37,12 +41,14 @@ export class HeaderComponent {
   corrections(){
     if (this.client.photo_profil == null || this.client.photo_profil == "") this.client.photo_profil="../../assets/person.svg";
   }
-  constructor(protected clientService:ClientService, protected router:Router, protected artisanService:ArtisanService){
+  constructor(protected clientService:ClientService, protected router:Router,
+  	protected artisanService:ArtisanService, protected projetService:ProjetService){
     this.initConnexion();
     if (this.logged){
       this.chargementArtisanInfo();
       this.hydrateUser();
       this.corrections();
+      this.chargementProjetNbr();
     }
     else router.navigate(['/connexion'])
   }
@@ -75,5 +81,13 @@ export class HeaderComponent {
   // Actualise les informations sur le client actuelle
   hydrateUser(){
     this.clientService.hydrate(this.client)
+  }
+  chargementProjetNbr(){
+  	this.oldProjet = JSON.parse(localStorage.getItem("nbrProjet"));
+  	this.projetService.getCount((data)=>{
+  		this.newProjet = data;
+  		this.diffProjet = this.newProjet - this.oldProjet;
+  		
+  	})
   }
 }

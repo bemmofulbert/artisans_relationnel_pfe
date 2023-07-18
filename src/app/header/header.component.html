@@ -10,7 +10,10 @@
 		<div class="options centered" >
 			<div class="centered" href="#"><a>Produits</a></div>
 			<div class="centered"><a routerLink="/creer-offre">Créer une Offre</a></div>
-			<div  class="centered" *ngIf="!isArtisan" routerLink="/artisanDashboard" ><a>Devenir artisan</a></div>
+			<div  class="centered" *ngIf="!isArtisan"><a routerLink="/artisanDashboard">Devenir artisan</a></div>
+			<div class="centered" *ngIf="isArtisan"><a routerLink="/artisanDashboard/Projets">Offres
+			<span *ngIf="(newProjet-oldProjet) > -1" >({{(diffProjet)}})</span>
+			</a></div>
 			<div class="centered"><a href="#ffooterr">A Propos</a></div>
 			<div class="login centered" routerLink="/connexion" *ngIf="!logged">
 				<a>Log in</a>

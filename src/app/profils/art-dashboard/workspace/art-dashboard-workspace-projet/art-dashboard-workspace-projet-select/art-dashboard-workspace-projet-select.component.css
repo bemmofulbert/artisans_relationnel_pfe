@@ -1,9 +1,9 @@
 .root {
-    width:100%;
+    width:900px;
     box-shadow: inset 0 0 .2em rgb(220, 220, 220,0.9), 0 0 .4em gray;
     border-radius:20px;
     height: 110px;
-    padding:5%;
+    padding:4.5%;
     padding-top:10px;
     padding-bottom: 10px;
     background-color: white;
@@ -13,17 +13,12 @@
     padding-left: 3%;
     flex-direction: column;
     cursor:pointer;
+    
 }
 .ppro:hover{
     background-color: #65E4A3;
 }
-.selectedSign div{
-    width:100%;
-    border-bottom: 4px black solid;
-}
-.selectorSign div{
-    width:100%;
-}
+
 .pres img {
     width: 60px;
     border-radius:5px;
@@ -38,4 +33,12 @@
     font-weight: 700;
     padding-bottom: 5pt;
     padding-top: 5pt;
+}
+.title{
+    width:70px
+}
+
+.sub{
+    width:100%;
+
 }

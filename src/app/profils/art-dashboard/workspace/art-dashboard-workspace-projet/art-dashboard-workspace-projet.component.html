@@ -1,4 +1,7 @@
 <div class="root centered">
-    <div><app-art-dashboard-workspace-projet-select></app-art-dashboard-workspace-projet-select></div>
-    <div><app-art-dashboard-workspace-projet-list [list]="projets"></app-art-dashboard-workspace-projet-list></div>
+    <div><app-art-dashboard-workspace-projet-select [nbrData]="[projets.length,15,1,5]" #selector ></app-art-dashboard-workspace-projet-select></div>
+    <div><app-art-dashboard-workspace-projet-list *ngIf="selector.optAct == 1" [list]="projetsAll"></app-art-dashboard-workspace-projet-list></div>
+    
+    <div><app-art-dashboard-workspace-projet-list *ngIf="selector.optAct == 0" [list]="projets"></app-art-dashboard-workspace-projet-list></div>
+    
 </div>

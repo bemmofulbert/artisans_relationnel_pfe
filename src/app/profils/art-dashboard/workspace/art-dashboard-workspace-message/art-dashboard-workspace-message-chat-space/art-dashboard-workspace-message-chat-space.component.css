@@ -1,0 +1,227 @@
+/* ---------------------------------------main.css--------------------------------- */
+.messagerie_backgrounds {
+    border-radius: 20px;
+    min-height: 470px;
+    height: 87vh;
+    margin-left:6%;
+}
+
+.texte_title {
+    font-family: 'Ubuntu';
+    color: white;
+}
+.texte_mes {
+    color: black;  
+    font-family: 'Ubuntu';
+}
+/* ---------------------------------------main.css--------------------------------- */
+#messagerie_chatSpace {
+    background: linear-gradient(to right,rgb(75,109,146,0.9),rgb(76,79,132,0.9));
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+#messagerie_chatSpace_header {
+  background: linear-gradient(to right, rgb(68,104,139,0.9), rgb(79,77,128,0.9));
+  height: 20%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  width: 100%;
+  display: flex;
+  align-content: space-between;
+  margin-bottom: 10px;
+}
+#messagerie_profil {
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+#messagerie_phoneVideo  {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+#messagerie_phone_img {
+    width: 23px;
+    height: 23px;
+}
+#messagerie_video_img {
+    width: 28px;
+    height: 28px;
+    margin-left: 20px;
+    transform: rotate(270deg);
+}
+#messagerie_menu {
+    width: 10%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: 100%;
+}
+#messagerie_menu > img {
+    width: 20px;
+    height: 20px;
+    transform: rotate(90deg);
+    margin-top: 15px;
+    margin-right: 5px;
+}
+#messagerie_chatSpace_messages {
+    height: 64%;
+    overflow: scroll;
+}
+#messagerie_chatSpace_footer {
+    background: linear-gradient(to right,rgb(72,105,138,0.9),rgb(75,76,129,0.9));
+    height: 16%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.messagerie_chatSpace_messageBox {
+    min-height: 24%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 4px;
+}
+.messsagerie_chatSpace_senderMessage {
+    min-height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+}
+.messsagerie_chatSpace_sender {
+    width: 45px;
+    height: 45px;
+    border-radius: 65px;
+    background-color: white;
+    margin-left: 24px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.messsagerie_chatSpace_sender img {
+    width: 98%;
+}
+.messagerie_chatSpace_message {
+    max-width: 80%;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow-wrap: break-word;
+    background-color: #69cddf;
+    display: flex;
+    align-items: center;
+    border-radius: 22px;
+    text-align: left;
+}
+.messagerie_chatSpace_messageBox_time {
+    font-size: 10px;
+    color: white;
+    margin-left: 81px;
+    margin-right: 81px;
+    margin-top: 3px;
+}
+.messagerie_chatSpace_messageBox_reverse {
+    min-height: 24%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-top: 4px;
+    float: right;
+}
+.messsagerie_chatSpace_senderMessage_reverse {
+    min-height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    width: 100%;   
+}
+.messagerie_chatSpace_message_reverse {
+    max-width: 80%;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow-wrap: break-word;
+    background-color: #3be689;
+    display: flex;
+    align-items: center;
+    border-radius: 22px;
+    text-align: left;
+}
+.messsagerie_chatSpace_sender_reverse {
+    width: 45px;
+    height: 45px;
+    border-radius: 65px;
+    background-color: white;
+    margin-left: 12px;
+    margin-right: 24px;
+}
+.messsagerie_chatSpace_sender_reverse img {
+    width: 98%;
+}
+#messagerie_chatSpace_footer {
+    background: linear-gradient(to right,rgb(72,105,138,0.9),rgb(75,76,129,0.9));
+    height: 18%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#messagerie_chatSpace_footer > div {
+    width: 93%;
+    height: 72%;
+    border-radius: 15px;
+    background: linear-gradient(to right,rgb(55,74,95,0.9),rgb(55,55,92));
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.messagerie_chatSpace_footer_extreme {
+    width: 6%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.messagerie_chatSpace_footer_extreme > img {
+    width: 20px;
+    height: 20px;
+}
+#messagerie_chatSpace_footer_input { 
+    width: 88%;
+    border-right: 1px solid #2c2a4d;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+#messagerie_chatSpace_footer_input textarea {
+    background-color: rgb(0,0,0,0);
+    width: 100%;
+    border: none;
+    outline: none;
+    color: white;
+    overflow: scroll;
+}
+#messagerie_chatSpace_footer_send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.messagerie_chatSpace_footer_extreme_droit > img {
+    transform: rotate(-45deg);
+    width: 16px;
+    height: 16px;
+}
+.imgClient {
+	border-radius: 65px;
+	width:100%;
+	height:100%;
+}

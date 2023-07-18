@@ -35,7 +35,7 @@
     align-content: center;
   }  
   .nav-links li a {
-    color: #0A2640;
+    color: white;
     text-decoration: none;
   }
   .nav-links li img {
@@ -108,4 +108,69 @@
   .root {
     width: 100%;
 }
+/*----------------------------------------------------*/
 
+.container{
+    margin-top: .5rem;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #f7f4f4;
+    width: 22rem;
+}
+.p2{
+    margin-left: 1rem;
+    width: auto;
+}
+.milieu{
+    margin-top: .1rem;
+    line-height: 2;
+    word-spacing: 1rem;
+    
+}
+.milieu label span{
+	margin-left: .5rem
+}
+.bas{
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+.bas a, .apply{
+    margin-left: 9rem;
+    text-decoration: none;
+    background-color: #0A2640;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+.bas a:visited{
+	text-decoration: none;
+	color: white;
+}
+
+.MM{
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+.m2{
+    margin-left: 1rem;
+}
+.m2 p{
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: rgb(167, 167, 172);;
+    word-spacing: 2.5rem;
+    width: 5rem;
+}
+.m2 input, .m1 input{
+	width: 5rem;
+}
+.m1 p{
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: rgb(167, 167, 172);
+    word-spacing: 2.5rem;
+    width: 5rem;
+}

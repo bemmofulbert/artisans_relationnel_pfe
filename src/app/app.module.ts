@@ -48,6 +48,9 @@ import { ArtDashboardWorkspaceProjetListComponent } from './profils/art-dashboar
 import { ArtDashboardWorkspaceProjetListItemComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-projet/art-dashboard-workspace-projet-list/art-dashboard-workspace-projet-list-item/art-dashboard-workspace-projet-list-item.component';
 import { ArtDashboardWorkspaceProfilsComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-profils/art-dashboard-workspace-profils.component';
 import { MapCoordsComponent } from './profils/creer-offre/map-coords/map-coords.component';
+import { ArtDashboardWorkspaceMessageComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-message/art-dashboard-workspace-message.component';
+import { ArtDashboardWorkspaceMessageContactsComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-message/art-dashboard-workspace-message-contacts/art-dashboard-workspace-message-contacts.component';
+import { ArtDashboardWorkspaceMessageChatSpaceComponent } from './profils/art-dashboard/workspace/art-dashboard-workspace-message/art-dashboard-workspace-message-chat-space/art-dashboard-workspace-message-chat-space.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +91,10 @@ import { MapCoordsComponent } from './profils/creer-offre/map-coords/map-coords.
     ArtDashboardWorkspaceProjetListComponent,
     ArtDashboardWorkspaceProjetListItemComponent,
     ArtDashboardWorkspaceProfilsComponent,
-    MapCoordsComponent
+    MapCoordsComponent,
+    ArtDashboardWorkspaceMessageComponent,
+    ArtDashboardWorkspaceMessageContactsComponent,
+    ArtDashboardWorkspaceMessageChatSpaceComponent
   ],
   imports: [
     BrowserModule,

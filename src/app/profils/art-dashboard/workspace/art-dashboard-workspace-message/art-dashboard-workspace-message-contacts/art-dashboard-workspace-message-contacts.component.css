@@ -1,0 +1,105 @@
+/* ---------------------------------------main.css--------------------------------- */
+.messagerie_backgrounds {
+    border-radius: 20px;
+    min-height: 470px;
+    height: 87vh;
+    margin-right:6%;
+}
+/* ---------------------------------------main.css--------------------------------- */
+#messagerie_contacts {
+    background: linear-gradient(to right,rgb(67,132,137,0.9),rgb(77,111,141,0.9));
+    margin-left: 10%;
+    margin-right: 2%;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+#messagerie_contacts_header {
+    background: linear-gradient(to right,rgb(57,124,131,0.5) ,rgb(72,107,134,0.5));
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+#messagerie_contacts_header > div {
+    background: linear-gradient(to right,rgb(51,90,95,0.8),rgb(52,76,98,0.8));
+    width: 85%;
+    border-radius: 13px;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    vertical-align: middle;
+}
+#messagerie_contacts_header input {
+    border: none;
+    outline: none;
+    background-color: rgb(255,255,255,0);
+    width: 200px;
+    font-size: 14px;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+#messagerie_contacts_header img {
+    width: 15px;
+    transform: rotate(-10deg);
+}
+#messagerie_contacts_contacts{
+    height: 80%;
+    overflow: scroll;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+.messagerie_contacts_elements {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.messagerie_contacts_elements_img {
+    background-color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    margin-right: 20px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.messagerie_contacts_elements_img > img {
+    width: 98%;
+}
+.messagerie_contacts_elements_infos {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 8px;
+}
+.messagerie_contacts_elements_name {
+    font-size: 20px;
+}
+.messagerie_contacts_elements_number {
+    font-size: 10px;
+}
+.messagerie_contacts_elements_selected {
+    background: linear-gradient(to right,rgb(50,92,97,0.9),rgb(57,80,100,0.9));
+}
+#messagerie_contacts_footer {
+    height: 5%;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: linear-gradient(to right,rgb(57,124,131,0.5) ,rgb(72,107,134,0.5));
+    width: 100%;
+}

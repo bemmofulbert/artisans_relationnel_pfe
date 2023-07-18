@@ -1,6 +1,5 @@
 <div class="root centered">
-    <div></div>
-    <div class="ppro centered" *ngFor="let option of options; index as i" [attr.data-index]="i" [style]="stylePpro(i)">
+    <div class="ppro centered" *ngFor="let option of options; index as i" [attr.data-index]="i" [style]="stylePpro(i)" (click)="optAct = i">
         <div class="pres centered">
             <img [src]="option.img">
             <div class="centered">
@@ -8,8 +7,8 @@
                 <div class="number">{{option.number}}</div>
             </div>
         </div>
-        <div [class]="styleSelected">
-            <div></div>
+        <div class="sub" >
+            <div [style]="(optAct != i) ? '' : 'width:100%;border-bottom: 4px black solid;'"></div>
         </div>
     </div>
     
