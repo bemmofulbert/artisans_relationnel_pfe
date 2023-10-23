@@ -3,8 +3,8 @@
 export class AdresseModel {
     static tableName = "Adresse"
     id: number
-    pays:string ='-1'
-    ville:string ='-1'
+    pays:string ="-1"
+    ville:string ="-1"
     lon:string=""
     lat:string=""
 

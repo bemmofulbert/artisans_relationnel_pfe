@@ -64,18 +64,18 @@ class ClientApi extends Api {
     }
 
     putOne = (req,res,) => { // Login
-        console.log(req.body)
         res.end()
         if(req.body['motdepasse']) 
             (require("bcrypt").hash(req.body['motdepasse'],10))
                 .then((hash => {
                     req.body['motdepasse'] = hash
                     this.model.add(()=>{
-                        this.enregistrement({"mail":req.body["mail"]})
-                        res.end()
-                    },
-                        ()=>{res.end()},
-                        req.body)
+                            this.enregistrement({"mail":req.body["mail"]})
+                            res.end()
+                        },
+                            ()=>{res.end()},
+                            req.body
+                    )
                 })
             )       
     }

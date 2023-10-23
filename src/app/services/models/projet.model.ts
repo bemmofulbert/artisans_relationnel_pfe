@@ -7,9 +7,9 @@ export class ProjetModel {
   description:string = ""
   int_salaire_sup: string = "500"
   int_salaire_sub: string = "100"
-  nb_personnes_requis:string = "1"
+  nb_personnes_requis:number = 1
   ref_localisation:number
-  ref_metier:number
+  ref_metier:number = -1
 
   static data_to_model(data){
     let model = new ProjetModel()

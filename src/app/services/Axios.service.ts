@@ -86,12 +86,12 @@ export class AxiosHandler {
         return assoc
     }
 
-    search(columns,keys,debut,limite,_callback=(res)=>{}) {
-        let data = { //this.tabs_to_assoc(columns,keys)
+    search(_callback=(res)=>{}, columns, keys, start=-1, limit=-1) {
+        let data = {
             columns,
             keys,
-            debut,
-            limite
+            start,
+            limit
         }
         http.post("/"+this.tableName+"/search",data)
             .then((res)=>{

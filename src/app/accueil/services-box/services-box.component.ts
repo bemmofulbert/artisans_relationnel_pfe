@@ -15,7 +15,7 @@ export class ServicesBoxComponent {
     metierService.getAll(
       (datas)=>{
         datas.forEach(element => {
-          this.metiers.push(MetierModel.data_to_model(element))
+          this.metiers.push(MetierModel.data_to_model(element));
         });
     })
   }

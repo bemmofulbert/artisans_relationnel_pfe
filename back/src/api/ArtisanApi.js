@@ -16,7 +16,7 @@ class ArtisanApi extends Api {
         req.params["id"])
     }
 
-    get_metiers_from_artisan = (req, res) =>{
+    get_metiers_of_artisan = (req, res) => {
         Artisan.read_all(
             (data)=>{
                 res.jsonp(data)
@@ -24,7 +24,19 @@ class ArtisanApi extends Api {
             },
             (error)=>{console.log(error);res.end()},
             ["Metier","Exerce"],
-            "Metier.id = Exerce.ref_metier and Artisan.idart = Exerce.ref_artisan"
+            "Metier.id = Exerce.ref_metier and Artisan.idart = Exerce.ref_artisan and Metier.nom="+req.params.nom
+        )
+    }
+
+    get_artisan_from_metier = (req, res) =>{
+        Artisan.read_all(
+            (data)=>{
+                res.jsonp(data)
+                res.end() 
+            },
+            (error)=>{console.log(error);res.end()},
+            ["Metier","Exerce"],
+            "Metier.id = Exerce.ref_metier and Artisan.idart = Exerce.ref_artisan and Metier.nom="+req.params.nom
         )
     }
 
@@ -55,11 +67,10 @@ class ArtisanApi extends Api {
 	
     constructor(){
         super(Artisan)
-        ArtisanApi.router.get("/"+this.model.tableName+"/Client/:id", this.get_client_from_artisan)
-        ArtisanApi.router.get("/"+this.model.tableName+"/Metier/:id", this.get_metiers_from_artisan)
-        ArtisanApi.router.get("/"+this.model.tableName+"/Adresse/:id", this.get_adresse_from_artisan)
-        
-        ArtisanApi.router.put("/"+this.model.tableName+"/realisations/:id", this.updateRealisations)
+        ArtisanApi.router.get("/"+this.model.tableName+"/:idArt/Client/", this.get_client_from_artisan)
+        ArtisanApi.router.get("/" + this.model.tableName + "/Metier/:nom", this.get_artisan_from_metier)
+        ArtisanApi.router.get("/"+this.model.tableName+"/:idArt/Adresse/", this.get_adresse_from_artisan)
+        ArtisanApi.router.put("/"+this.model.tableName+"/:idArt/realisations/", this.updateRealisations)
     }
 }
 new ArtisanApi()

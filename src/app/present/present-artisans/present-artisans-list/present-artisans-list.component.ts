@@ -23,11 +23,12 @@ export class PresentArtisansListComponent{
     this.init()
   }
    init() {
+   this.showList = true
     //if (this.keyword == "all") {
-      this.artisanService.getAll((datas)=>{
-          this.artisans = datas
-          this.showList = true
-      })
+      //this.artisanService.getAll((datas)=>{
+      //    this.artisans = datas
+      //    this.showList = true
+      //})
     //}
   }
   reload(){

@@ -68,6 +68,7 @@ button{
     justify-content: flex-end;
     width: 100%;
     justify-content: space-between;
+    margin-bottom: 50px;
 }
 .butSuiv button {
 	border-radius: 50px;
@@ -100,6 +101,18 @@ button{
 
 .map-container{
     width:100%;
+}
+
+.err{
+    color: red;
+    font-size: 10;
+}
+.ok{
+    color: green;
+    font-size: 10;
+}
+.errTitle{
+    margin-top: 15px
 }
 /* 
 .champs{

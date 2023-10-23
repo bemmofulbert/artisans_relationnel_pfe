@@ -1,4 +1,3 @@
-
 export class GlobalConfig {
 	public static platform_name:String = "OneClick Work";
 	public static NINJA_API_KEY = "xgNdIO8N3os2krcOEEkYtg==49zute7N7AB2Obml";

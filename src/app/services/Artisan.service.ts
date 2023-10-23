@@ -16,7 +16,7 @@ export class ArtisanService extends AxiosHandler {
 
     getClient(artisan:ArtisanModel, _callback=(data=[])=>{}){
         let idart = artisan.idart || artisan['idart']
-        this.http.get(`/${this.tableName}/client/${idart}`)
+        this.http.get(`/${this.tableName}/${idart}/client`)
             .then(res => {
                 _callback(res.data)
             })
@@ -25,7 +25,16 @@ export class ArtisanService extends AxiosHandler {
 
     getMetiers(artisan:ArtisanModel, _callback=(data=[])=>{}){
         let idart = artisan.idart || artisan['idart']
-        this.http.get(`/${this.tableName}/Metier/${idart}`)
+        this.http.get(`/${this.tableName}/${idart}/Metier`)
+            .then( res => {
+                _callback(res.data)
+            }) 
+            .catch( error => {console.log(error)})
+    }
+
+    getByMetier(artisan:ArtisanModel,nomMetier, _callback=(data=[])=>{}){
+        let idart = artisan.idart || artisan['idart']
+        this.http.get(`/${this.tableName}/Metier/${nomMetier}`)
             .then( res => {
                 _callback(res.data)
             }) 
@@ -34,7 +43,7 @@ export class ArtisanService extends AxiosHandler {
 
     putRealisations(artisan, _callback=(data)=>{}) {
         let idart = artisan.idart || artisan['idart']
-        this.http.put(`/${this.tableName}/realisations/${idart}`,{"realisations" : artisan.realisations})
+        this.http.put(`/${this.tableName}/${idart}/realisations`,{"realisations" : artisan.realisations})
             .then( res => {
                 _callback(res.data)
             })

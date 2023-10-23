@@ -15,6 +15,11 @@
 
                 <div class="saisie">
                     <input type="text" id="text" [placeholder]="forms[0].placeHolder" [(ngModel)]="Projet.titre">
+                    <div class="errTitle centered"> 
+                        <mat-icon *ngIf="champsCorrects()" class="ok" >ok</mat-icon>
+                        <mat-icon *ngIf="!champsCorrects()" class="err" >no</mat-icon>
+                        {{ forms[0].errTitle }} 
+                    </div>
                 </div>           
             </div>
 
@@ -25,7 +30,13 @@
                     <p>{{forms[1].description}}</p>
                 </div>
                 <div class="saisie">
-                    <textarea type="text" id="text" [placeholder]="forms[1].placeHolder" [(ngModel)]="Projet.description" ></textarea>
+                    <div><span style="float: right;">{{ Projet.description.length }}/{{forms[1].maxCh}}</span></div>
+                    <textarea type="text" id="text" [placeholder]="forms[1].placeHolder" [(ngModel)]="Projet.description" [maxlength]="forms[1].maxCh" [minlength]="forms[1].minCh"></textarea>
+                    <div class="errTitle centered"> 
+                        <mat-icon *ngIf="champsCorrects()" class="ok" >ok</mat-icon>
+                        <mat-icon *ngIf="!champsCorrects()" class="err" >no</mat-icon>
+                        {{ forms[1].errDescription}} 
+                    </div>
                 </div> 
             </div>
 
@@ -135,10 +146,13 @@
             <button class="centered" (click)="onPrec()" [style]="(numOffreAct<=1) ? 'color:white;background-color:white;' : '' ">
                 <mat-icon>navigate_before</mat-icon> Précédent
             </button>
-            <button class="centered" (click)="(numOffreAct>=forms.length) ? publier() : onNext()">
-               {{goPhrase}}<mat-icon>navigate_next</mat-icon>
+            <button class="centered"
+                (click)="(numOffreAct>=forms.length) ? publier() : onNext()">
+               {{goPhrase}}
+               <mat-icon>navigate_next</mat-icon>
             </button>
+             <!-- [routerLink]="'/creer-offre/'+numOffreAct" -->
         </div>
     </div>
-    
+    <app-footer></app-footer>
 </div>

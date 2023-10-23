@@ -15,6 +15,7 @@ import { AdresseModel } from 'src/app/services/models/adresse.model';
 import { AdresseService } from 'src/app/services/Adresse.service';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -55,12 +56,18 @@ export class CreerOffreComponent {
     {
       title: "Donner un titre a votre offre",
       description: "Ceci permet de differencier votre offre des autres et de retrouver le meilleur prestataire",
-      placeHolder: "Entrez le titre de votre offre"
+      placeHolder: "Entrez le titre de votre offre",
+      errTitle: "Minimum trois (03) caracteres",
+      maxTitle:256,
+      minTitle:3
     },
     {
       title: "Decriver votre projet",
       description: "Faites une description detaille de votre projet.",
-      placeHolder: "Entrez la description du projet"
+      placeHolder: "Entrez la description du projet",
+      errDescription: "Minimum trois (10) caracteres",
+      maxCh:1024,
+      minCh:10
     },
     {
       title: "Donner le salaire et le nombre de personne",
@@ -96,23 +103,53 @@ export class CreerOffreComponent {
     }else {
       this.goPhrase = "Publier !"
     }
+    //this.activatedRoute.snapshot.params['numSelected'] = this.numOffreAct
+  }
+
+//will replace " " by ''(empty)
+  champsCorrects = () => {
+    if (this.numOffreAct == 1) {
+      if((this.Projet.titre.replace(/\s/,"")).length < this.forms[0].minTitle) return false
+    }
+    else if (this.numOffreAct == 2) {
+      if ((this.Projet.description.replace(/\s/,'')).length < this.forms[1].minCh) return false
+    }
+  else if (this.numOffreAct == 4) {
+    if (this.Projet.ref_metier < 0 || this.Projet.ref_metier > this.metiers.length )
+      return false
+  }
+  else if (this.numOffreAct == 5) {
+    if (this.Adresse.pays == "-1" || this.Adresse.ville == "-1")
+      return false
+    //if ()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           )
+  }
+    return true
   }
 
   onNext = () => {
-    if (this.numOffreAct < this.forms.length) this.numOffreAct++
-    this.updateGoPhrase()
+    if (this.champsCorrects()) {
+      if (this.numOffreAct < this.forms.length) this.numOffreAct++
+      this.updateGoPhrase()
+    }
   }
 
   onPrec = () => {
     if (this.numOffreAct > 1) this.numOffreAct--
-    this.updateGoPhrase()
+    this.updateGoPhrase()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
   }
-
+  updatePage = () => {
+    let numSelected = this.activatedRoute.snapshot.params['numSelected']
+    if(numSelected) {
+      this.numOffreAct = numSelected
+    }
+  }
   constructor(private metierService:MetierService, 
     private projetService:ProjetService, 
     private adresseService:AdresseService, 
-    private router:Router) {
+    private router:Router,
+    private activatedRoute:ActivatedRoute) {
      
+    this.updatePage()
     this.initMetier()
     this.updateGoPhrase()
     this.initLocalisation()
