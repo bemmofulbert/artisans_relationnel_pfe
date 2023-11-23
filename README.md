@@ -1,6 +1,6 @@
 # Artisan Relationnel
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+<a href="https://ibb.co/WpWgkWr"><img src="https://i.ibb.co/prvJfvH/Capture-d-cran-du-2023-07-13-21-56-06.png" alt="Capture-d-cran-du-2023-07-13-21-56-06" border="0" /></a>
+was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
 
 ## Development server
 
