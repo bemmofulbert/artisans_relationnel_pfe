@@ -5,6 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +39,7 @@ import { PresentArtisansListComponent } from './present/present-artisans/present
 import { PresentArtisanComponent } from './present/present-artisan/present-artisan.component';
 import { PresentPlanTComponent } from './present/present-artisan/present-plan-t/present-plan-t.component';
 import { PresentArtisanServiceComponent } from './present/present-artisan/present-artisan-service/present-artisan-service.component';
-  
+
 import { ArtDashboardComponent } from './profils/art-dashboard/art-dashboard.component';
 import { ArtDashboardTopbarComponent } from './profils/art-dashboard/art-dashboard-topbar/art-dashboard-topbar.component';
 import { ArtDashboardSidebarComponent } from './profils/art-dashboard/art-dashboard-sidebar/art-dashboard-sidebar.component';
@@ -78,8 +82,8 @@ import { ArtDashboardWorkspaceMessageChatSpaceComponent } from './profils/art-da
     PresentArtisansListComponent,
     PresentArtisanComponent,
     PresentPlanTComponent,
-    PresentArtisanServiceComponent,    
-    
+    PresentArtisanServiceComponent,
+
     ArtDashboardComponent,
     ArtDashboardTopbarComponent,
     ArtDashboardSidebarComponent,
@@ -94,7 +98,7 @@ import { ArtDashboardWorkspaceMessageChatSpaceComponent } from './profils/art-da
     MapCoordsComponent,
     ArtDashboardWorkspaceMessageComponent,
     ArtDashboardWorkspaceMessageContactsComponent,
-    ArtDashboardWorkspaceMessageChatSpaceComponent
+    ArtDashboardWorkspaceMessageChatSpaceComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,9 +110,13 @@ import { ArtDashboardWorkspaceMessageChatSpaceComponent } from './profils/art-da
     MatIconModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    FileUploadModule
+    FileUploadModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

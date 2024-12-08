@@ -1,64 +1,88 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/Client.service';
 import { ClientModel } from 'src/app/services/models/client.model';
-import { LocalStorageService } from "angular-localstorage"
+import { LocalStorageService } from 'angular-localstorage';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.css','../profils.css'],
+  styleUrls: ['./connexion.component.css', '../profils.css'],
 })
-export class ConnexionComponent {
+export class ConnexionComponent implements OnInit, OnDestroy {
   show = true;
-  mail:string="";
-  pass:string="";
-  incorrect:Boolean = false
-  incomplet:Boolean = false
-  eyePass = "assets/vignettes/eye-off.svg"
-  isconnecting:Boolean = false
-  constructor(private clientService:ClientService, private router:Router) {    
-  }
+  mail: string = '';
+  pass: string = '';
+  incorrect: Boolean = false;
+  incomplet: Boolean = false;
+  eyePass = 'assets/vignettes/eye-off.svg';
+  isconnecting: Boolean = false;
+  formBuilder = inject(FormBuilder);
+  formGroup = this.formBuilder.group({
+    mail: [this.mail, [Validators.required]],
+    pass: [this.pass, [Validators.required]],
+  });
+  private formValueSubcription: Subscription | null = null;
 
-  onSubmit(){
-    this.isconnecting = true
+  constructor(private clientService: ClientService, private router: Router) {}
 
-    this.incorrect = false
-    this.incomplet = false
+  onSubmit() {
+    this.isconnecting = true;
 
-    if (this.mail=="" || this.pass=="") {this.incomplet=true; setTimeout(()=>{this.isconnecting = false}, 2000); return;}
-    this.clientService.clientVerif(this.mail,(data)=>{
-      if(data['activated']){
-        this.clientService.clientLogin(this.mail,this.pass,
-          (match)=>{ 
-            if (match) {
-              this.clientService.getOneWith({mail:this.mail},
-                (clientData) => {
-                  let client:ClientModel = ClientModel.data_to_model(clientData)
-                  localStorage.setItem('currentUser',JSON.stringify(client))
-                  setTimeout(()=>{this.router.navigate(['']);this.isconnecting = false}, 2000)
-                  
-                }
-              )
-              
-            } else this.incorrect=true
-          }
-        )
-      }
-      else this.incorrect = true;
-    })
+    this.incorrect = false;
+    this.incomplet = false;
 
-    setTimeout(()=>{this.isconnecting = false}, 2000)
+    if (this.mail == '' || this.pass == '') {
+      this.incomplet = true;
+      setTimeout(() => {
+        this.isconnecting = false;
+      }, 2000);
+      return;
+    }
+    this.clientService.clientVerif(this.mail, (data) => {
+      if (data['activated']) {
+        this.clientService.clientLogin(this.mail, this.pass, (match) => {
+          if (match) {
+            this.clientService.getOneWith({ mail: this.mail }, (clientData) => {
+              let client: ClientModel = ClientModel.data_to_model(clientData);
+              localStorage.setItem('currentUser', JSON.stringify(client));
+              setTimeout(() => {
+                this.router.navigate(['']);
+                this.isconnecting = false;
+              }, 2000);
+            });
+          } else this.incorrect = true;
+        });
+      } else this.incorrect = true;
+    });
+
+    setTimeout(() => {
+      this.isconnecting = false;
+    }, 2000);
   }
 
   onEyePassClick() {
-    var pass = document.getElementById("pass")
-    if(pass.getAttribute("type") == "password"){
-      pass.setAttribute("type","text")
-      this.eyePass = "assets/vignettes/eye.svg"
-    }else {
-      pass.setAttribute("type","password")
-      this.eyePass = "assets/vignettes/eye-off.svg"
+    var pass = document.getElementById('pass');
+    if (pass.getAttribute('type') == 'password') {
+      pass.setAttribute('type', 'text');
+      this.eyePass = 'assets/vignettes/eye.svg';
+    } else {
+      pass.setAttribute('type', 'password');
+      this.eyePass = 'assets/vignettes/eye-off.svg';
     }
+  }
+  ngOnInit() {
+    this.formValueSubcription = this.formGroup.valueChanges.subscribe(
+      (data) => {
+        this.mail = data.mail;
+        this.pass = data.pass;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.formValueSubcription?.unsubscribe();
   }
 }

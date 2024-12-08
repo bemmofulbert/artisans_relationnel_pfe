@@ -4,9 +4,9 @@ BEGIN;
 
 -- Type: PlanTarifaire
 
--- DROP TYPE "PlanTarifaire";
+-- DROP TYPE plan_tarifaire;
 
-CREATE TYPE public."PlanTarifaire" AS
+CREATE TYPE public.plan_tarifaire AS
 (
 	intitule character varying(25),
 	description character varying(1024),
@@ -14,10 +14,10 @@ CREATE TYPE public."PlanTarifaire" AS
 	prix integer
 );
 
-ALTER TYPE public."PlanTarifaire"
+ALTER TYPE public.plan_tarifaire
     OWNER TO pg_read_all_data;
 
-COMMENT ON TYPE public."PlanTarifaire"
+COMMENT ON TYPE public.plan_tarifaire
     IS 'plan taifaire d''un artisan qui regis la qualite de service.
 en fonction du prix et du temps.';
 
@@ -51,7 +51,7 @@ GRANT USAGE ON TYPE public.coordonnees TO pg_read_all_data;
 -- --- -- --- -- --- -- --- -- ---
 
 
-CREATE TABLE "Adresse"
+CREATE TABLE adresse
 (
     id bigserial NOT NULL,
     "Pays" character varying(50),
@@ -60,7 +60,7 @@ CREATE TABLE "Adresse"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Client"
+CREATE TABLE client
 (
     id bigserial NOT NULL,
     nom character varying(256),
@@ -70,12 +70,15 @@ CREATE TABLE "Client"
     telephone2 character varying(15),
     photo_profil character varying(4096),
     motdepasse character varying(4096),
+    activated boolean,
+    code character varying(4096),
+    date_amission date,
     ref_adresse bigint,
     PRIMARY KEY (id)
 );
-ALTER TABLE "Client" ADD UNIQUE (mail);
+ALTER TABLE client ADD UNIQUE (mail);
 
-CREATE TABLE "Artisan"
+CREATE TABLE artisan
 (
 	idArt bigserial NOT NULL,
     lien_portfolio character varying(4096),
@@ -84,10 +87,10 @@ CREATE TABLE "Artisan"
     realisations character varying(4096)[],
     niveau_scolaire character varying(1024),
     diplomes character varying(4096)[],
-    plans "PlanTarifaire"[]
-)INHERITS ("Client");
+    plans plan_tarifaire[]
+)INHERITS (client);
 
-CREATE TABLE "Metier"
+CREATE TABLE metier
 (
     id bigserial NOT NULL,
     nom character varying(512),
@@ -95,7 +98,7 @@ CREATE TABLE "Metier"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Projet"
+CREATE TABLE projet
 (
     id bigserial NOT NULL,
     ref_client bigint,
@@ -109,7 +112,7 @@ CREATE TABLE "Projet"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Contrat"
+CREATE TABLE contrat
 (
     id bigserial NOT NULL,
     montant bigint,
@@ -121,7 +124,7 @@ CREATE TABLE "Contrat"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Paiement"
+CREATE TABLE paiement
 (
     id bigserial NOT NULL,
     ref_contrat bigint,
@@ -130,7 +133,7 @@ CREATE TABLE "Paiement"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Produit"
+CREATE TABLE produit
 (
     id bigserial NOT NULL,
     libelle character varying(256),
@@ -141,7 +144,7 @@ CREATE TABLE "Produit"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Jaime"
+CREATE TABLE jaime
 (
     id bigserial NOT NULL,
     ref_aimeur bigint,
@@ -149,7 +152,7 @@ CREATE TABLE "Jaime"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "Commentaire"
+CREATE TABLE commentaire
 (
     id bigserial NOT NULL,
     ref_commentateur bigint,
@@ -158,7 +161,7 @@ CREATE TABLE "Commentaire"
     PRIMARY KEY (id)
 );
 
-CREATE TABLE "exerce"
+CREATE TABLE exerce
 (
     id bigserial NOT NULL,
     "ref_Artisan" bigint,
@@ -176,122 +179,122 @@ CREATE TABLE concerne
 COMMENT ON TABLE concerne
     IS 'un projet peut concerner plusieurs metiers';
 
-CREATE TABLE "Postule"
+CREATE TABLE postule
 (
     id bigserial,
     ref_projet bigint,
     ref_artisan bigint
 );
 
-ALTER TABLE "Client"
+ALTER TABLE client
     ADD FOREIGN KEY (ref_adresse)
-    REFERENCES public."Adresse" (id) MATCH SIMPLE
+    REFERENCES public.adresse (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Projet"
+ALTER TABLE projet
     ADD FOREIGN KEY (ref_client)
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Projet"
+ALTER TABLE projet
     ADD FOREIGN KEY (ref_adresse)
-    REFERENCES public."Adresse" (id) MATCH SIMPLE
+    REFERENCES public.adresse (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Contrat"
+ALTER TABLE contrat
     ADD FOREIGN KEY (ref_offre)
-    REFERENCES public."Projet" (id) MATCH SIMPLE
+    REFERENCES public.projet (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Paiement"
+ALTER TABLE paiement
     ADD FOREIGN KEY (ref_contrat)
-    REFERENCES public."Contrat" (id) MATCH SIMPLE
+    REFERENCES public.contrat (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Produit"
+ALTER TABLE produit
     ADD FOREIGN KEY (ref_vendeur)
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Jaime"
+ALTER TABLE jaime
     ADD FOREIGN KEY (ref_aimeur)
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Jaime"
+ALTER TABLE jaime
     ADD FOREIGN KEY (ref_aime)
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Commentaire"
+ALTER TABLE commentaire
     ADD FOREIGN KEY (ref_commentateur)
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Commentaire"
+ALTER TABLE commentaire
     ADD FOREIGN KEY (ref_commente)
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "Artisan"
+ALTER TABLE artisan
     ADD PRIMARY KEY ("idart");
 
-ALTER TABLE "exerce"
+ALTER TABLE exerce
     ADD FOREIGN KEY ("ref_Artisan")
-    REFERENCES public."Client" (id) MATCH SIMPLE
+    REFERENCES public.client (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE "exerce"
+ALTER TABLE exerce
     ADD FOREIGN KEY (ref_metier)
-    REFERENCES public."Metier" (id) MATCH SIMPLE
+    REFERENCES public.metier (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
     
-ALTER TABLE IF EXISTS public."Postule"
+ALTER TABLE IF EXISTS public.postule
     ADD FOREIGN KEY (ref_projet)
-    REFERENCES public."Projet" (id) MATCH SIMPLE
+    REFERENCES public.projet (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
-ALTER TABLE IF EXISTS public."Postule"
+ALTER TABLE IF EXISTS public.postule
     ADD FOREIGN KEY (ref_artisan)
-    REFERENCES public."Artisan" (idArt) MATCH SIMPLE
+    REFERENCES public.artisan (idArt) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
     
 ALTER TABLE IF EXISTS public.concerne
     ADD FOREIGN KEY (ref_projet)
-    REFERENCES public."Projet" (id) MATCH SIMPLE
+    REFERENCES public.projet (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 
 
 ALTER TABLE IF EXISTS public.concerne
     ADD FOREIGN KEY (ref_metier)
-    REFERENCES public."Metier" (id) MATCH SIMPLE
+    REFERENCES public.metier (id) MATCH SIMPLE
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 

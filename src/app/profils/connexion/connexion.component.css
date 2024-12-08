@@ -4,13 +4,13 @@ body {
     width: 100%;
     height: 100vh;
 }
-.centered {
+/* .centered {
 	display: flex;
 	align-items: center;
     justify-content: center;
     justify-items: center;
     align-content: center;
-}
+} */
 .root {
     position: fixed;
     vertical-align: middle;
@@ -18,10 +18,11 @@ body {
 	box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 20px;
 	flex-direction : column;
+	width: 400px;
 	
-	display: flex;
+	/* display: flex;
 	align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start; */
     padding:10px
 }
 @media screen and (max-width:600px) {
@@ -41,26 +42,12 @@ table,tr,td {
 td {
 	padding : 10px;
 }
-label {
-	font-family : 'Arial'/*'Open Sans'*/
-}
-/* input[type=text] {
-	background: #F0F8FF;
-	
-	border : none;
-	height : 30px;
-	border-radius : 56px;
-	padding-left : 15px;
-	
-	transition: all 0.3s;
-	
-}
-input[type=text]:focus {
-	border : 2px solid darkblue;
-	outline: none;
-	filter: drop-shadow(0px 4px 4px rgba(10, 38, 64, 0.25));
-	box-shadow: 0px 4px 4px rgba(10, 38, 64, 0.25);
-} */
+.mat, mat-form-field {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+  }
 
 .lien {
 	text-align: center;
@@ -68,9 +55,8 @@ input[type=text]:focus {
 	color: #047A9F;
 }
 .passOublier {
-	padding : 10px;
+	padding : 0;
 	padding-left : 50%;
-	padding-top : 20px;
 	padding-bottom : 20px;
 }
 
@@ -78,17 +64,13 @@ input[type=text]:focus {
 text-decoration-line: underline;
 	color: #047A9F;
 }
-input[type="submit"] {
-	background: darkblue;
-	border-radius: 240px;
-	color : white;
-	border:none;
-	font-size : 20px;
-	padding: 5px;
-	padding-left : 15px;
-	padding-right : 15px;
-	font-weight : 900;
-}
+
 .creer {
 	padding-top : 20px;
+}
+
+button[type=submit] {
+	background-color: #005cbb;
+	color: white;
+	font-size: medium;
 }

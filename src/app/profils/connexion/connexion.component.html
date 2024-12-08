@@ -1,35 +1,91 @@
-
 <html>
-    <head>
-        <title>Connexion | OneClick!Work</title>
-    </head>
-    <body class="centered">
-        <div class="bg"></div>
-        <form  class="root centered" (submit)="onSubmit()">
-            <div class="titre centered"  ><h2>Bon Retour <br>Sur<br>OneClick Work</h2></div>
-            <table>
-                <tr *ngIf="incorrect"><span class="alert" >Adresse ou Mot de Passe incorrect</span></tr>
-                <tr *ngIf="incomplet && !incorrect"><span class="alert" >Remplissez tous les champs</span></tr>
-                <tr>
-                    <td >
-                    	<mat-icon>email</mat-icon>
-                    	<label for="mail" >Adresse Mail</label>
-                    </td>
-                    <td><input id="mail" name="mail" type=text placeholder="Entrez votre adresse mail" [(ngModel)]="mail" /></td>
-                </tr>
-                <tr>
-                    <td>
-                    	<mat-icon>security</mat-icon>
-                    	<label for="pass" >Mot de Passe</label>
-                    </td>
-                    <td><input id="pass" name="pass" type=password placeholder="Entrez votre mot de passe" [(ngModel)]="pass" /></td>
-                    <td><div class="eye" ><button (click)="onEyePassClick()"><img [src]="eyePass"></button></div></td>
-                </tr>
-            </table>
-            <div class="passOublier lien"><a href="#" >mot de passe oublie ?</a></div>
-            <div *ngIf="isconnecting" style="width: 60px;height: 60px;"><mat-spinner style="width:100%"></mat-spinner></div>
-            <div><input type="submit" value="Connexion" class="butConnexion"></div>
-            <div class="creer lien"><a routerLink="/enregistrement" >Creer un Compte</a></div>
-        </form>
-    </body>
+  <head>
+    <title>Connexion | OneClick!Work</title>
+  </head>
+  <body class="centered">
+    <div class="bg"></div>
+    <form class="root" [formGroup]="formGroup" (submit)="onSubmit()">
+      <div class="titre centered">
+        <h2>Bon Retour <br />Sur<br />OneClick Work</h2>
+      </div>
+      <table>
+        <tr *ngIf="incorrect">
+          <span class="alert">Adresse ou Mot de Passe incorrect</span>
+        </tr>
+        <tr *ngIf="incomplet && !incorrect">
+          <span class="alert">Remplissez tous les champs</span>
+        </tr>
+      </table>
+      <div class="mat">
+        <!-- <input id="mail" name="mail" type=text placeholder="Entrez votre adresse mail" [(ngModel)]="mail" /> -->
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input
+            matInput
+            type="email"
+            #mail
+            id="mail"
+            name="mail"
+            placeholder="Ex. pat@example.com"
+            formControlName="mail"
+          />
+          <button
+            *ngIf="mail.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="mail.value = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+        </mat-form-field>
+      </div>
+      <div class="mat">
+        <!-- <input id="pass" name="pass" type=password placeholder="Entrez votre mot de passe" [(ngModel)]="pass" /> -->
+        <mat-form-field>
+          <mat-label>Mot de Passe</mat-label>
+          <mat-icon matPrefix>enhanced_encryption</mat-icon>
+          <input
+            matInput
+            type="password"
+            #pass
+            id="pass"
+            name="pass"
+            formControlName="pass"
+          />
+          <button
+            type="button"
+            *ngIf="pass.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="onEyePassClick()"
+          >
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <button
+            *ngIf="pass.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="pass.value = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+
+          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+        </mat-form-field>
+      </div>
+      <div class="passOublier lien"><a href="#">mot de passe oublie ?</a></div>
+      <div *ngIf="isconnecting" style="width: 60px; height: 60px">
+        <mat-spinner style="width: 100%"></mat-spinner>
+      </div>
+      <div><button type="submit" mat-fab extended >Connexion</button></div>
+      <div class="creer lien">
+        <a routerLink="/enregistrement">Creer un Compte</a>
+      </div>
+    </form>
+  </body>
 </html>

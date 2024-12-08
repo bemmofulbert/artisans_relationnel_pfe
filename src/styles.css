@@ -34,15 +34,6 @@ body{
 .debug {
 border: 2px solid black;
 }
-input {
-	border: none;
-	outline: none;
-	text-overflow: ellipsis;
-}
-input:focus {
-	border: none;
-	outline: none;
-}
 /*{
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }*/
@@ -77,3 +68,6 @@ select {
     padding-right: 12px;
     background-color: white;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
