@@ -3,8 +3,8 @@ const info = {
     password : "admin",
     host : "localhost",//"192.168.43.10",
     port : "5432",
-    database : "owc",
-    ssl : "true"
+    database : "oneclickwork",
+    //ssl : "true"
 }
 const pg_promise = require('pg-promise')
 const pgp = pg_promise()
