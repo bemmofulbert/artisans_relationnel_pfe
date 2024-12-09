@@ -18,7 +18,7 @@ export class Enregistrement1Component {
 
   formBuilder = inject(FormBuilder);
   formGroup = this.formBuilder.group({
-    mail: ['', [Validators.required]],
+    mail: ['', [Validators.required, Validators.email]],
     motdepasse: ['', [Validators.required]],
     vmotdepasse: ['', [Validators.required]],
   });
@@ -44,12 +44,10 @@ export class Enregistrement1Component {
     else return false;
   }
   checkvmotdepasse() {
-    if (
-      this.formGroup.get('motdepasse').value ==
+    return (
+      this.formGroup.get('motdepasse').value ===
       this.formGroup.get('vmotdepasse').value
-    )
-      return true;
-    else return false;
+    );
   }
   valider() {
     let test = true;
@@ -62,16 +60,14 @@ export class Enregistrement1Component {
       test = false;
     return test;
   }
-  onNext() {
-    //this.verifNow = true;
-    if (this.valider()) this.next.emit(null);
-  }
+
   onSubmit($event: Event) {
     $event.preventDefault();
+    if (this.valider()) this.next.emit(null);
     return false;
   }
   onEyePassClick() {
-    var pass = document.getElementById('pass');
+    var pass = document.getElementById('motdepasse');
     if (pass.getAttribute('type') == 'password') {
       pass.setAttribute('type', 'text');
     } else {

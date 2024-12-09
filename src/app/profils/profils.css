@@ -83,7 +83,7 @@ body {
     align-content: center;
 }
 .root {
-    height: fit-content;
+    height: 600px;
     vertical-align: middle;
     background: #FFFFFF;
 	box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
@@ -143,6 +143,15 @@ text-decoration-line: underline;
 }
 .creer {
 	padding-top : 20px;
+}
+
+.alert{
+	font-size: small;
+	padding:0px;
+	color: red
+}
+.err{
+	color: red;
 }
 .mat, mat-form-field {
 	width: 100%;

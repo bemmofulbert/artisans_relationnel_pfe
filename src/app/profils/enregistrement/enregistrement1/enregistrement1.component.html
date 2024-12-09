@@ -1,109 +1,106 @@
 
 
-<form  class="root centered" [formGroup]="formGroup" *ngIf="visible" (submit)="onSubmit($event)">
+<form  class="root" [formGroup]="formGroup" *ngIf="visible" (submit)="onSubmit($event)">
     <div class="titre centered" ><h2>Bienvenue sur OneClick!Work</h2></div>
-    <div>
-        <div class="mat">
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <mat-icon matPrefix>email</mat-icon>
-                <input
-                matInput
-                type="email"
-                #mail
-                id="mail"
-                name="mail"
-                placeholder="Ex. pat@example.com"
-                formControlName="mail"
-                />
-                <button
-                *ngIf="mail.value.length > 0"
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="mail.value = ''"
-                >
-                <mat-icon>close</mat-icon>
-                </button>
-                <mat-error *ngIf="!checkEmail()" >Adresse mail incorrecte</mat-error>
-                <mat-error *ngIf="mailExist">Adresse mail deja utilise</mat-error>
-                <mat-hint>Entrez votre adresse mail</mat-hint>
-            </mat-form-field>
-            </div>
+    <div class="mat">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input
+            matInput
+            type="email"
+            #mail
+            id="mail"
+            name="mail"
+            placeholder="Ex. pat@example.com"
+            formControlName="mail"
+            />
+            <button
+            *ngIf="mail.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="mail.value = ''"
+            >
+            <mat-icon>close</mat-icon>
+            </button>
+            
+            <!-- <mat-hint>Entrez votre adresse mail</mat-hint> -->
+        </mat-form-field>
+            <div class="alert err" *ngIf="this.formGroup.get('mail').touched && !checkEmail()" >Adresse mail incorrecte</div>
+            <div class="alert err" *ngIf="this.formGroup.get('mail').touched && mailExist">Adresse mail deja utilise</div>
 
-            <div class="mat">
-            <mat-form-field>
-                <mat-label>Mot de passe</mat-label>
-                <mat-icon matPrefix>enhanced_encryption</mat-icon>
-                <input
-                matInput
-                type="password"
-                #motdepasse
-                id="motdepasse"
-                name="motdepasse"
-                formControlName="motdepasse"
-                />
-                <button
-                type="button"
-                *ngIf="motdepasse.value.length > 0"
-                matSuffix
-                mat-icon-button
-                (click)="onEyePassClick()"
-                >
-                <mat-icon>remove_red_eye</mat-icon>
-                </button>
-                <button
-                *ngIf="motdepasse.value.length > 0"
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="motdepasse.value = ''"
-                >
-                <mat-icon>close</mat-icon>
-                </button>
-    
-                <mat-hint>mot de passe a garder secret</mat-hint>
-                <mat-error *ngIf="!checkmotdepasse()" class="alert">Six (06) caracteres minimum</mat-error>
-            </mat-form-field>
+        <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <mat-icon matPrefix>enhanced_encryption</mat-icon>
+            <input
+            matInput
+            type="password"
+            #motdepasse
+            id="motdepasse"
+            name="motdepasse"
+            formControlName="motdepasse"
+            />
+            <button
+            type="button"
+            *ngIf="motdepasse.value.length > 0"
+            matSuffix
+            mat-icon-button
+            (click)="onEyePassClick()"
+            >
+            <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button
+            *ngIf="motdepasse.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="motdepasse.value = ''"
+            >
+            <mat-icon>close</mat-icon>
+            </button>
+
+            <!-- <mat-hint>mot de passe a garder secret</mat-hint> -->
+            
+        </mat-form-field>
+        <div class="alert err" *ngIf="this.formGroup.get('motdepasse').touched && checkmotdepasse() == false">Six (06) caracteres minimum</div>
+
+        <mat-form-field>
+            <mat-label>Mot de passe encore</mat-label>
+            <mat-icon matPrefix>enhanced_encryption</mat-icon>
+            <input
+            matInput
+            type="password"
+            #vmotdepasse
+            id="vmotdepasse"
+            name="vmotdepasse"
+            formControlName="vmotdepasse"
+            />
+            <button
+            type="button"
+            *ngIf="vmotdepasse.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="onEyevmotdepasseClick()"
+            >
+            <mat-icon>remove_red_eye</mat-icon>
+            </button>
+            <button
+            *ngIf="vmotdepasse.value.length > 0"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="vmotdepasse.value = ''"
+            >
+            <mat-icon>close</mat-icon>
+            </button>
+
+            
+        </mat-form-field>
+        <div class="alert err" *ngIf="this.formGroup.get('vmotdepasse').touched && !checkvmotdepasse()">Different du mot de passe</div>
+
         </div>
-
-        <div class="mat">
-            <mat-form-field>
-                <mat-label>Mot de passe encore</mat-label>
-                <mat-icon matPrefix>enhanced_encryption</mat-icon>
-                <input
-                matInput
-                type="password"
-                #vmotdepasse
-                id="vmotdepasse"
-                name="vmotdepasse"
-                formControlName="vmotdepasse"
-                />
-                <button
-                type="button"
-                *ngIf="vmotdepasse.value.length > 0"
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="onEyevmotdepasseClick()"
-                >
-                <mat-icon>remove_red_eye</mat-icon>
-                </button>
-                <button
-                *ngIf="vmotdepasse.value.length > 0"
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="vmotdepasse.value = ''"
-                >
-                <mat-icon>close</mat-icon>
-                </button>
-    
-                <mat-error *ngIf="!checkvmotdepasse()" class="alert">Différent du mot de mot de passe</mat-error>
-            </mat-form-field>
-        </div>
-
-    </div>
-    <div><button type="submit" mat-fab extended (click)="onNext()">Continuer</button></div>
+    <div><button type="submit" mat-fab extended>Continuer</button></div>
     <div class="creer lien"><a routerLink="/connexion">J'ai déja un compte</a></div>
 </form>

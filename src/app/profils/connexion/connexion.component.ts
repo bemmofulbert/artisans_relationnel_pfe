@@ -20,7 +20,7 @@ export class ConnexionComponent implements OnInit, OnDestroy {
   isconnecting: Boolean = false;
   formBuilder = inject(FormBuilder);
   formGroup = this.formBuilder.group({
-    mail: [this.mail, [Validators.required]],
+    mail: [this.mail, [Validators.required, Validators.email]],
     pass: [this.pass, [Validators.required]],
   });
   private formValueSubcription: Subscription | null = null;

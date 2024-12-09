@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -104,6 +105,7 @@ import { ArtDashboardWorkspaceMessageChatSpaceComponent } from './profils/art-da
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    CommonModule,
     FormsModule,
     CarrouselComponent,
     BrowserAnimationsModule,

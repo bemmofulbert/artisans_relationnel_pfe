@@ -1,16 +1,16 @@
 
-        <form  class="root centered" *ngIf="visible" (submit)="onSubmit()">
+        <form  class="root centered" *ngIf="visible" (submit)="onSubmit($event)">
             <div class="titre centered"  ><h2>Bienvenue sur OneCick!Work</h2></div>
             <table>
-                <tr><td *ngIf="!check(cli.nom) && verifNow" class="alert">trois (03) cracteres minimum</td></tr>
+                <tr><td *ngIf="!check(client.nom)" class="alert">trois (03) caracteres minimum</td></tr>
                 <tr>
                     <td><label for="login" >Nom <span class="star">*</span></label></td>
-                    <td><input id="login" name="login" type=text placeholder="Entrez votre nom d'utilisateur" [(ngModel)]="cli.nom"/></td>
+                    <td><input id="login" name="login" type=text placeholder="Entrez votre nom d'utilisateur" [(ngModel)]="client.nom"/></td>
                 </tr>
-                <tr><td *ngIf="!check(cli.prenom) && verifNow" class="alert">trois (03) cracteres minimum</td></tr>
+                <tr><td *ngIf="!check(client.prenom)" class="alert">trois (03) cracteres minimum</td></tr>
                 <tr>
                     <td><label for="prenom" >Prenom <span class="star">*</span></label></td>
-                    <td><input id="prenom" name="prenom" type=text placeholder="Entrez votre langue preferee" [(ngModel)]="cli.prenom"/></td>
+                    <td><input id="prenom" name="prenom" type=text placeholder="Entrez votre langue preferee" [(ngModel)]="client.prenom"/></td>
                 </tr>
             </table>
             <div>
