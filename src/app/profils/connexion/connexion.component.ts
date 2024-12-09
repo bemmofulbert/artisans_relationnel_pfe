@@ -17,7 +17,6 @@ export class ConnexionComponent implements OnInit, OnDestroy {
   pass: string = '';
   incorrect: Boolean = false;
   incomplet: Boolean = false;
-  eyePass = 'assets/vignettes/eye-off.svg';
   isconnecting: Boolean = false;
   formBuilder = inject(FormBuilder);
   formGroup = this.formBuilder.group({
@@ -28,19 +27,18 @@ export class ConnexionComponent implements OnInit, OnDestroy {
 
   constructor(private clientService: ClientService, private router: Router) {}
 
-  onSubmit() {
-    this.isconnecting = true;
+  onSubmit($event: Event) {
+    $event.preventDefault();
 
     this.incorrect = false;
     this.incomplet = false;
 
     if (this.mail == '' || this.pass == '') {
       this.incomplet = true;
-      setTimeout(() => {
-        this.isconnecting = false;
-      }, 2000);
+      this.isconnecting = false;
       return;
     }
+    this.isconnecting = true;
     this.clientService.clientVerif(this.mail, (data) => {
       if (data['activated']) {
         this.clientService.clientLogin(this.mail, this.pass, (match) => {
@@ -51,32 +49,28 @@ export class ConnexionComponent implements OnInit, OnDestroy {
               setTimeout(() => {
                 this.router.navigate(['']);
                 this.isconnecting = false;
-              }, 2000);
+              }, 1000);
             });
           } else this.incorrect = true;
         });
       } else this.incorrect = true;
     });
 
-    setTimeout(() => {
-      this.isconnecting = false;
-    }, 2000);
+    this.isconnecting = false;
   }
 
   onEyePassClick() {
     var pass = document.getElementById('pass');
     if (pass.getAttribute('type') == 'password') {
       pass.setAttribute('type', 'text');
-      this.eyePass = 'assets/vignettes/eye.svg';
     } else {
       pass.setAttribute('type', 'password');
-      this.eyePass = 'assets/vignettes/eye-off.svg';
     }
   }
   ngOnInit() {
     this.formValueSubcription = this.formGroup.valueChanges.subscribe(
       (data) => {
-        this.mail = data.mail;
+        this.mail = data.mail.toLowerCase();
         this.pass = data.pass;
       }
     );

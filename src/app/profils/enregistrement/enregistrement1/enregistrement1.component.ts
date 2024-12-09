@@ -1,77 +1,102 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ClientService } from 'src/app/services/Client.service';
 import { ClientModel } from 'src/app/services/models/client.model';
 
 @Component({
   selector: 'app-enregistrement1',
   templateUrl: './enregistrement1.component.html',
-  styleUrls: ['./enregistrement1.component.css','../../profils.css']
+  styleUrls: ['./enregistrement1.component.css', '../../profils.css'],
 })
 export class Enregistrement1Component {
-  
-  @Input() cli!:ClientModel;
-  @Input() visible:Boolean = true;
-  @Input() vPass:string;
-  verifNow:Boolean = false;
-  mailExist:Boolean = false;
-  eyePass = "assets/vignettes/eye-off.svg"
-  eyeVPass = "assets/vignettes/eye-off.svg"
+  @Input() client!: ClientModel;
+  @Input() visible: Boolean = true;
+  @Input() vmotdepasse: string;
+  //verifNow: Boolean = false;
+  mailExist: Boolean = false;
 
-  constructor(private clientService:ClientService) {
+  formBuilder = inject(FormBuilder);
+  formGroup = this.formBuilder.group({
+    mail: ['', [Validators.required]],
+    motdepasse: ['', [Validators.required]],
+    vmotdepasse: ['', [Validators.required]],
+  });
+  private formValueSubcription: Subscription | null = null;
 
-  }
+  constructor(private clientService: ClientService) {}
 
   @Output() next: EventEmitter<any> = new EventEmitter();
   checkEmail() {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(this.cli.mail);
+    var re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(this.formGroup.get('mail').value);
   }
   checkEmail2() {
-    this.clientService.clientVerif(this.cli.mail,(data)=>{
-      (data["exist"] === true) ? this.mailExist=true : this.mailExist = false;
-    })
-    
+    this.clientService.clientVerif(this.client.mail, (data) => {
+      data['exist'] === true
+        ? (this.mailExist = true)
+        : (this.mailExist = false);
+    });
   }
-  checkPass(){
-    if(this.cli.motdepasse.length >= 6) return true;
+  checkmotdepasse() {
+    if (this.formGroup.get('motdepasse').value.length >= 6) return true;
     else return false;
   }
-  checkVPass(){
-    if(this.cli.motdepasse === this.vPass) return true;
+  checkvmotdepasse() {
+    if (
+      this.formGroup.get('motdepasse').value ==
+      this.formGroup.get('vmotdepasse').value
+    )
+      return true;
     else return false;
   }
-  valider(){
+  valider() {
     let test = true;
-    this.checkEmail2()
-    if(!this.checkEmail() || !this.checkPass() || !this.checkVPass()) test = false
-    return test
+    this.checkEmail2();
+    if (
+      !this.checkEmail() ||
+      !this.checkmotdepasse() ||
+      !this.checkvmotdepasse()
+    )
+      test = false;
+    return test;
   }
-  onNext(){
-    this.verifNow = true;
-    if(this.valider())
-      this.next.emit(null);
+  onNext() {
+    //this.verifNow = true;
+    if (this.valider()) this.next.emit(null);
   }
-  onSubmit(){
-    return false
+  onSubmit($event: Event) {
+    $event.preventDefault();
+    return false;
   }
   onEyePassClick() {
-    var pass = document.getElementById("pass")
-    if(pass.getAttribute("type") == "password"){
-      pass.setAttribute("type","text")
-      this.eyePass = "assets/vignettes/eye.svg"
-    }else {
-      pass.setAttribute("type","password")
-      this.eyePass = "assets/vignettes/eye-off.svg"
+    var pass = document.getElementById('pass');
+    if (pass.getAttribute('type') == 'password') {
+      pass.setAttribute('type', 'text');
+    } else {
+      pass.setAttribute('type', 'password');
     }
   }
-  onEyeVPassClick() {
-    var vpass = document.getElementById("vpass")
-    if(vpass.getAttribute("type") == "password"){
-      vpass.setAttribute("type","text")
-      this.eyeVPass = "assets/vignettes/eye.svg"
-    }else {
-      vpass.setAttribute("type","password")
-      this.eyeVPass = "assets/vignettes/eye-off.svg"
+  onEyevmotdepasseClick() {
+    var vmotdepasse = document.getElementById('vmotdepasse');
+    if (vmotdepasse.getAttribute('type') == 'password') {
+      vmotdepasse.setAttribute('type', 'text');
+    } else {
+      vmotdepasse.setAttribute('type', 'password');
     }
+  }
+  ngOnInit() {
+    this.formValueSubcription = this.formGroup.valueChanges.subscribe(
+      (data) => {
+        this.client.mail = data.mail;
+        this.client.motdepasse = data.motdepasse;
+        this.vmotdepasse = data.vmotdepasse;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.formValueSubcription?.unsubscribe();
   }
 }

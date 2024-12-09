@@ -18,7 +18,7 @@ body {
 	box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 20px;
 	flex-direction : column;
-	width: 400px;
+	
 	
 	/* display: flex;
 	align-items: center;
@@ -42,12 +42,6 @@ table,tr,td {
 td {
 	padding : 10px;
 }
-.mat, mat-form-field {
-	width: 100%;
-	padding: 5px;
-	margin-bottom: 0;
-	padding-bottom: 0;
-  }
 
 .lien {
 	text-align: center;
@@ -69,8 +63,3 @@ text-decoration-line: underline;
 	padding-top : 20px;
 }
 
-button[type=submit] {
-	background-color: #005cbb;
-	color: white;
-	font-size: medium;
-}

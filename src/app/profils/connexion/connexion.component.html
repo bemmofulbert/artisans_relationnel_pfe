@@ -4,7 +4,7 @@
   </head>
   <body class="centered">
     <div class="bg"></div>
-    <form class="root" [formGroup]="formGroup" (submit)="onSubmit()">
+    <form class="root" [formGroup]="formGroup" (submit)="onSubmit($event)">
       <div class="titre centered">
         <h2>Bon Retour <br />Sur<br />OneClick Work</h2>
       </div>
@@ -60,7 +60,6 @@
             *ngIf="pass.value.length > 0"
             matSuffix
             mat-icon-button
-            aria-label="Clear"
             (click)="onEyePassClick()"
           >
             <mat-icon>remove_red_eye</mat-icon>
