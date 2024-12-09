@@ -1,7 +1,63 @@
 
-        <form  class="root centered" *ngIf="visible" (submit)="onSubmit($event)">
+        <form  class="root centered" *ngIf="visible" [formGroup]="formGroup" (submit)="onSubmit($event)">
             <div class="titre centered"  ><h2>Bienvenue sur OneCick!Work</h2></div>
-            <table>
+            <div class="mat">
+                
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <mat-icon matPrefix>person</mat-icon>
+                    <input
+                    matInput
+                    type="text"
+                    #nom
+                    id="nom"
+                    name="nom"
+                    placeholder="Ex. Adrien"
+                    formControlName="nom"
+                    />
+                    <button
+                    *ngIf="nom.value.length > 0"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="nom.value = ''"
+                    >
+                    <mat-icon>close</mat-icon>
+                    </button>
+                    
+                    <mat-hint>Entrez votre nom</mat-hint>
+                </mat-form-field>
+                    <div class="alert err" *ngIf="this.formGroup.get('nom').touched && !check(nom.value)" >trois (03) caracteres minimum</div>
+        
+                    <mat-form-field>
+                        <mat-label>prenom</mat-label>
+                        <mat-icon matPrefix>person</mat-icon>
+                        <input
+                        matInput
+                        type="text"
+                        #prenom
+                        id="prenom"
+                        name="prenom"
+                        placeholder="Ex. Adrien"
+                        formControlName="prenom"
+                        />
+                        <button
+                        *ngIf="prenom.value.length > 0"
+                        matSuffix
+                        mat-icon-button
+                        aria-label="Clear"
+                        (click)="prenom.value = ''"
+                        >
+                        <mat-icon>close</mat-icon>
+                        </button>
+                        
+                        <mat-hint>Entrez votre prenom</mat-hint>
+                    </mat-form-field>
+                        <div class="alert err" *ngIf="this.formGroup.get('prenom').touched && !check(prenom.value)" >trois (03) caracteres minimum</div>
+            
+
+            </div>
+            <!-- <table>
                 <tr><td *ngIf="!check(client.nom)" class="alert">trois (03) caracteres minimum</td></tr>
                 <tr>
                     <td><label for="login" >Nom <span class="star">*</span></label></td>
@@ -12,13 +68,14 @@
                     <td><label for="prenom" >Prenom <span class="star">*</span></label></td>
                     <td><input id="prenom" name="prenom" type=text placeholder="Entrez votre langue preferee" [(ngModel)]="client.prenom"/></td>
                 </tr>
-            </table>
-            <div>
-                <input type="submit" value="S'enregistrer" >
-                <div class="centered" style="width:100%">
-                    <input type=button  value="Precedent"  (click)="onPrec()">
-                </div>
+            </table> -->
+            <div class="centered">
+                <button type="submit" mat-fab extended >S'enregistrer</button>
             </div>
+            <div class="centered">
+                <button type=button mat-button (click)="onPrec()">Precedent</button>
+            </div>
+            
             <div class="creer lien"><a routerLink="/connexion">Lire notre politique de confidentialite</a></div>
         </form>
 

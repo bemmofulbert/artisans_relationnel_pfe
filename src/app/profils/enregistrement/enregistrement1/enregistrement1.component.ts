@@ -13,7 +13,6 @@ export class Enregistrement1Component {
   @Input() client!: ClientModel;
   @Input() visible: Boolean = true;
   @Input() vmotdepasse: string;
-  //verifNow: Boolean = false;
   mailExist: Boolean = false;
 
   formBuilder = inject(FormBuilder);
@@ -55,7 +54,8 @@ export class Enregistrement1Component {
     if (
       !this.checkEmail() ||
       !this.checkmotdepasse() ||
-      !this.checkvmotdepasse()
+      !this.checkvmotdepasse() ||
+      this.mailExist
     )
       test = false;
     return test;

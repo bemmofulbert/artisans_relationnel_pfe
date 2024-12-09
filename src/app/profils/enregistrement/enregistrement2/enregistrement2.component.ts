@@ -1,4 +1,6 @@
-import { Component,EventEmitter,Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ClientService } from 'src/app/services/Client.service';
 import { ClientModel } from 'src/app/services/models/client.model';
 
@@ -13,10 +15,19 @@ export class Enregistrement2Component {
 
   @Output() prec: EventEmitter<any> = new EventEmitter();
   @Output() next2: EventEmitter<any> = new EventEmitter();
+
+  formBuilder = inject(FormBuilder);
+  formGroup = this.formBuilder.group({
+    nom: ['', [Validators.required]],
+    prenom: ['', [Validators.required]],
+  });
+  private formValueSubcription: Subscription | null = null;
+
   onPrec() {
     this.prec.emit(null);
   }
-  onSubmit($event:Event) {
+  onSubmit($event: Event) {
+    $event.preventDefault();
     if (this.valider()) this.next2.emit();
     return false;
   }
@@ -25,7 +36,18 @@ export class Enregistrement2Component {
     else return false;
   }
   valider() {
-    if (!this.check(this.client.nom) || !this.check(this.client.prenom)) return false;
-    else return true;
+    return !(!this.check(this.client.nom) || !this.check(this.client.prenom));
+  }
+  ngOnInit() {
+    this.formValueSubcription = this.formGroup.valueChanges.subscribe(
+      (data) => {
+        this.client.nom = data.nom;
+        this.client.prenom = data.prenom;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.formValueSubcription?.unsubscribe();
   }
 }
